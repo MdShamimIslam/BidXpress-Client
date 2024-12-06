@@ -1,5 +1,5 @@
 
-const BACKEND_URL = "http://localhost:5000/api";
+const BACKEND_URL = import.meta.REACT_APP_BACKEND_URL;
 
 export const AUTH_URL = `${BACKEND_URL}/users`;
 export const CATEGORY_URL = `${BACKEND_URL}/category`;
