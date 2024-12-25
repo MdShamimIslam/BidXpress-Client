@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 
 const initialState = {
   products: [],
+  totalPages: 0,    
+  currentPage: 1,  
   userProducts: [],
   wonedProducts: [],
   product: null,
@@ -34,7 +36,7 @@ export const createProduct = createAsyncThunk(
 
 export const getAllProduct = createAsyncThunk(
   "product/getAllProduct",
-  async (params, thunkAPI) => {
+  async (params={}, thunkAPI) => {
     try {
       const res = await productService.getAllProduct(params);
       return res;
@@ -217,7 +219,9 @@ const productSlice = createSlice({
       .addCase(getAllProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.products = action.payload
+        state.products = action.payload.products;
+        state.totalPages = action.payload.totalPages || 0; 
+        state.currentPage = action.payload.currentPage || 1;
       })
       .addCase(getAllProduct.rejected, (state, action) => {
         state.isLoading = false;
@@ -330,6 +334,6 @@ const productSlice = createSlice({
       });
   },
 });
-export const { resetProductState, setSearchTitle, setCurrentPage } = productSlice.actions;
+export const { resetProductState } = productSlice.actions;
 export default productSlice.reducer;
 export const selectProduct = state => state.product?.product;

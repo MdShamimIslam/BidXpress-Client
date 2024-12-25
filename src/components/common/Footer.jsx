@@ -22,12 +22,17 @@ const Footer = () => {
         } flex flex-col lg:flex-row md:items-center lg:justify-between gap-12`}
       >
         <div className="w-full md:w-3/4 lg:w-1/3 ">
-          <Link to="/">
+          <Link className="flex items-center gap-3" to="/">
             <img
-              alt="logo"
-              className="rounded-full w-[50px] bg-white"
               src="/images/common/bid.png"
+              alt="logo"
+              className="rounded-full w-[35px] bg-white"
             />
+            <h3
+              className="text-white text-2xl font-bold"
+            >
+              BidXpress
+            </h3>
           </Link>
 
           <br />
@@ -67,7 +72,9 @@ const Footer = () => {
               <p className="hover:text-green cursor-pointer">Electronics</p>
               <p className="hover:text-green cursor-pointer">Real Estate</p>
               <p className="hover:text-green cursor-pointer">Jewelry</p>
-              <p className="hover:text-green cursor-pointer">Sports & Outdoor</p>
+              <p className="hover:text-green cursor-pointer">
+                Sports & Outdoor
+              </p>
             </ul>
           </div>
           <div>
@@ -80,7 +87,9 @@ const Footer = () => {
               <p className="hover:text-green cursor-pointer">Jobs</p>
               <p className="hover:text-green cursor-pointer">Press</p>
               <p className="hover:text-green cursor-pointer">Our blog</p>
-              <p className="hover:text-green cursor-pointer">Collectors portal</p>
+              <p className="hover:text-green cursor-pointer">
+                Collectors portal
+              </p>
             </ul>
           </div>
           <div>
@@ -89,7 +98,9 @@ const Footer = () => {
             </Title>
             <ul className="flex flex-col gap-5 mt-8 text-gray-200">
               <p className="hover:text-green cursor-pointer">Safe and Secure</p>
-              <p className="hover:text-green cursor-pointer">Shipping Information</p>
+              <p className="hover:text-green cursor-pointer">
+                Shipping Information
+              </p>
               <p className="hover:text-green cursor-pointer">Contact Us</p>
               <p className="hover:text-green cursor-pointer">Help & FAQ</p>
             </ul>

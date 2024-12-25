@@ -11,8 +11,7 @@ const createProduct = async (data) => {
 };
 // get all product
 const getAllProduct = async (params = {}) => {
-  const queryString = new URLSearchParams(params).toString();
-  const res = await axios.get(`${PRODUCT_URL}?${queryString}`); 
+  const res = await axios.get(`${PRODUCT_URL}`, { params });
   return res?.data;
 };
 // get all product of user

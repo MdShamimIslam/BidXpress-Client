@@ -17,7 +17,7 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const menuRef = useRef(null);
-  
+
   const { user, isLoggedIn } = useSelector((state) => state?.auth);
 
   const menus = menulists(isLoggedIn);
@@ -61,14 +61,20 @@ const Header = () => {
         <Container>
           <nav className="p-4 flex justify-between items-center relative">
             <div className="flex items-center gap-14">
-            <Link to="/">
-            <img
-                src={logo}
-                alt=""
-                className="rounded-full ml-[-25px] md:ml-[-25px] lg:ml-[-20px] w-[75px] md:w-[70px] lg:w-[70px] bg-white"
-              />
-            </Link>
-
+              <Link className="flex items-center gap-3" to="/">
+                <img
+                  src={logo}
+                  alt=""
+                  className="rounded-full ml-[-25px] md:ml-[-25px] lg:ml-[-20px] w-[35px] bg-white"
+                />
+                <h3
+                  className={`${
+                    isScrolled || !isHomePage ? "text-black" : "text-white"
+                  } text-2xl font-bold`}
+                >
+                  BidXpress
+                </h3>
+              </Link>
               <div className="hidden lg:flex items-center justify-between gap-8">
                 {menus?.map((list) => (
                   <li key={list.id} className="capitalize list-none">
@@ -92,7 +98,9 @@ const Header = () => {
                     <CustomNavLink
                       href="/seller/login"
                       className={`${
-                        isScrolled || !isHomePage ? "text-white bg-primary hover:text-black" : "bg-yellow-700 text-white"
+                        isScrolled || !isHomePage
+                          ? "text-white bg-primary hover:text-black"
+                          : "bg-yellow-700 text-white"
                       } px-8 py-2 rounded-full md`}
                     >
                       Become a Seller
@@ -151,13 +159,10 @@ const Header = () => {
             <div
               ref={menuRef}
               className={`lg:hidden rounded-2xl lg:items-center lg:w-auto w-1/2 md:w-1/3 p-5 absolute right-0 top-full 
-                menu-container ${
-                isOpen ? "open" : "closed"
-              }`}
+                menu-container ${isOpen ? "open" : "closed"}`}
             >
               {menus.map((list) => (
                 <li
-                  
                   key={list.id}
                   className="capitalize list-none my-8 text-center "
                 >

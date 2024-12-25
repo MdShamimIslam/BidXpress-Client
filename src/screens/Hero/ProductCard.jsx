@@ -43,8 +43,8 @@ const ProductCard = ({ item }) => {
         <div className="details mt-4">
         <Link to={`/details/${item?._id}`}>
           <Title className="uppercase">
-            {item?.title?.length > 30
-              ? item.title.slice(0, 30) + "..."
+            {item?.title?.length > 20
+              ? item.title.slice(0, 20) + "..."
               : item.title}
           </Title>
           </Link>
@@ -56,7 +56,7 @@ const ProductCard = ({ item }) => {
               </div>
               <div>
                 <Caption className="text-green">Current Bid</Caption>
-                <Title>${item?.biddingPrice}.00</Title>
+                <Title>${item?.biddingPrice}</Title>
               </div>
             </div>
             <div className="w-[1px] h-10 bg-gray-300"> </div>
@@ -66,7 +66,7 @@ const ProductCard = ({ item }) => {
               </div>
               <div>
                 <Caption className="text-red-500">Buy Now</Caption>
-                <Title>${item?.price}.00</Title>
+                <Title>${item?.price}</Title>
               </div>
             </div>
           </div>

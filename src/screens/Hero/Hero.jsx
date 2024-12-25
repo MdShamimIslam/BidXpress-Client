@@ -24,7 +24,7 @@ const Hero = () => {
                 <button
                   type="submit"
                   className={
-                    "text-white w-[320px] mx-auto text-lg lg:mx-0 md:text-xl mt-6 p-3 md:p-5 flex gap-3 items-center justify-center bg-primary hover:bg-green font-medium rounded-full   transition ease-in-out"
+                    "text-white w-[320px] mx-auto text-lg lg:mx-0 md:text-xl mt-6 p-3 md:p-4 lg:-p-5 flex gap-3 items-center justify-center bg-primary hover:bg-green font-medium rounded-full   transition ease-in-out"
                   }
                 >
                   <SiWpexplorer size={25} />
