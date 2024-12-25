@@ -2,10 +2,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import productService from "../services/productFeature";
 import { toast } from "react-toastify";
 
-// totalPages: 0,
-//   currentPage: 1,
-//   totalProducts: 0,
-
 const initialState = {
   products: [],
   userProducts: [],
@@ -38,9 +34,9 @@ export const createProduct = createAsyncThunk(
 
 export const getAllProduct = createAsyncThunk(
   "product/getAllProduct",
-  async (_, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const res = await productService.getAllProduct();
+      const res = await productService.getAllProduct(params);
       return res;
     } catch (error) {
       const errorMessage =
@@ -195,7 +191,7 @@ const productSlice = createSlice({
     resetProductState(state) {
       state.isSuccess = false;
       state.isError = false;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -221,7 +217,7 @@ const productSlice = createSlice({
       .addCase(getAllProduct.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.products = action.payload;
+        state.products = action.payload
       })
       .addCase(getAllProduct.rejected, (state, action) => {
         state.isLoading = false;
@@ -334,6 +330,6 @@ const productSlice = createSlice({
       });
   },
 });
-export const { resetProductState } = productSlice.actions;
+export const { resetProductState, setSearchTitle, setCurrentPage } = productSlice.actions;
 export default productSlice.reducer;
 export const selectProduct = state => state.product?.product;

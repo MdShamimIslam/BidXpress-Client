@@ -10,14 +10,11 @@ const createProduct = async (data) => {
   return res?.data;
 };
 // get all product
-const getAllProduct = async () => {
-  const res = await axios.get(`${PRODUCT_URL}`);
+const getAllProduct = async (params = {}) => {
+  const queryString = new URLSearchParams(params).toString();
+  const res = await axios.get(`${PRODUCT_URL}?${queryString}`); 
   return res?.data;
 };
-// const getAllProduct = async (page) => {
-//   const res = await axios.get(`${PRODUCT_URL}?page=${page}&limit=4`);
-//   return res?.data;
-// };
 // get all product of user
 const getAllProductOfUser = async () => {
   const res = await axios.get(`${PRODUCT_URL}/user`, { withCredentials: true });
@@ -30,7 +27,7 @@ const getAllWonedProductOfUser = async () => {
   });
   return res?.data;
 };
-// delete product
+// delete product by user
 const deleteProduct = async (id) => {
   const res = await axios.delete(`${PRODUCT_URL}/${id}`, {
     withCredentials: true,
