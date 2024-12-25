@@ -1,4 +1,3 @@
-import { TiEyeOutline } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -67,7 +66,7 @@ const Table = ({
               } = product;
               return (
                 <tr key={_id} className="bg-white border-b hover:bg-gray-50">
-                  <td className="px-6 py-4">  {title.length > 20 ? title.slice(0, 20) + "..." : title}</td>
+                  <td className="px-6 py-4">  {title?.length > 20 ? title?.slice(0, 20) + "..." : title}</td>
                   <td className="px-6 py-4">{commission}%</td>
                   <td className="px-6 py-4">{price}</td>
                   <td className="px-6 py-4">{biddingPrice}</td>
@@ -100,7 +99,7 @@ const Table = ({
                             {isSoldout ? (
                               <button
                                 disabled={isSoldout}
-                                className="bg-red-500 text-white py-1 px-3 rounded-lg"
+                                className="bg-slate-300 text-white py-1 px-3 rounded-lg"
                               >
                                 Sold out
                               </button>
@@ -121,13 +120,6 @@ const Table = ({
                         </>
                       )}
                       <td className="px-6 py-4 text-center flex items-center gap-3 mt-1">
-                        <NavLink
-                          to="#"
-                          type="button"
-                          className="font-medium text-indigo-500"
-                        >
-                          <TiEyeOutline size={25} />
-                        </NavLink>
                         {isAdmin ? (
                           <NavLink
                             to={`/product/admin/update/${_id}`}

@@ -7,9 +7,9 @@ const Process = () => {
     <section className="process py-24 bg-primary relative">
       <div className="bg-white w-full py-20 -mt-10 rounded-b-[40px] z-10 absolute top-0"></div>
       <Container className="py-16 pt-24 text-white">
-        <Heading title="How It Works" subtitle="Easy 4 steps to win" />
+        <Heading title="How It Works" subtitle="Easy 4 steps to win" cl={true} />
 
-        <div className="content grid grid-cols-1 md:grid-cols-4 gap-8 mt-8">
+        <div className="content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
           {processList.map((item, index) => (
             <div key={index} className="p-8 bg-[rgba(38,90,77,0.62)] rounded-xl flex items-center justify-center flex-col text-center">
               <div className="img w-16 h-16">

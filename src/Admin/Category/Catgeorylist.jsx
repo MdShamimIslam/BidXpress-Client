@@ -5,7 +5,6 @@ import {
 } from "../../components/common/Design";
 import { AiOutlinePlus } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
-import { TiEyeOutline } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
@@ -82,7 +81,7 @@ const Catgeorylist = () => {
                         <div className="flex items-center px-6 text-gray-900 whitespace-nowrap">
                           <div>
                             <ProfileCard>
-                              <img src={photo} alt="user-image" />
+                              <img className="w-10 h-10 rounded-md" src={photo} alt="user-image" />
                             </ProfileCard>
                           </div>
                           <div className="pl-3">
@@ -98,13 +97,6 @@ const Catgeorylist = () => {
                       <td className="px-6 py-4 capitalize">{title}</td>
                       <td className="px-6 py-4">{formatDate(createdAt)}</td>
                       <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-1">
-                        <NavLink
-                          to="#"
-                          type="button"
-                          className="font-medium text-indigo-500"
-                        >
-                          <TiEyeOutline size={25} />
-                        </NavLink>
                         <NavLink
                           to={`/category/update/${_id}`}
                           className="font-medium text-green"

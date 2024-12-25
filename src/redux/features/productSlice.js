@@ -2,6 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import productService from "../services/productFeature";
 import { toast } from "react-toastify";
 
+// totalPages: 0,
+//   currentPage: 1,
+//   totalProducts: 0,
+
 const initialState = {
   products: [],
   userProducts: [],
@@ -127,6 +131,25 @@ export const updateProduct = createAsyncThunk(
   }
 );
 
+export const deleteProduct = createAsyncThunk(
+  "product/deleteProduct",
+  async (id, thunkAPI) => {
+    try {
+      const res = await productService.deleteProduct(id);
+      return res;
+    } catch (error) {
+      const errorMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString() ||
+        error;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
 export const updateProductByAdmin = createAsyncThunk(
   "product/updateProductByAdmin",
   async ({id,data}, thunkAPI) => {
@@ -146,11 +169,11 @@ export const updateProductByAdmin = createAsyncThunk(
   }
 );
 
-export const deleteProduct = createAsyncThunk(
-  "product/deleteProduct",
+export const deleteProductByAdmin = createAsyncThunk(
+  "product/deleteProductByAdmin",
   async (id, thunkAPI) => {
     try {
-      const res = await productService.deleteProduct(id);
+      const res = await productService.deleteProductByAdmin(id);
       return res;
     } catch (error) {
       const errorMessage =
@@ -292,6 +315,22 @@ const productSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         toast.error("Failed to update product");
+      })
+      // delete product by admin
+      .addCase(deleteProductByAdmin.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteProductByAdmin.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.message = action.payload;
+        toast.success("Product deleted successfully");
+      })
+      .addCase(deleteProductByAdmin.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error("Failed to delete product");
       });
   },
 });

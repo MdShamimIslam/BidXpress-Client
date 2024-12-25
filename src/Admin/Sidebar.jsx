@@ -3,7 +3,6 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineCategory } from "react-icons/md";
 import { RiAuctionLine } from "react-icons/ri";
 import { IoIosHeartEmpty } from "react-icons/io";
-import { User1 } from "../screens/Hero/Hero";
 import { IoIosLogOut } from "react-icons/io";
 import { CgProductHunt } from "react-icons/cg";
 import { TbCurrencyDollar } from "react-icons/tb";
@@ -43,16 +42,15 @@ const Sidebar = () => {
     navigate("/");
   };
 
-  const className = "flex items-center gap-3 mb-2 p-4 rounded-full";
-
+  const className = "flex items-center gap-3 p-4 rounded-full";
 
   return (
     <>
       <section className="sidebar flex flex-col justify-between h-full">
-        <div className="profile flex items-center text-center justify-center gap-8 flex-col mb-8">
+        <div className="profile flex items-center text-center justify-center gap-8 flex-col">
           <img
             src={user?.photo}
-            alt=""
+            alt="user-img"
             className="w-32 h-32 rounded-full object-cover"
           />
           <div>
@@ -60,8 +58,7 @@ const Sidebar = () => {
             <Caption>{user?.email}</Caption>
           </div>
         </div>
-
-        <div>
+        <div className="mt-8">
           <CustomNavLink
             href="/dashboard"
             isActive={location.pathname === "/dashboard"}
@@ -96,7 +93,6 @@ const Sidebar = () => {
                 <span>Create Product</span>
               </CustomNavLink>
 
-              {/* do it  */}
             </>
           )}
 
@@ -180,7 +176,7 @@ const Sidebar = () => {
 
           <button
             onClick={handleLogout}
-            className="flex items-center w-full gap-3 mt-4 bg-red-500 mb-3 hover:text-white p-4 rounded-full text-white"
+            className="flex items-center font-semibold w-full gap-3 mt-4 bg-red-500 mb-3 hover:text-white p-4 rounded-lg text-white"
           >
             <span>
               <IoIosLogOut size={22} />

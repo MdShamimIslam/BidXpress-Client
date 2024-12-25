@@ -4,13 +4,12 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import {
   Caption,
   commonClassNameOfInput,
-  Container,
   CustomNavLink,
   PrimaryButton,
   Title,
 } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login } from "../../redux/features/authSlice";
 
@@ -49,11 +48,8 @@ const Login = () => {
       navigate("/dashboard");
       toast.success("Login successful");
     }
-    if (isError && message) {
-      toast.error(message);
-    }
     
-  }, [isLoggedIn, isError, navigate, message]);
+  }, [isLoggedIn, navigate]);
 
   return (
     <>
@@ -62,26 +58,6 @@ const Login = () => {
           className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl
          absolute top-2/3"
         ></div>
-        <div className="bg-[#241C37] pt-8 h-[40vh] relative content">
-          <Container>
-            <div>
-              <Title level={3} className="text-white">
-                Log In
-              </Title>
-              <div className="flex items-center gap-3">
-                <Title level={5} className="text-green font-normal text-xl">
-                  Home
-                </Title>
-                <Title level={5} className="text-white font-normal text-xl">
-                  /
-                </Title>
-                <Title level={5} className="text-white font-normal text-xl">
-                  Log In
-                </Title>
-              </div>
-            </div>
-          </Container>
-        </div>
         <form
           onSubmit={handleLogin}
           className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl"
@@ -101,8 +77,8 @@ const Login = () => {
               onChange={handleInputChange}
               type="email"
               name="email"
-              className={commonClassNameOfInput}
-              placeholder="Enter Your Email"
+              className={`${commonClassNameOfInput} rounded-md`}
+              placeholder="Enter Email"
             />
           </div>
           <div className="relative">
@@ -112,11 +88,11 @@ const Login = () => {
               onChange={handleInputChange}
               type={showPassword ? "text" : "password"}
               name="password"
-              className={commonClassNameOfInput}
-              placeholder="Enter Your Password"
+              className={`${commonClassNameOfInput} rounded-md`}
+              placeholder="Enter Password"
             />
             <span
-              className="absolute top-12 right-4 text-slate-500 cursor-pointer"
+              className="absolute top-14 right-4 text-slate-500 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -128,29 +104,11 @@ const Login = () => {
           </div>
           <PrimaryButton
             disabled={isLoading}
-            className="w-full rounded-none my-5"
+            className="w-full rounded-lg my-5"
           >
             {isLoading ? "PROCESSING" : "LOGIN"}
-          </PrimaryButton>
-          <div className="text-center border py-4 rounded-lg mt-4">
-            <Title>OR SIGNIN WITH</Title>
-            <div className="flex items-center justify-center gap-5 mt-5">
-              <button className="flex items-center gap-2 bg-red-500 text-white p-3 px-5 rounded-sm">
-                <FaGoogle />
-                <p className="text-sm">SIGNIN WHIT GOOGLE</p>
-              </button>
-              <button className="flex items-center gap-2 bg-indigo-500 text-white p-3 px-5 rounded-sm">
-                <FaFacebook />
-                <p className="text-sm">SIGNIN WHIT FACEBOOK</p>
-              </button>
-            </div>
-          </div>
-          <p className="text-center mt-5">
-            By clicking the signup button, you create a Cobiro account, and you
-            agree to Cobiros
-            <span className="text-green underline">Terms & Conditions</span> &
-            <span className="text-green underline"> Privacy Policy </span> .
-          </p>
+          </PrimaryButton>  
+          <p className="text-lg text-center">Don't have an account? Please <Link to='/register' className="text-green">Sign Up</Link></p>   
         </form>
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
       </section>

@@ -8,10 +8,10 @@ const Trust = () => {
       <Container>
         <Heading
           title="Trusted By 500+ Businesses."
-          subtitle="Explore on the world's best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth."
+          subtitle="Join the growing community of businesses that trust us for quality, reliability, and exceptional service."
         />
 
-        <div className="content grid grid-cols-3 md:grid-cols-7 gap-5 mt-8">
+        <div className="content grid grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-5 mt-8">
           {trustList.map((item, index) => (
             <div key={index} className="flex items-center justify-between border rounded-lg">
               <div className="flex items-center justify-center">

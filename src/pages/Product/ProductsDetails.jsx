@@ -15,8 +15,10 @@ import { getProduct } from "../../redux/features/productSlice";
 import { formatDate } from "../../utils/formateDate";
 import { getBiddingHistory, placebid } from "../../redux/features/biddingSlice";
 import { toast } from "react-toastify";
+import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 
 const ProductsDetails = () => {
+  useRedirectLoggedOutUser("/login");
   const [activeTab, setActiveTab] = useState("description");
   const [rate, setRate] = useState(0);
 
@@ -56,11 +58,10 @@ const ProductsDetails = () => {
     if (history && history.length > 0) {
       const highestBid = Math.max(...history.map((bid) => bid.price));
       setRate(highestBid);
-    }
-    else if (product){
+    } else if (product) {
       setRate(product?.price);
     }
-  }, [history,product]);
+  }, [history, product]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -70,9 +71,9 @@ const ProductsDetails = () => {
     setRate((prevRate) => prevRate + 1);
   };
 
-  console.log(price,rate);
+  console.log(price, rate);
 
-  const handlePlaceBid = async(e) => {
+  const handlePlaceBid = async (e) => {
     e.preventDefault();
     if (product?.price > parseFloat(rate)) {
       return toast.error("Your bid must be equal to your current bid");
@@ -84,16 +85,12 @@ const ProductsDetails = () => {
     };
 
     try {
-     await dispatch(placebid(data)).unwrap();
-     dispatch(getBiddingHistory(id));
-      
+      await dispatch(placebid(data)).unwrap();
+      dispatch(getBiddingHistory(id));
     } catch (error) {
       return toast.error("An error occurred while placing bid");
-      
     }
-
   };
-
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -387,7 +384,7 @@ export const AuctionHistory = ({ history }) => {
                     className="bg-white border-b hover:bg-gray-50"
                   >
                     <td className="px-6 py-4">
-                      {item?.createdAt ?  formatDate(item?.createdAt ) : "N/A"} 
+                      {item?.createdAt ? formatDate(item?.createdAt) : "N/A"}
                     </td>
                     <td className="px-6 py-4">${item?.price}</td>
                     <td className="px-6 py-4">{item?.user?.name}</td>

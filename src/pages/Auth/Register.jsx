@@ -10,7 +10,7 @@ import {
 import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, RESET } from "../../redux/features/authSlice";
 
@@ -74,26 +74,6 @@ const Register = () => {
     <>
       <section className="regsiter pt-16 relative">
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute top-2/3"></div>
-        <div className="bg-[#241C37] pt-8 h-[40vh] relative content">
-          <Container>
-            <div>
-              <Title level={3} className="text-white">
-                Sign Up
-              </Title>
-              <div className="flex items-center gap-3">
-                <Title level={5} className="text-green font-normal text-xl">
-                  Home
-                </Title>
-                <Title level={5} className="text-white font-normal text-xl">
-                  /
-                </Title>
-                <Title level={5} className="text-white font-normal text-xl">
-                  Sign Up
-                </Title>
-              </div>
-            </div>
-          </Container>
-        </div>
         <form
           onSubmit={handleRegister}
           className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl"
@@ -112,19 +92,19 @@ const Register = () => {
               onChange={handleInputChange}
               type="text"
               name="name"
-              className={commonClassNameOfInput}
-              placeholder="First Name"
+            className={`${commonClassNameOfInput} rounded-md`}
+              placeholder="User Name"
             />
           </div>
           <div className="mt-5">
-            <Caption className="mb-2">Enter Your Email *</Caption>
+            <Caption className="mb-2"> Email *</Caption>
             <input
               value={email}
               onChange={handleInputChange}
               type="email"
               name="email"
-              className={commonClassNameOfInput}
-              placeholder="Enter Your Email"
+            className={`${commonClassNameOfInput} rounded-md`}
+              placeholder="Enter Email"
             />
           </div>
           <div className="relative mt-5">
@@ -134,11 +114,11 @@ const Register = () => {
               onChange={handleInputChange}
               type={showPassword ? "text" : "password"}
               name="password"
-              className={commonClassNameOfInput}
-              placeholder="Enter Your Password"
+            className={`${commonClassNameOfInput} rounded-md`}
+              placeholder="Enter Password"
             />
             <span
-              className="absolute top-12 right-4 text-slate-500 cursor-pointer"
+              className="absolute top-14 right-4 text-slate-500 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -152,11 +132,11 @@ const Register = () => {
               onChange={handleInputChange}
               type={showPassword ? "text" : "password"}
               name="confirmPassword"
-              className={commonClassNameOfInput}
+            className={`${commonClassNameOfInput} rounded-md`}
               placeholder="Confirm password"
             />
             <span
-              className="absolute top-12 right-4 text-slate-500 cursor-pointer"
+              className="absolute top-14 right-4 text-slate-500 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -168,28 +148,10 @@ const Register = () => {
           </div>
           <PrimaryButton 
           disabled={isLoading} 
-          className="w-full rounded-none my-5">
+          className="w-full rounded-lg my-5">
             {isLoading ? "PROCESSING" : "CREATE ACCOUNT"}
           </PrimaryButton>
-          <div className="text-center border py-4 rounded-lg mt-4">
-            <Title>OR SIGNUP WITH</Title>
-            <div className="flex items-center justify-center gap-5 mt-5">
-              <button className="flex items-center gap-2 bg-red-500 text-white p-3 px-5 rounded-sm">
-                <FaGoogle />
-                <p className="text-sm">SIGNUP WHIT GOOGLE</p>
-              </button>
-              <button className="flex items-center gap-2 bg-indigo-500 text-white p-3 px-5 rounded-sm">
-                <FaFacebook />
-                <p className="text-sm">SIGNUP WHIT FACEBOOK</p>
-              </button>
-            </div>
-          </div>
-          <p className="text-center mt-5">
-            By clicking the signup button, you create a Cobiro account, and you
-            agree to Cobiros{" "}
-            <span className="text-green underline">Terms & Conditions</span> &
-            <span className="text-green underline"> Privacy Policy </span> .
-          </p>
+        <p className="text-lg text-center">Already have an account? Please <Link to='/login' className="text-green">Sign In</Link></p>
         </form>
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
       </section>

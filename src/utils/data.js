@@ -4,40 +4,28 @@ import sport from "../assets/sport.png";
 import state from "../assets/state.png";
 import vehicle from "../assets/vehicle.png";
 import jewelery from "../assets/jewelery.png";
-import cloth from "../assets/cloth.png";
+import furniture from "../assets/furniture.png";
 
-export const menulists = [
-  {
-    id: 1,
-    path: "/",
-    link: "home",
-  },
-  {
-    id: 2,
-    path: "/product",
-    link: "product",
-  },
-  {
-    id: 3,
-    path: "/blog",
-    link: "Blog",
-  },
-  {
-    id: 4,
-    path: "/about",
-    link: "about",
-  },
-  {
-    id: 5,
-    path: "/services",
-    link: "Services",
-  },
-  {
-    id: 6,
-    path: "/contact",
-    link: "Contact",
-  },
-];
+
+export const menulists = (isLoggedIn) => {
+  const baseMenu = [
+    { id: 1, path: "/", link: "home" },
+    { id: 2, path: "/products", link: "products" },
+    { id: 3, path: "/blog", link: "Blog" },
+    { id: 4, path: "/about", link: "about" },
+    { id: 5, path: "/services", link: "Services" },
+    { id: 6, path: "/contact", link: "Contact" },
+  ];
+  if (isLoggedIn) {
+    baseMenu.push({
+      id: 7,
+      path: "/dashboard",
+      link: "Dashboard",
+    });
+  }
+
+  return baseMenu;
+};
 
 export const categorylists = [
   {
@@ -68,12 +56,12 @@ export const categorylists = [
   {
     id: 6,
     image: jewelery,
-    title: "jewelry",
+    title: "jewellery",
   },
   {
     id: 7,
-    image: cloth,
-    title: "clothes",
+    image: furniture,
+    title: "furniture",
   },
 ];
 
@@ -353,28 +341,28 @@ export const processList = [
   {
     id: "01",
     title: "Sign up",
-    desc: "Sign your car up via our contact form or via the WhatsApp chat on the website. Send us a couple of pictures of the car that you want to put up for auction.",
+    desc:"Create an account by signing up with your email and a secure password. Choose whether you want to register as a buyer or seller, and log in to access all the features of the auction platform.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/shape-7.png",
   },
   {
     id: "02",
     title: "Auction goes online",
-    desc: "As soon as we collect enough cars for the auction (we strive for 25 to 40 cars per auction), the auction will show up on the website.",
+    desc: "Sellers list products with details like title, description, images, and price. After admin approval, the product goes live for buyers to bid on.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction.png",
   },
   {
     id: "03",
     title: "Closing auction",
-    desc: "After the viewing day(s) the auction is still a few days open for new bids. We evaluate the highest bid after the closing of an auction.",
+    desc: "Each auction runs for a set duration. When the timer ends, the highest bid wins the auction. Both the seller and the winning buyer are notified about the auction results.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-2.png",
   },
   {
     id: "04",
     title: "The last steps",
-    desc: "After the car is sold to the highest bidder, all the cars will be collected by the buyers on a determined date.",
+    desc: "The buyer completes the payment process, and the seller ships the product to the buyer. Feedback and reviews can be exchanged to maintain transparency and trust.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-3.png",
   },
@@ -480,36 +468,9 @@ export const trustList = [
   },
   {
     id: 7,
-    profile: "https://bidout-react.vercel.app/images/bg/sponsor7.png",
-  },
-  {
-    id: 8,
     profile: "https://bidout-react.vercel.app/images/bg/sponsor8.png",
   },
-  {
-    id: 9,
-    profile: "https://bidout-react.vercel.app/images/bg/sponsor9.png",
-  },
-  {
-    id: 10,
-    profile: "https://bidout-react.vercel.app/images/bg/sponsor1.png",
-  },
-  {
-    id: 4,
-    profile: "https://bidout-react.vercel.app/images/bg/sponsor3.png",
-  },
-  {
-    id: 5,
-    profile: "https://bidout-react.vercel.app/images/bg/sponsor8.png",
-  },
-  {
-    id: 6,
-    profile: "https://bidout-react.vercel.app/images/bg/sponsor1.png",
-  },
-  {
-    id: 7,
-    profile: "https://bidout-react.vercel.app/images/bg/sponsor9.png",
-  },
+  
 ];
 
 export const topList = [
@@ -550,3 +511,8 @@ export const topList = [
     img1: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-04-768x768.jpg",
   },
 ];
+
+export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
+export const User2 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
+export const User3 = "https://cdn-icons-png.flaticon.com/128/236/236831.png";
+export const User4 = "https://cdn-icons-png.flaticon.com/128/1154/1154448.png";

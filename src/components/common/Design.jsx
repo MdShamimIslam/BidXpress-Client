@@ -30,9 +30,9 @@ const Body = ({ children, className }) => {
   );
 };
 
-const Caption = ({ children, className }) => {
+const Caption = ({ children, className, cl }) => {
   return (
-    <p className={`${className} text-[15px] font-[500] text-gray_100`}>
+    <p className={`${className} text-[18px] font-[500] ${cl  ? "text-gray-300" : "text-gray_100"} `}>
       {children}
     </p>
   );
@@ -83,11 +83,13 @@ const Container = ({ children, className }) => {
   return <div className={`${className} w-[85%] m-auto`}>{children}</div>;
 };
 
-const PrimaryButton = ({ children, className }) => {
+const PrimaryButton = ({ children, className, btnCl=false }) => {
   return (
     <button
       type="submit"
-      className={`${className} text-white bg-green font-medium rounded-full text-lg px-16 py-3 hover:bg-primary transition ease-in-out`}
+      className={`${className} text-white ${btnCl ? "bg-green hover:bg-[#1F4529]" : "bg-primary hover:bg-green"} 
+      font-medium rounded-full text-lg px-16 py-3
+       transition ease-in-out`}
     >
       { children }
     </button>
@@ -97,19 +99,21 @@ const PrimaryButton = ({ children, className }) => {
 const ProfileCard = ({ children, className }) => {
   return (
     <div
-      className={`${className} w-12 h-12 bg-green_100 flex items-center justify-center rounded-full`}
+      className={`${className} w-9 md:w-10 lg:w-12 h-9 md:h-10 lg:h-12   bg-green_100 flex items-center justify-center rounded-full`}
     >
       {children}
     </div>
   );
 };
 
-const Heading = ({ title, subtitle }) => {
+const Heading = ({ title, subtitle, cl }) => {
   return (
     <>
       <Title level={4}>{title}</Title>
-      <div className="w-1/2">
-        <Caption>{subtitle}</Caption>
+      <div 
+      className="w-ful lg:w-2/5"
+      >
+        <Caption cl={cl}>{subtitle}</Caption>
       </div>
     </>
   );

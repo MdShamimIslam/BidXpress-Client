@@ -4,14 +4,14 @@ import { topList } from "../../utils/data";
 const TopCollection = () => {
   return (
     <>
-      <section className="process py-12 relative z-10">
+      <section className="process py-8 relative z-10">
         <Container>
           <Heading
             title="Top Collection"
-            subtitle="Explore on the world's best & largest Bidding marketplace with our beautiful Bidding products. We want to be a part of your smile, success and future growth."
+            subtitle="Dive into our curated selection of top-notch products designed to inspire and impress."
           />
 
-          <div className="content grid grid-cols-1 md:grid-cols-4 gap-5 mt-8">
+          <div className="content grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
             {topList.map((item, index) => (
               <div
                 className="bg-green_100 relative p-3 rounded-xl"

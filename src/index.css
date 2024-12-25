@@ -5,6 +5,8 @@
 
 body {
   font-family: "DM Sans", sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 /*    Navbar   */
 .menu-container {
@@ -90,8 +92,6 @@ body {
   left: 0;
   width: 100%;
   height: 40vh;
-  /* TODO: img */
-  /* background-image: url("../../public/images/common/bg.png");  */
   background-size: cover;
   background-repeat: no-repeat;
 }

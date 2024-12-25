@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }) => {
 
   return (
     <>
-      <div className="mt-32">
+      <div className="my-32">
         <Container className="flex">
           <div
             className={`${
@@ -35,7 +35,7 @@ const DashboardLayout = ({ children }) => {
           >
             <Sidebar role={role} />
           </div>
-          <div className="w-[75%] px-5 ml-10 rounded-lg">{children}</div>
+          <div className="w-[85%] px-5 ml-10 rounded-lg">{children}</div>
         </Container>
       </div>
     </>

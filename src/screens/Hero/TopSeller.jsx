@@ -14,10 +14,10 @@ const TopSeller = () => {
         <Container>
           <Heading
             title="Top Seller"
-            subtitle="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam laboriosam iusto pariatur alias error numquam blanditiis,"
+            subtitle="Explore the most sought-after products chosen by our loyal customers. These are the true stars of our marketplace."
           />
 
-          <div className="content grid grid-cols-1 md:grid-cols-5 gap-5 mt-8">
+          <div className="content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 mt-8">
             {topSellerList.map((item, index) => (
               <div
                 className="flex items-center justify-between border p-3 rounded-lg"

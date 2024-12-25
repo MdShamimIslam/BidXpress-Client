@@ -4,13 +4,11 @@ import {
   CustomNavLinkList,
   ProfileCard,
 } from "./Design";
-import headerLogo from "/images/common/header-logo.png";
+import logo from "/images/common/bid.png";
 import { menulists } from "../../utils/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { IoSearchOutline } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { User1 } from "../../screens/Hero/Hero";
+import { Link, useLocation } from "react-router-dom";
 import { ShowOnLogin, ShowOnLogout } from "../../utils/HiddenLink";
 import { useSelector } from "react-redux";
 
@@ -19,8 +17,10 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const menuRef = useRef(null);
+  
+  const { user, isLoggedIn } = useSelector((state) => state?.auth);
 
-  const {user,isLoggedIn} = useSelector(state => state?.auth);
+  const menus = menulists(isLoggedIn);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -43,7 +43,7 @@ const Header = () => {
       document.removeEventListener("mousedown", closeMenuOutside);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [user,isLoggedIn]);
+  }, [user, isLoggedIn]);
 
   // Check if it's the home page
   const isHomePage = location.pathname === "/";
@@ -61,23 +61,16 @@ const Header = () => {
         <Container>
           <nav className="p-4 flex justify-between items-center relative">
             <div className="flex items-center gap-14">
-              <div>
-                {isHomePage && !isScrolled ? (
-                  <img
-                    src={headerLogo}
-                    alt="logo"
-                    className="rounded-full ml-[-15px] w-[50px] h-[33px]"
-                  />
-                ) : (
-                  <img
-                    src={headerLogo}
-                    alt="logo"
-                    className="rounded-full ml-[-15px] w-[50px] h-[33px]"
-                  />
-                )}
-              </div>
+            <Link to="/">
+            <img
+                src={logo}
+                alt=""
+                className="rounded-full ml-[-25px] md:ml-[-25px] lg:ml-[-20px] w-[75px] md:w-[70px] lg:w-[70px] bg-white"
+              />
+            </Link>
+
               <div className="hidden lg:flex items-center justify-between gap-8">
-                {menulists.map((list) => (
+                {menus?.map((list) => (
                   <li key={list.id} className="capitalize list-none">
                     <CustomNavLinkList
                       href={list.path}
@@ -94,19 +87,13 @@ const Header = () => {
             </div>
             <div className="flex items-center gap-8 icons">
               <div className="hidden lg:flex lg:items-center lg:gap-8 text-white">
-                <IoSearchOutline
-                  size={23}
-                  className={`${
-                    isScrolled || !isHomePage ? "text-black" : "text-white"
-                  }`}
-                />
-                { isLoggedIn && user?.role === "buyer" && (
+                {isLoggedIn && user?.role === "buyer" && (
                   <ShowOnLogin>
                     <CustomNavLink
                       href="/seller/login"
                       className={`${
-                        isScrolled || !isHomePage ? "text-black" : "text-white"
-                      }`}
+                        isScrolled || !isHomePage ? "text-white bg-primary hover:text-black" : "bg-yellow-700 text-white"
+                      } px-8 py-2 rounded-full md`}
                     >
                       Become a Seller
                     </CustomNavLink>
@@ -124,7 +111,9 @@ const Header = () => {
                   <CustomNavLink
                     href="/register"
                     className={`${
-                      !isHomePage || isScrolled ? "bg-green hover:bg-primary text-white " : "bg-white hover:bg-green "
+                      !isHomePage || isScrolled
+                        ? "hover:bg-green bg-primary text-white "
+                        : "bg-white hover:bg-green "
                     } px-8 py-2 rounded-full text-primary hover:text-white shadow-md`}
                   >
                     Join
@@ -134,9 +123,9 @@ const Header = () => {
                   <CustomNavLink href="/dashboard">
                     <ProfileCard>
                       <img
-                        src={User1}
+                        src={user?.photo}
                         alt=""
-                        className="w-full h-full object-cover"
+                        className="w-full h-full rounded-full object-cover"
                       />
                     </ProfileCard>
                   </CustomNavLink>
@@ -149,7 +138,7 @@ const Header = () => {
               >
                 <button
                   onClick={toggleMenu}
-                  className="lg:hidden w-10 h-10 flex justify-center items-center bg-black text-white focus:outline-none"
+                  className="lg:hidden w-10 h-10 rounded-xl flex justify-center items-center bg-black text-white focus:outline-none"
                 >
                   {isOpen ? (
                     <AiOutlineClose size={24} />
@@ -161,17 +150,18 @@ const Header = () => {
             </div>
             <div
               ref={menuRef}
-              className={`lg:flex lg:items-center lg:w-auto w-full p-5 absolute right-0 top-full menu-container ${
+              className={`lg:hidden rounded-2xl lg:items-center lg:w-auto w-1/2 md:w-1/3 p-5 absolute right-0 top-full 
+                menu-container ${
                 isOpen ? "open" : "closed"
               }`}
             >
-              {menulists.map((list) => (
+              {menus.map((list) => (
                 <li
-                  href={list.path}
+                  
                   key={list.id}
-                  className="uppercase list-none"
+                  className="capitalize list-none my-8 text-center "
                 >
-                  <CustomNavLink className="text-white">
+                  <CustomNavLink href={list.path} className="text-white">
                     {list.link}
                   </CustomNavLink>
                 </li>

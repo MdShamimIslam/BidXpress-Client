@@ -1,7 +1,5 @@
-
 import axios from "axios";
 import { AUTH_URL } from "../../utils/url";
-
 
 
 const register = async (userData) => {
@@ -36,6 +34,11 @@ const getUserProfile = async () => {
  
 };
 
+const updateUserProfile = async (data) => {
+    const res = await axios.put(`${AUTH_URL}/update-user-profile`, data, { withCredentials: true });
+    return res?.data;
+};
+
 const loginUserAsSeller = async (userData) => {
     const res = await axios.post(`${AUTH_URL}/seller`, userData, { withCredentials: true });
     return res?.data;
@@ -53,10 +56,18 @@ const getIncome = async () => {
   return res?.data;
 
 };
+
 const getAllUser = async () => {
   const res = await axios.get(`${AUTH_URL}/alluser`, { withCredentials: true });
   return res?.data;
 
+};
+
+// delete user by admin
+const deleteUserByAdmin = async (id) => {
+  const res = await axios.delete(`${AUTH_URL}/admin/delete-user/${id}`,
+     { withCredentials: true });
+  return res?.data;
 };
 
 const authService = {
@@ -65,11 +76,12 @@ const authService = {
   logout,
   getLogInStatus,
   getUserProfile,
+  updateUserProfile,
   loginUserAsSeller,
   getUserIncome,
   getIncome,
   getAllUser,
-
+  deleteUserByAdmin
 
 };
 

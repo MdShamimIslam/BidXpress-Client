@@ -26,6 +26,7 @@ import { getUserProfile } from "./redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ProductList from "./pages/Product/ProductList";
+import AllProducts from "./pages/Product/AllProducts";
 
 function App() {
   const dispatch = useDispatch();
@@ -101,6 +102,14 @@ function App() {
             }
           />
           <Route
+            path="/products"
+            element={
+                <Layout>
+                    <AllProducts />
+                </Layout>
+            }
+          />
+          <Route
             path="/product/update/:id"
             element={
               <PrivateRoute>
@@ -115,9 +124,11 @@ function App() {
           <Route
             path="/details/:id"
             element={
+              <PrivateRoute>
               <Layout>
                 <ProductsDetails />
               </Layout>
+              </PrivateRoute>
             }
           />
           <Route

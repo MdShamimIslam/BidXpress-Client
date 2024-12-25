@@ -6,27 +6,17 @@ import ProductList from "../../screens/Hero/ProductList";
 import TopCollection from "../../screens/Hero/TopCollection";
 import TopSeller from "../../screens/Hero/TopSeller";
 import Trust from "../../screens/Hero/Trust";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllProduct } from "../../redux/features/productSlice";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const {products } =  useSelector(state => state.product);
-
-  useEffect(() => {
-      dispatch(getAllProduct());
-  }, [dispatch]);
-
   return (
     <>
       <Hero/>
       <CategorySidebar/>
-      <ProductList products={products}/>
+     <ProductList/>
       <TopSeller/>
       <Process/>
       <Trust/>
-      <TopCollection/>
+      <TopCollection/> 
     </>
   )
 }

@@ -115,6 +115,25 @@ export const getUserProfile = createAsyncThunk(
   }
 );
 
+export const updateUserProfile = createAsyncThunk(
+  "auth/updateUserProfile",
+  async (data, thunkAPI) => {
+    try {
+     const res = await authService.updateUserProfile(data);
+     return res;
+    } catch (error) {
+      const errorMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString() ||
+        error;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
 export const loginUserAsSeller = createAsyncThunk(
   "auth/login-as-seller",
   async (userData, thunkAPI) => {
@@ -178,6 +197,25 @@ export const getAllUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
      const res = await authService.getAllUser();
+     return res;
+    } catch (error) {
+      const errorMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString() ||
+        error;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+);
+
+export const deleteUserByAdmin = createAsyncThunk(
+  "auth/delete-user-by-admin",
+  async (id, thunkAPI) => {
+    try {
+     const res = await authService.deleteUserByAdmin(id);
      return res;
     } catch (error) {
       const errorMessage =
@@ -287,6 +325,25 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         localStorage.removeItem("user");
       })
+      // update user profile
+      .addCase(updateUserProfile.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = true;
+        state.user = action.payload;
+        localStorage.setItem("user", JSON.stringify(action.payload));
+        toast.success("Profile updated successfully!");
+      })
+      .addCase(updateUserProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.isLoggedIn = true;
+        toast.error("Profile updated Failed!");
+      })
       // login as a seller
       .addCase(loginUserAsSeller.pending, (state) => {
         state.isLoading = true;
@@ -354,6 +411,24 @@ const authSlice = createSlice({
         state.message = action.payload;
         state.isLoggedIn = true;
       })
+      // delete user by admin
+      .addCase(deleteUserByAdmin.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteUserByAdmin.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.isLoggedIn = true;
+        state.message = action.payload;
+        toast.success("User deleted successfully");
+      })
+      .addCase(deleteUserByAdmin.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.isLoggedIn = true;
+        toast.error("User failed deleted")
+      });
   },
 });
 

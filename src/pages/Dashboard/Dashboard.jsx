@@ -25,9 +25,10 @@ const Dashboard = () => {
 
   const { role } = useUserProfile();
   const { income, users } = useSelector((state) => state.auth);
-  const { products, userProducts, wonedProducts, product } = useSelector(
+  const { products, userProducts, wonedProducts } = useSelector(
     (state) => state.product
   );
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const Dashboard = () => {
     <>
       <section>
         <div className="shadow-s1 p-8 rounded-lg  mb-12">
-          <Title level={5} className=" font-normal">
+          <Title level={4} className="font-semibold">
             My Activity
           </Title>
           <hr className="my-5" />
@@ -55,7 +56,7 @@ const Dashboard = () => {
           )}
 
           {(role === "admin" || role === "seller") && (
-            <div className="grid grid-cols-3 gap-8 mt-8">
+            <div className="grid grid-cols-1  lg:grid-cols-3 gap-8 mt-8">
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                 <BsCashCoin size={80} className="text-green" />
                 <div>

@@ -1,8 +1,7 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   Caption,
   PrimaryButton,
-  ProfileCard,
   Title,
 } from "../../components/common/Design";
 import { RiAuctionFill } from "react-icons/ri";
@@ -10,6 +9,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { MdOutlineFavorite } from "react-icons/md";
 
 const ProductCard = ({ item }) => {
+
   return (
     <>
       <div className="bg-white shadow-s1 rounded-xl p-3">
@@ -23,10 +23,6 @@ const ProductCard = ({ item }) => {
                duration-300 ease-in-out"
             />
           </NavLink>
-          <ProfileCard className="shadow-s1 absolute right-3 bottom-3">
-            <RiAuctionFill size={22} className="text-green" />
-          </ProfileCard>
-
           <div className="absolute top-0 left-0 p-2 w-full">
             <div className="flex items-center justify-between">
               {item?.isSoldout ? (
@@ -39,17 +35,19 @@ const ProductCard = ({ item }) => {
                 </Caption>
               )}
               <Caption className="text-green bg-green_100 px-3 py-1 text-sm rounded-full">
-                {item?.totalBids} Bids
+              {item?.totalBids}  {item?.totalBids > 1 ? "Bids" : "Bid"}
               </Caption>
             </div>
           </div>
         </div>
         <div className="details mt-4">
+        <Link to={`/details/${item?._id}`}>
           <Title className="uppercase">
-            {item.title.length > 30
+            {item?.title?.length > 30
               ? item.title.slice(0, 30) + "..."
               : item.title}
           </Title>
+          </Link>
           <hr className="mt-3" />
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center justify-between gap-5">

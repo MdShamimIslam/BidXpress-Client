@@ -63,7 +63,7 @@ const UpdateCategory = () => {
             />
           </div>
 
-          <PrimaryButton type="submit" className="rounded-none my-5">
+          <PrimaryButton type="submit" className="rounded-lg my-5">
             Update
           </PrimaryButton>
         </form>

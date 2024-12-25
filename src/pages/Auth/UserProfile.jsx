@@ -7,85 +7,82 @@ import {
 } from "../../components/common/Design";
 import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useSelector, useDispatch } from "react-redux";
-import { getUserProfile } from "../../redux/features/authSlice";
+import {updateUserProfile} from "../../redux/features/authSlice";
+import { useForm } from "react-hook-form";
 
 const UserProfile = () => {
   useRedirectLoggedOutUser("/login");
-  
-  const dispatch = useDispatch();
-  const {user} = useSelector(state => state?.auth);
 
-  useEffect(()=>{
-    dispatch(getUserProfile());
-    
-  },[dispatch]);
+  const dispatch = useDispatch();
+  const { user = {}, isLoading } = useSelector((state) => state?.auth);
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    setValue("name", user?.name || "");
+  }, [dispatch, user, setValue]);
+
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("name", data?.name);
+
+    if (data?.photo[0]) {
+      formData.append("photo", data?.photo[0]);
+    }
+    dispatch(updateUserProfile(formData));
+  };
 
   return (
     <>
       <section className="shadow-s1 p-8 rounded-lg">
-        <div className="profile flex items-center gap-8">
-          <img
-            src={user?.photo}
-            alt=""
-            className="w-24 h-24 rounded-full object-cover"
-          />
-          <div>
-            <Title level={5} className="capitalize">
-             {user?.name}
-            </Title>
-            <Caption>{user?.email}</Caption>
-          </div>
-        </div>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex items-center gap-5 mt-10">
-            <div className="w-full">
+            <div className="w-1/2">
               <Caption className="mb-2">Full Name </Caption>
               <input
-                type="search"
-                value={user?.name}
-                className={`capitalize ${commonClassNameOfInput}`}
-                placeholder="Sunil"
-                readOnly
+                type="text"
+                className={`capitalize rounded-md ${commonClassNameOfInput}`}
+                placeholder="Enter your full name"
+                {...register("name")}
+                required
               />
             </div>
-          </div>
-          <div className="flex items-center gap-5 mt-10">
-            <div className="w-1/2">
-              <Caption className="mb-2">Contact Number</Caption>
-              <input
-                type="search"
-                className={commonClassNameOfInput}
-                placeholder="Contact Number"
-              />
-            </div>
-            <div className="w-1/2">
+            <div className="w-1/2 ">
               <Caption className="mb-2">Email</Caption>
               <input
-                type="search"
+                type="email"
                 value={user?.email}
-                className={commonClassNameOfInput}
+                className={`${commonClassNameOfInput} rounded-md`}
                 placeholder="example@gmail.com"
                 disabled
               />
             </div>
           </div>
-          <div className="my-8">
-            <Caption className="mb-2">Role</Caption>
-            <input
-              type="search"
-              value={user?.role}
-              className={commonClassNameOfInput}
-            />
+          <div className="flex items-center gap-5 mt-7">
+            <div className="w-1/2">
+              <Caption className="mb-2">Role</Caption>
+              <input
+                type="text"
+                value={user?.role}
+                className={`${commonClassNameOfInput} rounded-md`}
+                disabled
+              />
+            </div>
+            <div className="w-1/2">
+              <Caption className="mb-2">Image URL</Caption>
+              <input
+                type="file"
+                className={`${commonClassNameOfInput} rounded-md`}
+                {...register("photo", { required: false })}
+              />
+            </div>
           </div>
-          <div className="my-8">
-            <Caption className="mb-2">Profile Picture</Caption>
-            <input
-              type="search"
-              className={commonClassNameOfInput}
-              placeholder="Working"
-            />
-          </div>
-          <PrimaryButton>Update Profile</PrimaryButton>
+          <PrimaryButton
+            type="submit"
+            className="rounded-lg mt-10"
+            disabled={isLoading}
+          >
+            {isLoading ? "Updating..." : "Update Profile"}
+          </PrimaryButton>
         </form>
       </section>
     </>

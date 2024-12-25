@@ -101,7 +101,7 @@ const AddProduct = () => {
   return (
     <>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
-        <Title level={5} className=" font-normal mb-5">
+        <Title level={5} className="font-normal mb-5">
           Create Product
         </Title>
         <hr className="my-5" />
@@ -245,7 +245,7 @@ const AddProduct = () => {
               <p className="mt-2">No image set for this product.</p>
             )}
           </div>
-          <PrimaryButton type="submit" className="rounded-none my-5">
+          <PrimaryButton type="submit" className="rounded-lg my-5">
             {isLoading ? "PROCESSING..." : "CREATE"}
           </PrimaryButton>
         </form>

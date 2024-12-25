@@ -3,17 +3,24 @@ import { Title } from "../../components/common/Design";
 import Table from "../../components/Table/Table";
 import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useEffect } from "react";
-import { getAllProduct } from "../../redux/features/productSlice";
+import { deleteProductByAdmin, getAllProduct } from "../../redux/features/productSlice";
 
 const AdminProductList = () => {
   useRedirectLoggedOutUser("/login");
 
   const dispatch = useDispatch();
-  const {products, isLoading } =  useSelector(state => state.product);
+
+  const {products, isLoading } =  useSelector(state => state?.product);
 
   useEffect(() => {
       dispatch(getAllProduct());
   }, [dispatch]);
+
+  const handleDeleteProduct = async(id) => {
+    await dispatch(deleteProductByAdmin(id));
+    await dispatch(getAllProduct());
+ 
+   };
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -34,7 +41,7 @@ const AdminProductList = () => {
           </Title>
         </div>
         <hr className="my-5" />
-        <Table products={products} isAdmin={true} />
+        <Table products={products} isAdmin={true} handleDeleteProduct = {handleDeleteProduct} />
       </section>
     </>
   )
