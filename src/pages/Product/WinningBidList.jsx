@@ -15,6 +15,10 @@ const WinningBidList = () => {
     dispatch(getAllWonedProductOfUser());
   }, [dispatch]);
 
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       <section className="shadow-s1 p-8 rounded-lg">

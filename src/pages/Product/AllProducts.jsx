@@ -8,6 +8,7 @@ import {
 } from "../../components/common/Design";
 import ProductCard from "../../screens/Hero/ProductCard";
 import { IoIosSearch } from "react-icons/io";
+import Loader from "../../components/common/Loader";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
@@ -57,8 +58,8 @@ const AllProducts = () => {
               Loading...
             </p>
           ) : filteredProducts?.length === 0 ? (
-            <p className="text-center text-gray-600 text-xl font-semibold mt-24">
-              No products found with this title.
+            <p className="text-center text-gray-600 text-2xl font-semibold mt-24">
+              No products found.
             </p>
           ) : (
             <>

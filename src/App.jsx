@@ -27,6 +27,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ProductList from "./pages/Product/ProductList";
 import AllProducts from "./pages/Product/AllProducts";
+import FavouriteProductList from "./pages/Product/FavouriteProductList";
 
 function App() {
   const dispatch = useDispatch();
@@ -87,6 +88,18 @@ function App() {
                   </DashboardLayout>
                 </Layout>
               </PrivateRoute>
+            }
+          />
+           <Route
+            path="/favourite"
+            element={
+               <PrivateRoute>
+               <Layout>
+                 <DashboardLayout>
+                 <FavouriteProductList />
+                 </DashboardLayout>
+               </Layout>
+             </PrivateRoute>
             }
           />
           <Route

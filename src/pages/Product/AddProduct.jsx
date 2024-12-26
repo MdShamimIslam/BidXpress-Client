@@ -170,7 +170,7 @@ const AddProduct = () => {
                   <Caption className="mb-2">
                     Medium used
                     <span className=" text-purple-400 italic">
-                      (Typically, pencil, ink, charcoal or other)
+                      (Typically,Plastic, Memory Foam, Metal or other)
                     </span>
                   </Caption>
                   <input
@@ -199,7 +199,7 @@ const AddProduct = () => {
                   />
                 </div>
                 <div className="w-1/2">
-                  <Caption className="mb-2">Price Range*</Caption>
+                  <Caption className="mb-2">Price Range(USD)*</Caption>
                   <input
                     value={price}
                     onChange={handleInputChange}

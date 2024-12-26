@@ -116,7 +116,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-2">
                 <MdOutlineAttachEmail size={22} />
-                <span>bidly@support.com</span>
+                <span>bidxpress@support.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <IoLocationOutline size={30} />

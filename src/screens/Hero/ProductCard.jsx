@@ -1,14 +1,17 @@
 import { Link, NavLink } from "react-router-dom";
-import {
-  Caption,
-  PrimaryButton,
-  Title,
-} from "../../components/common/Design";
+import { Caption, PrimaryButton, Title } from "../../components/common/Design";
 import { RiAuctionFill } from "react-icons/ri";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { MdOutlineFavorite } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { addFavouriteProduct } from "../../redux/features/authSlice";
 
 const ProductCard = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const handleFavouriteProduct = async () => {
+    await dispatch(addFavouriteProduct(item._id));
+  };
 
   return (
     <>
@@ -35,18 +38,18 @@ const ProductCard = ({ item }) => {
                 </Caption>
               )}
               <Caption className="text-green bg-green_100 px-3 py-1 text-sm rounded-full">
-              {item?.totalBids}  {item?.totalBids > 1 ? "Bids" : "Bid"}
+                {item?.totalBids} {item?.totalBids > 1 ? "Bids" : "Bid"}
               </Caption>
             </div>
           </div>
         </div>
         <div className="details mt-4">
-        <Link to={`/details/${item?._id}`}>
-          <Title className="uppercase">
-            {item?.title?.length > 20
-              ? item.title.slice(0, 20) + "..."
-              : item.title}
-          </Title>
+          <Link to={`/details/${item?._id}`}>
+            <Title className="uppercase">
+              {item?.title?.length > 20
+                ? item.title.slice(0, 20) + "..."
+                : item.title}
+            </Title>
           </Link>
           <hr className="mt-3" />
           <div className="flex items-center justify-between py-4">
@@ -76,9 +79,11 @@ const ProductCard = ({ item }) => {
             <PrimaryButton className="rounded-lg text-sm">
               Place Bid
             </PrimaryButton>
-            <PrimaryButton className="rounded-lg px-4 py-3">
-              <MdOutlineFavorite size={20} />
-            </PrimaryButton>
+            <div onClick={handleFavouriteProduct}>
+              <PrimaryButton className="rounded-lg px-4 py-3">
+                <MdOutlineFavorite size={20} />
+              </PrimaryButton>
+            </div>
           </div>
         </div>
       </div>

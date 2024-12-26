@@ -9,6 +9,7 @@ const Table = ({
   handleSellProduct,
   handleDeleteProduct,
 }) => {
+
   return (
     <>
       <div className="relative overflow-x-auto rounded-lg">
@@ -66,7 +67,7 @@ const Table = ({
               } = product;
               return (
                 <tr key={_id} className="bg-white border-b hover:bg-gray-50">
-                  <td className="px-6 py-4">  {title?.length > 20 ? title?.slice(0, 20) + "..." : title}</td>
+                  <td className="px-6 py-4">{title?.length > 20 ? title?.slice(0, 20) + "..." : title}</td>
                   <td className="px-6 py-4">{commission}%</td>
                   <td className="px-6 py-4">{price}</td>
                   <td className="px-6 py-4">{biddingPrice}</td>
@@ -106,7 +107,7 @@ const Table = ({
                             ) : (
                               <button
                                 onClick={() => handleSellProduct(_id)}
-                                disabled={!isverify}
+                                disabled={!isverify  }
                                 className={` px-3 py-1 rounded-lg ${
                                   isverify
                                     ? "bg-green text-white"

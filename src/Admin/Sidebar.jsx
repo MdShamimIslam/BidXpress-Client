@@ -154,8 +154,8 @@ const Sidebar = () => {
             <span>Winning Bids</span>
           </CustomNavLink>
           <CustomNavLink
-            href="/favorites"
-            isActive={location.pathname === "/favorites"}
+            href="/favourite"
+            isActive={location.pathname === "/favourite"}
             className={className}
           >
             <span>

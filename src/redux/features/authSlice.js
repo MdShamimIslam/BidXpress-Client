@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
+  favoriteProducts: [],
   users: [],
   income: null,
   isError: false,
@@ -230,6 +231,45 @@ export const deleteUserByAdmin = createAsyncThunk(
   }
 );
 
+// Add to favourites
+export const addFavouriteProduct = createAsyncThunk(
+  "auth/addFavouriteProduct",
+  async (productId, thunkAPI) => {
+    try {
+      return await authService.addFavouriteProduct(productId);
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || "Something went wrong";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Get favourite products
+export const getFavouriteProducts = createAsyncThunk(
+  "auth/getFavouriteProducts",
+  async (_, thunkAPI) => {
+    try {
+      return await authService.getFavouriteProducts();
+    } catch (error) {
+      const message = error.response?.data?.message || error.message || "Something went wrong";
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Remove favourite product
+export const removeFavouriteProduct = createAsyncThunk(
+  "auth/removeFavouriteProduct",
+  async (productId, thunkAPI) => {
+    try {
+      return await authService.deleteFavouriteProduct(productId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -428,7 +468,66 @@ const authSlice = createSlice({
         state.message = action.payload;
         state.isLoggedIn = true;
         toast.error("User failed deleted")
+      })
+      // // add to favorites product
+      .addCase(addFavouriteProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addFavouriteProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = {
+          ...state.user,
+          favoriteProducts: action.payload.favoriteProducts,
+        };
+        toast.success("Product added to favorites!");
+      })
+      .addCase(addFavouriteProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error("This product is already in your favorites!");
+      })
+      // // get favorite products
+      .addCase(getFavouriteProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getFavouriteProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.favoriteProducts = action.payload;
+      })
+      .addCase(getFavouriteProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      // .addCase(addFavouriteProduct.fulfilled, (state, action) => {
+      //   state.isSuccess = true;
+      //   state.message = action.payload.message; 
+      //   toast.success("Product added to favorites!");
+      // })
+      // .addCase(getFavouriteProducts.fulfilled, (state, action) => {
+      //   state.favoriteProducts = action.payload; 
+      // });
+      
+      // delete favorite Products
+      .addCase(removeFavouriteProduct.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeFavouriteProduct.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.favoriteProducts = state.favoriteProducts.filter(
+          (product) => product._id !== action.meta.arg
+        );
+      })
+      .addCase(removeFavouriteProduct.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
+      
   },
 });
 

@@ -1,2 +1,2 @@
-# React + Redux Toolkit uses for Bidly Client
-Site Link : https://bidly-auction.netlify.app
+# React + Redux Toolkit uses for bidxpress Client
+Site Link : https://bidxpress.netlify.app

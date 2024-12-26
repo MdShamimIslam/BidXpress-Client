@@ -34,7 +34,7 @@ const ProductList = () => {
 
   if (userProducts?.length === 0) {
     return <div className="flex justify-center items-center h-auto w-auto">
-    <h1 className="text-3xl text-gray-700">No products found.</h1>
+    <h1 className="text-2xl text-gray-700">No products found.</h1>
   </div>
   }
 

@@ -71,8 +71,6 @@ const ProductsDetails = () => {
     setRate((prevRate) => prevRate + 1);
   };
 
-  console.log(price, rate);
-
   const handlePlaceBid = async (e) => {
     e.preventDefault();
     if (product?.price > parseFloat(rate)) {

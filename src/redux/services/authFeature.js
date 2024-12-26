@@ -70,6 +70,26 @@ const deleteUserByAdmin = async (id) => {
   return res?.data;
 };
 
+// Add product to favourite
+const addFavouriteProduct = async (productId) => {
+  const res = await axios.post(`${AUTH_URL}/favourite-product/${productId}`, {}, { withCredentials: true });
+  return res.data;
+};
+
+// Get all favourite products
+const getFavouriteProducts = async () => {
+  const res = await axios.get(`${AUTH_URL}/favourite-product`, { withCredentials: true });
+  return res.data; 
+};
+
+// Remove product from favourite
+export const deleteFavouriteProduct = async (productId) => {
+  const res = await axios.delete(`${AUTH_URL}/favourite-product/${productId}`, {
+    withCredentials: true,
+  });
+  return res.data;
+};
+
 const authService = {
   register,
   login,
@@ -81,8 +101,10 @@ const authService = {
   getUserIncome,
   getIncome,
   getAllUser,
-  deleteUserByAdmin
-
+  deleteUserByAdmin,
+  addFavouriteProduct,
+  getFavouriteProducts,
+  deleteFavouriteProduct
 };
 
 export default authService;
