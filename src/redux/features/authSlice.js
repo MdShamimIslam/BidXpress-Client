@@ -486,9 +486,9 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        toast.error("This product is already in your favorites!");
+        toast.error(action.payload || "This product is already in your favorites!");
       })
-      // // get favorite products
+      // get favorite products
       .addCase(getFavouriteProducts.pending, (state) => {
         state.isLoading = true;
       })
@@ -510,7 +510,6 @@ const authSlice = createSlice({
       // .addCase(getFavouriteProducts.fulfilled, (state, action) => {
       //   state.favoriteProducts = action.payload; 
       // });
-      
       // delete favorite Products
       .addCase(removeFavouriteProduct.pending, (state) => {
         state.isLoading = true;

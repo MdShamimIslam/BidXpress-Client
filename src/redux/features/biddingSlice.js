@@ -116,6 +116,7 @@ const biddingSlice = createSlice({
           state.isLoading = false;
           state.isError = true;
           state.message = action.payload;
+          toast.error(action.payload);
         })
     },
   });

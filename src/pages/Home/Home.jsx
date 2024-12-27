@@ -1,4 +1,4 @@
-
+import StatsCounter from "../../components/StatsCounter/StatsCounter ";
 import CategorySidebar from "../../screens/Hero/CategorySidebar";
 import Hero from "../../screens/Hero/Hero";
 import Process from "../../screens/Hero/Process";
@@ -10,15 +10,16 @@ import Trust from "../../screens/Hero/Trust";
 const Home = () => {
   return (
     <>
-      <Hero/>
-      <CategorySidebar/>
-     <ProductList/>
-      <TopSeller/>
-      <Process/>
-      <Trust/>
-      <TopCollection/> 
+      <Hero />
+      <StatsCounter />
+      <CategorySidebar />
+      <ProductList />
+      <TopSeller />
+      <Process />
+      <Trust />
+      <TopCollection />
     </>
-  )
-}
+  );
+};
 
 export default Home;

@@ -71,7 +71,7 @@ const FavouriteProductList = () => {
                 image
               } = product;
               return (
-                <tr key={_id} className="bg-white border-b hover:bg-gray-50">
+                <tr key={`${_id}-${index}`} className="bg-white border-b hover:bg-gray-50">
                   <td className="px-10 py-4">{index + 1}</td>
                   <td className="px-10 py-4 capitalize">{title?.length > 20 ? title?.slice(0, 20) + "..." : title}</td>
                   <td className="px-10 py-4">{category}</td>

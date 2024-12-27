@@ -24,6 +24,7 @@ const ProductList = () => {
   };
 
   const handleSellProduct = async(productId) => {
+    
    await dispatch(sellProductByUser(productId));
    await dispatch(getAllProductOfUser());
   };

@@ -5,11 +5,16 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { MdOutlineFavorite } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { addFavouriteProduct } from "../../redux/features/authSlice";
+import { toast } from "react-toastify";
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item = {} }) => {
   const dispatch = useDispatch();
 
   const handleFavouriteProduct = async () => {
+    if(item.isSoldout){
+      toast.error("This product is sold out. You can't add it to your favourites.");
+      return;
+    }
     await dispatch(addFavouriteProduct(item._id));
   };
 
@@ -76,11 +81,13 @@ const ProductCard = ({ item }) => {
           <hr className="mb-3" />
 
           <div className="flex items-center  justify-between mt-3">
+          <Link to={`/details/${item?._id}`}>
             <PrimaryButton className="rounded-lg text-sm">
-              Place Bid
+              View Details
             </PrimaryButton>
+          </Link>
             <div onClick={handleFavouriteProduct}>
-              <PrimaryButton className="rounded-lg px-4 py-3">
+              <PrimaryButton  className="rounded-lg px-4 py-3">
                 <MdOutlineFavorite size={20} />
               </PrimaryButton>
             </div>

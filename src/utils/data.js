@@ -5,13 +5,84 @@ import state from "../assets/state.png";
 import vehicle from "../assets/vehicle.png";
 import jewelery from "../assets/jewelery.png";
 import furniture from "../assets/furniture.png";
+import man6 from "/images/testimonial/man6.jpg";
+import man7 from "/images/testimonial/man7.jpg";
+import man8 from "/images/testimonial/man8.jpeg";
+import man9 from "/images/testimonial/man9.jpeg";
+import man10 from "/images/testimonial/man10.jpg";
 
+export const topSellerList = [
+  {
+    id: 1,
+    title: "William",
+    profile:
+      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-5-1.png",
+    amount: "100",
+  },
+  {
+    id: 2,
+    title: "Orko",
+    profile:man9,
+    amount: "200",
+  },
+  {
+    id: 3,
+    title: "Nipa",
+    profile:
+      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png",
+    amount: "300",
+  },
+  {
+    id: 4,
+    title: "Joseph",
+    profile:
+      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-2-2.png",
+    amount: "100",
+  },
+  {
+    id: 5,
+    title: "Isabella",
+    profile:
+      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-10-2.png",
+    amount: "100",
+  },
+  {
+    id: 6,
+    title: "Emily",
+    profile:
+      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-15-1.png",
+    amount: "100",
+  },
+  {
+    id: 7,
+    title: "Devmahbub",
+    profile:man10,
+    amount: "100",
+  },
+  {
+    id: 8,
+    title: "Alvi",
+    profile:man6,
+    amount: "100",
+  },
+  {
+    id: 9,
+    title: "Noman",
+    profile:man7,
+    amount: "100",
+  },
+  {
+    id: 10,
+    title: "Alexander",
+    profile:man8,
+    amount: "100",
+  },
+];
 
 export const menulists = (isLoggedIn) => {
   const baseMenu = [
     { id: 1, path: "/", link: "home" },
     { id: 2, path: "/products", link: "products" },
-    { id: 3, path: "/blog", link: "Blog" },
     { id: 4, path: "/about", link: "about" },
     { id: 5, path: "/services", link: "Services" },
     { id: 6, path: "/contact", link: "Contact" },
@@ -365,79 +436,6 @@ export const processList = [
     desc: "The buyer completes the payment process, and the seller ships the product to the buyer. Feedback and reviews can be exchanged to maintain transparency and trust.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-3.png",
-  },
-];
-
-export const topSellerList = [
-  {
-    id: 1,
-    title: "William",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-5-1.png",
-    amount: "100",
-  },
-  {
-    id: 2,
-    title: "Orko",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-6.png",
-    amount: "200",
-  },
-  {
-    id: 3,
-    title: "Nipa",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png",
-    amount: "300",
-  },
-  {
-    id: 4,
-    title: "Joseph",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-2-2.png",
-    amount: "100",
-  },
-  {
-    id: 5,
-    title: "Isabella",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-10-2.png",
-    amount: "100",
-  },
-  {
-    id: 6,
-    title: "Emily",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-15-1.png",
-    amount: "100",
-  },
-  {
-    id: 7,
-    title: "Devmahbub",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-8-3.png",
-    amount: "100",
-  },
-  {
-    id: 8,
-    title: "Ava Garcia",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-4-1.png",
-    amount: "100",
-  },
-  {
-    id: 9,
-    title: "Amelia Harris",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-13.png",
-    amount: "100",
-  },
-  {
-    id: 10,
-    title: "Alexander",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-8.png",
-    amount: "100",
   },
 ];
 

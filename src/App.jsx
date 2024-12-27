@@ -28,6 +28,9 @@ import { useEffect } from "react";
 import ProductList from "./pages/Product/ProductList";
 import AllProducts from "./pages/Product/AllProducts";
 import FavouriteProductList from "./pages/Product/FavouriteProductList";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Services from "./pages/Services/Services";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +60,30 @@ function App() {
             element={
               <Layout>
                 <Login />
+              </Layout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Layout>
+                <About />
+              </Layout>
+            }
+          />
+           <Route
+           path="/contact"
+            element={
+              <Layout>
+                <Contact />
+              </Layout>
+            }
+          />
+           <Route
+           path="/services"
+            element={
+              <Layout>
+                <Services />
               </Layout>
             }
           />

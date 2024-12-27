@@ -86,6 +86,7 @@ const Container = ({ children, className }) => {
 const PrimaryButton = ({ children, className, btnCl=false }) => {
   return (
     <button
+    
       type="submit"
       className={`${className} text-white ${btnCl ? "bg-green hover:bg-[#1F4529]" : "bg-primary hover:bg-green"} 
       font-medium rounded-full text-lg px-16 py-3
