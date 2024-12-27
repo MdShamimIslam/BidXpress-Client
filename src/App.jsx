@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "./utils/ScrollToTop";
 import Layout from "./components/common/layout/Layout";
@@ -71,16 +70,16 @@ function App() {
               </Layout>
             }
           />
-           <Route
-           path="/contact"
+          <Route
+            path="/contact"
             element={
               <Layout>
                 <Contact />
               </Layout>
             }
           />
-           <Route
-           path="/services"
+          <Route
+            path="/services"
             element={
               <Layout>
                 <Services />
@@ -90,7 +89,7 @@ function App() {
           <Route
             path="/seller/login"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["buyer"]}>
                 <Layout>
                   <LoginAsSeller />
                 </Layout>
@@ -108,7 +107,7 @@ function App() {
           <Route
             path="/add"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["seller","admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <AddProduct />
@@ -117,22 +116,22 @@ function App() {
               </PrivateRoute>
             }
           />
-           <Route
+          <Route
             path="/favourite"
             element={
-               <PrivateRoute>
-               <Layout>
-                 <DashboardLayout>
-                 <FavouriteProductList />
-                 </DashboardLayout>
-               </Layout>
-             </PrivateRoute>
+              <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
+                <Layout>
+                  <DashboardLayout>
+                    <FavouriteProductList />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
             }
           />
           <Route
             path="/admin/income"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <Income />
@@ -144,15 +143,15 @@ function App() {
           <Route
             path="/products"
             element={
-                <Layout>
-                    <AllProducts />
-                </Layout>
+              <Layout>
+                <AllProducts />
+              </Layout>
             }
           />
           <Route
             path="/product/update/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["seller","admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <ProductEdit />
@@ -164,17 +163,17 @@ function App() {
           <Route
             path="/details/:id"
             element={
-              <PrivateRoute>
-              <Layout>
-                <ProductsDetails />
-              </Layout>
+              <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
+                <Layout>
+                  <ProductsDetails />
+                </Layout>
               </PrivateRoute>
             }
           />
           <Route
             path="/dashboard"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <Dashboard />
@@ -186,7 +185,7 @@ function App() {
           <Route
             path="/product"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["seller","admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <ProductList />
@@ -198,7 +197,7 @@ function App() {
           <Route
             path="/product/admin"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <AdminProductList />
@@ -210,7 +209,7 @@ function App() {
           <Route
             path="/product/admin/update/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <UpdateProductByAdmin />
@@ -222,7 +221,7 @@ function App() {
           <Route
             path="/userlist"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <UserList />
@@ -234,7 +233,7 @@ function App() {
           <Route
             path="/winning-products"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <WinningBidList />
@@ -246,7 +245,7 @@ function App() {
           <Route
             path="/profile"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <UserProfile />
@@ -258,7 +257,7 @@ function App() {
           <Route
             path="/category"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <Catgeorylist />
@@ -270,7 +269,7 @@ function App() {
           <Route
             path="/category/create"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <CreateCategory />
@@ -282,7 +281,7 @@ function App() {
           <Route
             path="/category/update/:id"
             element={
-              <PrivateRoute>
+              <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
                   <DashboardLayout>
                     <UpdateCategory />

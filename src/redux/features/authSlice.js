@@ -362,7 +362,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.isLoggedIn = true;
+        // TODO
+        state.isLoggedIn = false;
         localStorage.removeItem("user");
       })
       // update user profile

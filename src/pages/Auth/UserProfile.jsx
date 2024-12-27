@@ -5,13 +5,11 @@ import {
   Caption,
   Title,
 } from "../../components/common/Design";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useSelector, useDispatch } from "react-redux";
 import {updateUserProfile} from "../../redux/features/authSlice";
 import { useForm } from "react-hook-form";
 
 const UserProfile = () => {
-  useRedirectLoggedOutUser("/login");
 
   const dispatch = useDispatch();
   const { user = {}, isLoading } = useSelector((state) => state?.auth);

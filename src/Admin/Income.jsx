@@ -1,13 +1,10 @@
 
 import { CgDollar } from "react-icons/cg";
 import { Title } from "../components/common/Design";
-import { useRedirectLoggedOutUser } from "../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getIncome } from "../redux/features/authSlice";
 const Income = () => {
-  useRedirectLoggedOutUser("/login");
-
   const dispatch = useDispatch();
   const { income } = useSelector((state) => state.auth);
 

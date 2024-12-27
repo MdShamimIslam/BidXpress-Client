@@ -1,8 +1,8 @@
-import { DivideCircleIcon } from 'lucide-react';
+
 import React from 'react';
 import { FaGavel, FaShieldAlt, FaChartLine, FaUsers } from 'react-icons/fa';
 import StatsCounter from '../../components/StatsCounter/StatsCounter ';
-
+import { Helmet } from 'react-helmet-async';
 const Services = () => {
   const Services = [
     {
@@ -35,6 +35,10 @@ const Services = () => {
 
   ]
   return (
+    <>
+    <Helmet>
+    <title>BidXpress | Services</title>
+    </Helmet>
     <section className="section mb-20  mt-36">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-8">Our Services</h2>
@@ -56,6 +60,7 @@ const Services = () => {
       </div>
       <StatsCounter/>
     </section>
+    </>
   );
 };
 

@@ -6,7 +6,6 @@ import {
   Title,
   commonClassNameOfInput,
 } from "../../components/common/Design";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import {
   createProduct,
   resetProductState,
@@ -29,8 +28,6 @@ const initialState = {
 };
 
 const AddProduct = () => {
-  useRedirectLoggedOutUser("/login");
-
   const [product, setProduct] = useState(initialState);
   const [productImage, setProductImage] = useState("");
   const [imagePreview, setImagePreview] = useState(null);

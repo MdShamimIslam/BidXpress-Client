@@ -12,13 +12,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Caption, CustomNavLink, Title } from "../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile, logout, RESET } from "../redux/features/authSlice";
-import { useRedirectLoggedOutUser } from "../hooks/useRedirectLoggedOutUser";
+
 import { useEffect } from "react";
 import { useUserProfile } from "../hooks/useUserProfile";
+import { Helmet } from 'react-helmet-async';
 
 const Sidebar = () => {
-  useRedirectLoggedOutUser("/login");
-
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,6 +45,9 @@ const Sidebar = () => {
 
   return (
     <>
+    <Helmet>
+    <title>BidXpress | Dashboard</title>
+    </Helmet>
       <section className="sidebar flex flex-col justify-between h-full">
         <div className="profile flex items-center text-center justify-center gap-8 flex-col">
           <img

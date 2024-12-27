@@ -15,11 +15,9 @@ import { getProduct } from "../../redux/features/productSlice";
 import { formatDate } from "../../utils/formateDate";
 import { getBiddingHistory, placebid } from "../../redux/features/biddingSlice";
 import { toast } from "react-toastify";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import Countdown from "../../components/CountDown/CountDown";
 
 const ProductsDetails = () => {
-  useRedirectLoggedOutUser("/login");
   const { id } = useParams();
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("description");
@@ -80,7 +78,7 @@ const ProductsDetails = () => {
       await dispatch(placebid(data)).unwrap();
       dispatch(getBiddingHistory(id));
     } catch (error) {
-      return toast.error(error.message || "Failed to place bid.");
+      return toast.error(error.message );
     }
   };
 

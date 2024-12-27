@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { loginUserAsSeller } from "../../redux/features/authSlice";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const initialState = {
   email: "",
@@ -47,6 +48,9 @@ const LoginAsSeller = () => {
 
   return (
     <>
+    <Helmet>
+    <title>BidXpress | Seller Login</title>
+    </Helmet>
       <section className="regsiter pt-16 relative">
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute top-2/3"></div>
         <div className="bg-[#241C37] pt-8 h-[40vh] relative content">
@@ -88,7 +92,7 @@ const LoginAsSeller = () => {
               onChange={handleInputChange}
               type="email"
               name="email"
-              className={commonClassNameOfInput}
+              className={`${commonClassNameOfInput} rounded-lg`}
               placeholder="Enter Your Email"
             />
           </div>
@@ -99,7 +103,7 @@ const LoginAsSeller = () => {
               onChange={handleInputChange}
               type={showPassword ? "text" : "password"}
               name="password"
-              className={commonClassNameOfInput}
+              className={`${commonClassNameOfInput} rounded-lg`}
               placeholder="Enter Your Password"
             />
             <span
@@ -113,30 +117,10 @@ const LoginAsSeller = () => {
             <input type="checkbox" />
             <Caption>I agree to the Terms & Policy</Caption>
           </div>
-          <PrimaryButton className="w-full rounded-none my-5 uppercase">
+          <PrimaryButton className="w-full rounded-lg my-5 uppercase">
           {isLoading ? "Processing" : " Become Seller"} 
           </PrimaryButton>
-          <div className="text-center border py-4 rounded-lg mt-4">
-            <Title>OR SIGNIN WITH</Title>
-            <div className="flex items-center justify-center gap-5 mt-5">
-              <button className="flex items-center gap-2 bg-red-500 text-white p-3 px-5 rounded-sm">
-                <FaGoogle />
-                <p className="text-sm">SIGNIN WHIT GOOGLE</p>
-              </button>
-              <button className="flex items-center gap-2 bg-indigo-500 text-white p-3 px-5 rounded-sm">
-                <FaFacebook />
-                <p className="text-sm">SIGNIN WHIT FACEBOOK</p>
-              </button>
-            </div>
-          </div>
-          <p className="text-center mt-5">
-            By clicking the signup button, you create a Cobiro account, and you
-            agree to Cobiros{" "}
-            <span className="text-green underline">Terms & Conditions</span> &
-            <span className="text-green underline"> Privacy Policy </span> .
-          </p>
         </form>
-        <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
       </section>
     </>
   );

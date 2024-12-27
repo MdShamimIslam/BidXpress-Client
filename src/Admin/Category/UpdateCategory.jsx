@@ -6,15 +6,12 @@ import {
   Title,
   PrimaryButton,
 } from "../../components/common/Design";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory, updateCategory } from "../../redux/features/categorySlice";
 import {toast} from "react-toastify";
 
 const UpdateCategory = () => {
   const { id } = useParams();
-  
-  useRedirectLoggedOutUser("/login");
   
   const dispatch = useDispatch();
   const { category } = useSelector((state) => state.category);

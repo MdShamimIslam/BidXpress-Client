@@ -1,7 +1,6 @@
 import { NavLink} from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 import { PrimaryButton, Title } from "../../components/common/Design";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { deleteProduct, getAllProductOfUser } from "../../redux/features/productSlice";
@@ -9,8 +8,6 @@ import Table from "../../components/Table/Table";
 import { sellProductByUser } from "../../redux/features/biddingSlice";
 
 const ProductList = () => {
-  useRedirectLoggedOutUser("/login");
-
   const dispatch = useDispatch();
   const {userProducts, isLoading } =  useSelector(state => state.product);
 

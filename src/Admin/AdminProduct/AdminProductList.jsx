@@ -1,13 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components/common/Design";
 import Table from "../../components/Table/Table";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useEffect } from "react";
 import { deleteProductByAdmin, getAllProduct } from "../../redux/features/productSlice";
 
 const AdminProductList = () => {
-  useRedirectLoggedOutUser("/login");
-
   const dispatch = useDispatch();
 
   const {products, isLoading } =  useSelector(state => state?.product);

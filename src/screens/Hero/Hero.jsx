@@ -2,10 +2,14 @@
 import cardImg from "../../assets/card.png";
 import { SiWpexplorer } from "react-icons/si";
 import { Link } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 
 const Hero = () => {
   return (
     <>
+    <Helmet>
+    <title>BidXpress | Home</title>
+    </Helmet>
       <section className="mt-36">
         <Shape1 />
         <div className="container p-4 mx-auto ">

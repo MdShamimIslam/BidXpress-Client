@@ -1,13 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Title } from "../../components/common/Design";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useEffect } from "react";
 import { getAllWonedProductOfUser } from "../../redux/features/productSlice";
 import Table from "../../components/Table/Table";
 
 const WinningBidList = () => {
-  useRedirectLoggedOutUser("/login");
-
   const dispatch = useDispatch();
   const { wonedProducts, isLoading } = useSelector((state) => state.product);
 

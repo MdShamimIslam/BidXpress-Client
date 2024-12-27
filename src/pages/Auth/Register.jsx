@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, RESET } from "../../redux/features/authSlice";
+import { Helmet } from "react-helmet-async";
 
 const initialState = {
   name: "",
@@ -72,6 +73,9 @@ const Register = () => {
 
   return (
     <>
+    <Helmet>
+    <title>BidXpress | Register</title>
+    </Helmet>
       <section className="regsiter pt-16 relative">
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute top-2/3"></div>
         <form

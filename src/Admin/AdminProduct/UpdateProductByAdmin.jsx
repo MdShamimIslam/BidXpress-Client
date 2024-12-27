@@ -5,7 +5,6 @@ import {
   Title,
   commonClassNameOfInput,
 } from "../../components/common/Design";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import {
@@ -14,8 +13,6 @@ import {
 } from "../../redux/features/productSlice";
 
 const UpdateProductByAdmin = () => {
-  useRedirectLoggedOutUser("/login");
-
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();

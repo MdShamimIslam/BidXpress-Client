@@ -3,12 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct } from "../../redux/features/productSlice";
 import {
   Container,
-  Heading,
-  PrimaryButton,
+  Heading
 } from "../../components/common/Design";
 import ProductCard from "../../screens/Hero/ProductCard";
 import { IoIosSearch } from "react-icons/io";
-import Loader from "../../components/common/Loader";
+import { Helmet } from 'react-helmet-async';
 
 const AllProducts = () => {
   const dispatch = useDispatch();
@@ -36,6 +35,9 @@ const AllProducts = () => {
 
   return (
     <>
+    <Helmet>
+    <title>BidXpress | All Products</title>
+    </Helmet>
       <section className="product-home mt-24 mb-20 md:mt-28 lg:mt-36">
         <Container>
           <SearchBox

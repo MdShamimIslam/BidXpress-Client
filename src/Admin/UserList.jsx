@@ -1,14 +1,11 @@
 import { ProfileCard, Title } from "../components/common/Design";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { useRedirectLoggedOutUser } from "../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserByAdmin, getAllUser } from "../redux/features/authSlice";
 import { useEffect } from "react";
 import { formatDate } from "../utils/formateDate";
 
 const UserList = () => {
-  useRedirectLoggedOutUser("/login");
-
   const dispatch = useDispatch();
 
   const { users } = useSelector((state) => state?.auth);

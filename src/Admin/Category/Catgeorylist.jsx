@@ -7,7 +7,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
@@ -17,8 +16,6 @@ import {
 import { formatDate } from "../../utils/formateDate";
 
 const Catgeorylist = () => {
-  useRedirectLoggedOutUser("/login");
-
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
 

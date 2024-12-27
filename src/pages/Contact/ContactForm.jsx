@@ -1,13 +1,16 @@
 import React from 'react'
 import { PrimaryButton } from '../../components/common/Design'
-
+import { Helmet } from 'react-helmet-async';
 export default function ContactForm() {
   const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission logic here
+    e.preventDefault();
   }
 
   return (
+  <>
+  <Helmet>
+    <title>BidXpress | Contact</title>
+    </Helmet>
     <div className="container mx-auto px-4 lg:py-12">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         {/* Form Section */}
@@ -64,13 +67,6 @@ export default function ContactForm() {
                 required
               ></textarea>
             </div>
-            
-            {/* <button
-              type="submit"
-              className="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out"
-            >
-              Send Message
-            </button> */}
             <PrimaryButton>  Send Message</PrimaryButton>
           </form>
         </div>
@@ -91,6 +87,7 @@ export default function ContactForm() {
         </div>
       </div>
     </div>
+  </>
   )
 }
 

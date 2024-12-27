@@ -2,9 +2,14 @@ import React from "react";
 import { Check } from "lucide-react";
 import aboutImg from "/images/about/about.png";
 import { RiArrowRightDoubleFill } from "react-icons/ri";
+import { Helmet } from 'react-helmet-async';
 
 export default function AboutSection() {
   return (
+   <>
+   <Helmet>
+    <title>BidXpress | About</title>
+    </Helmet>
     <div className="container mx-auto px-4 py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="relative">
@@ -68,5 +73,6 @@ export default function AboutSection() {
         </div>
       </div>
     </div>
+   </>
   );
 }

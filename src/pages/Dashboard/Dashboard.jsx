@@ -5,7 +5,6 @@ import { BsCashCoin } from "react-icons/bs";
 import { MdDashboard, MdOutlineCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useUserProfile } from "../../hooks/useUserProfile";
 import { useEffect } from "react";
 import {
@@ -21,8 +20,6 @@ import {
 } from "../../redux/features/productSlice";
 
 const Dashboard = () => {
-  useRedirectLoggedOutUser("/login");
-
   const { role } = useUserProfile();
   const { income, users } = useSelector((state) => state.auth);
   const { products, userProducts, wonedProducts } = useSelector(

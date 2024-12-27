@@ -6,7 +6,6 @@ import {
   Title,
 } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   getAllProduct,
@@ -16,8 +15,6 @@ import {
 } from "../../redux/features/productSlice";
 
 const ProductEdit = () => {
-  useRedirectLoggedOutUser("/login");
-
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();

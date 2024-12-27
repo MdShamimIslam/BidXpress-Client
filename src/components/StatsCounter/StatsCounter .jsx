@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Users, ShoppingBag , MessageSquare, SmilePlus, MessageCircle } from 'lucide-react'
-
 export default function StatsCounter() {
   const stats = [
     {
@@ -68,7 +67,7 @@ export default function StatsCounter() {
     })
 
     return () => counters.forEach(counter => clearInterval(counter))
-  }, [])
+  }, []);
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 my-16 lg:my-24">

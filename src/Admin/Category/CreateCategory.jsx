@@ -5,15 +5,12 @@ import {
   Caption,
   PrimaryButton,
 } from "../../components/common/Design";
-import { useRedirectLoggedOutUser } from "../../hooks/useRedirectLoggedOutUser";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { createCategory } from "../../redux/features/categorySlice";
 import { toast } from "react-toastify";
 
 const CreateCategory = () => {
-  useRedirectLoggedOutUser("/login");
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [title, setTitle] = useState("");

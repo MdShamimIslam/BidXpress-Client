@@ -6,7 +6,6 @@ import ProductList from "../../screens/Hero/ProductList";
 import TopCollection from "../../screens/Hero/TopCollection";
 import TopSeller from "../../screens/Hero/TopSeller";
 import Trust from "../../screens/Hero/Trust";
-
 const Home = () => {
   return (
     <>

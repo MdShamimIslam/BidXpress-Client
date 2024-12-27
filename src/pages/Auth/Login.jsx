@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login } from "../../redux/features/authSlice";
+import { Helmet } from "react-helmet-async";
 
 const initialState = {
   email: "",
@@ -24,7 +25,7 @@ const Login = () => {
   const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
   const [showPassword, setShowPassword] = useState(false);
-  const { isLoading, isError, isLoggedIn, message} = useSelector((state) => state.auth);
+  const { isLoading, isLoggedIn} = useSelector((state) => state.auth);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,18 +42,22 @@ const Login = () => {
     const userData = { email, password };
 
     dispatch(login(userData));
+    
   };
 
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/dashboard");
-      toast.success("Login successful");
+      toast.success("Successfully Login");
     }
     
   }, [isLoggedIn, navigate]);
 
   return (
     <>
+    <Helmet>
+      <title>BidXpress | Login</title>
+    </Helmet>
       <section className="regsiter pt-16 relative">
         <div
           className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl
