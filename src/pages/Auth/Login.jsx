@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import {
   Caption,
@@ -48,7 +47,6 @@ const Login = () => {
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/dashboard");
-      toast.success("Successfully Login");
     }
     
   }, [isLoggedIn, navigate]);
@@ -113,7 +111,7 @@ const Login = () => {
           >
             {isLoading ? "PROCESSING" : "LOGIN"}
           </PrimaryButton>  
-          <p className="text-lg text-center">Don't have an account? Please <Link to='/register' className="text-green">Sign Up</Link></p>   
+          <p className="text-lg text-center">Don&apos;t have an account? Please <Link to='/register' className="text-green">Sign Up</Link></p>   
         </form>
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
       </section>

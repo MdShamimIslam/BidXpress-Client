@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ScrollToTop } from "./utils/ScrollToTop";
 import Layout from "./components/common/layout/Layout";
 import Home from "./pages/Home/Home";

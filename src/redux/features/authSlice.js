@@ -231,7 +231,6 @@ export const deleteUserByAdmin = createAsyncThunk(
   }
 );
 
-// Add to favourites
 export const addFavouriteProduct = createAsyncThunk(
   "auth/addFavouriteProduct",
   async (productId, thunkAPI) => {
@@ -244,7 +243,6 @@ export const addFavouriteProduct = createAsyncThunk(
   }
 );
 
-// Get favourite products
 export const getFavouriteProducts = createAsyncThunk(
   "auth/getFavouriteProducts",
   async (_, thunkAPI) => {
@@ -257,7 +255,6 @@ export const getFavouriteProducts = createAsyncThunk(
   }
 );
 
-// Remove favourite product
 export const removeFavouriteProduct = createAsyncThunk(
   "auth/removeFavouriteProduct",
   async (productId, thunkAPI) => {
@@ -310,6 +307,7 @@ const authSlice = createSlice({
         state.isSuccess = true;
         state.isLoggedIn = true;
         state.user = action.payload;
+        toast.success("Logged in successfully!");
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
@@ -321,7 +319,7 @@ const authSlice = createSlice({
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(logout.fulfilled, (state, action) => {
+      .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
         state.isLoggedIn = false; 
         state.user = null;

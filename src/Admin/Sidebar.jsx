@@ -21,10 +21,7 @@ const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const {user} = useSelector(state => state?.auth);
-
-
   const {role, isLoggedIn} = useUserProfile();
 
   useEffect(()=>{

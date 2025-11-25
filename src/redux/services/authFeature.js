@@ -31,7 +31,6 @@ const getLogInStatus = async () => {
 const getUserProfile = async () => {
     const res = await axios.get(`${AUTH_URL}/getuser`, { withCredentials: true });
     return res?.data;
- 
 };
 
 const updateUserProfile = async (data) => {
@@ -65,8 +64,7 @@ const getAllUser = async () => {
 
 // delete user by admin
 const deleteUserByAdmin = async (id) => {
-  const res = await axios.delete(`${AUTH_URL}/admin/delete-user/${id}`,
-     { withCredentials: true });
+  const res = await axios.delete(`${AUTH_URL}/admin/delete-user/${id}`, { withCredentials: true });
   return res?.data;
 };
 
@@ -84,9 +82,7 @@ const getFavouriteProducts = async () => {
 
 // Remove product from favourite
 export const deleteFavouriteProduct = async (productId) => {
-  const res = await axios.delete(`${AUTH_URL}/favourite-product/${productId}`, {
-    withCredentials: true,
-  });
+  const res = await axios.delete(`${AUTH_URL}/favourite-product/${productId}`, {withCredentials: true });
   return res.data;
 };
 

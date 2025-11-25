@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
@@ -7,9 +7,8 @@ import { store } from "./redux/store.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { HelmetProvider } from 'react-helmet-async';
-
+// TODO: Add to StrictMode 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <HelmetProvider>
       <Provider store={store}>
         <ToastContainer
@@ -21,5 +20,4 @@ createRoot(document.getElementById("root")).render(
         <App />
       </Provider>
     </HelmetProvider>
-  </StrictMode>
 );

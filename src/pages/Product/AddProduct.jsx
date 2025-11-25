@@ -51,7 +51,7 @@ const AddProduct = () => {
 
   useEffect(() => {
     dispatch(getUserProfile());
-  }, []);
+  }, [dispatch]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
