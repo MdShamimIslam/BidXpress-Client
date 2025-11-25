@@ -2,15 +2,17 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "../services/authFeature";
 import { toast } from "react-toastify";
 
+const storedUser = JSON.parse(localStorage.getItem("user"));
+
 const initialState = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: storedUser || null,
   favoriteProducts: [],
   users: [],
   income: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
-  isLoggedIn: false,
+  isLoggedIn: !!storedUser,
   message: ""
 };
 

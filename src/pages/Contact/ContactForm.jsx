@@ -1,4 +1,3 @@
-import React from 'react'
 import { PrimaryButton } from '../../components/common/Design'
 import { Helmet } from 'react-helmet-async';
 export default function ContactForm() {

@@ -21,9 +21,6 @@ import Catgeorylist from "./Admin/Category/Catgeorylist";
 import CreateCategory from "./Admin/Category/CreateCategory";
 import UpdateCategory from "./Admin/Category/UpdateCategory";
 import NotFound from "./components/common/NotFound";
-import { getUserProfile } from "./redux/features/authSlice";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import ProductList from "./pages/Product/ProductList";
 import AllProducts from "./pages/Product/AllProducts";
 import FavouriteProductList from "./pages/Product/FavouriteProductList";
@@ -32,14 +29,6 @@ import Contact from "./pages/Contact/Contact";
 import Services from "./pages/Services/Services";
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      dispatch(getUserProfile());
-    }
-  }, [dispatch]);
 
   return (
     <>
