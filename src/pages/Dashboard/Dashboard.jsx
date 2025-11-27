@@ -7,24 +7,14 @@ import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { useUserProfile } from "../../hooks/useUserProfile";
 import { useEffect } from "react";
-import {
-  getAllUser,
-  getUserIncome,
-  getUserProfile,
-} from "../../redux/features/authSlice";
+import { getAllUser, getUserIncome, getUserProfile } from "../../redux/features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllProduct,
-  getAllProductOfUser,
-  getAllWonedProductOfUser,
-} from "../../redux/features/productSlice";
+import { getAllProduct, getAllProductOfUser, getAllWonedProductOfUser } from "../../redux/features/productSlice";
 
 const Dashboard = () => {
   const { role } = useUserProfile();
   const { income, users } = useSelector((state) => state.auth);
-  const { products, userProducts, wonedProducts } = useSelector(
-    (state) => state.product
-  );
+  const { products, userProducts, wonedProducts } = useSelector( (state) => state.product );
 
   const dispatch = useDispatch();
 

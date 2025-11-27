@@ -1,18 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  Caption,
-  Container,
-  CustomNavLink,
-  PrimaryButton,
-  Title,
-  commonClassNameOfInput,
-} from "../../components/common/Design";
-import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { Caption, CustomNavLink, PrimaryButton, Title, commonClassNameOfInput } from "../../components/common/Design";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { register, RESET } from "../../redux/features/authSlice";
+import { register } from "../../redux/features/authSlice";
 import { Helmet } from "react-helmet-async";
 
 const initialState = {
@@ -29,9 +21,7 @@ const Register = () => {
   const { name, email, password, confirmPassword } = formData;
   const [showPassword, setShowPassword] = useState(false);
 
-  const { isLoading, message, isSuccess, isError } = useSelector(
-    (state) => state.auth
-  );
+  const { isLoggedIn, isLoading } = useSelector( (state) => state.auth );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -57,19 +47,12 @@ const Register = () => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      toast.success("Registration successful. Please login now!");
-      navigate("/login");
+    if (isLoggedIn) {
+      toast.success("Registration successful!");
+      navigate("/dashboard");
     }
-    
-    if (isError) {
-      toast.error(message || "Registration Failed");
-    }
+  }, [isLoggedIn, navigate]);
 
-    return () => {
-      dispatch(RESET());
-    };
-  }, [dispatch, isSuccess, isError, message, navigate]);
 
   return (
     <>
@@ -86,7 +69,7 @@ const Register = () => {
             <Title level={5}>Sign Up</Title>
             <p className="mt-2 text-lg">
               Do you already have an account?{" "}
-              <CustomNavLink href="/login">Log In Here</CustomNavLink>
+              <CustomNavLink href="/login">Login Here</CustomNavLink>
             </p>
           </div>
           <div className="mt-10">
@@ -96,7 +79,7 @@ const Register = () => {
               onChange={handleInputChange}
               type="text"
               name="name"
-            className={`${commonClassNameOfInput} rounded-md`}
+              className={`${commonClassNameOfInput} rounded-md`}
               placeholder="User Name"
             />
           </div>
@@ -107,7 +90,7 @@ const Register = () => {
               onChange={handleInputChange}
               type="email"
               name="email"
-            className={`${commonClassNameOfInput} rounded-md`}
+              className={`${commonClassNameOfInput} rounded-md`}
               placeholder="Enter Email"
             />
           </div>
@@ -118,7 +101,7 @@ const Register = () => {
               onChange={handleInputChange}
               type={showPassword ? "text" : "password"}
               name="password"
-            className={`${commonClassNameOfInput} rounded-md`}
+              className={`${commonClassNameOfInput} rounded-md`}
               placeholder="Enter Password"
             />
             <span
@@ -136,7 +119,7 @@ const Register = () => {
               onChange={handleInputChange}
               type={showPassword ? "text" : "password"}
               name="confirmPassword"
-            className={`${commonClassNameOfInput} rounded-md`}
+              className={`${commonClassNameOfInput} rounded-md`}
               placeholder="Confirm password"
             />
             <span
@@ -148,14 +131,14 @@ const Register = () => {
           </div>
           <div className="flex items-center gap-2 py-4">
             <input type="checkbox" />
-            <Caption>I agree to the Terms & Policy</Caption>
+            <Caption>I agree to the terms & policy</Caption>
           </div>
           <PrimaryButton 
-          disabled={isLoading} 
-          className="w-full rounded-lg my-5">
+            disabled={isLoading} 
+            className="w-full rounded-lg my-5">
             {isLoading ? "PROCESSING" : "CREATE ACCOUNT"}
           </PrimaryButton>
-        <p className="text-lg text-center">Already have an account? Please <Link to='/login' className="text-green">Sign In</Link></p>
+        <p className="text-lg text-center">Already have an account? Please <Link to='/login' className="text-green">Login</Link></p>
         </form>
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
       </section>

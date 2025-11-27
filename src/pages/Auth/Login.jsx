@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import {
-  Caption,
-  commonClassNameOfInput,
-  CustomNavLink,
-  PrimaryButton,
-  Title,
-} from "../../components/common/Design";
+import { Caption, commonClassNameOfInput, CustomNavLink, PrimaryButton, Title } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -41,7 +35,6 @@ const Login = () => {
     const userData = { email, password };
 
     dispatch(login(userData));
-    
   };
 
   useEffect(() => {
@@ -69,7 +62,7 @@ const Login = () => {
             <Title level={5}>New Member</Title>
             <p className="mt-2 text-lg">
               Do you already have an account?{" "}
-              <CustomNavLink href="/register">Signup Here</CustomNavLink>
+              <CustomNavLink href="/register">Sign up Here</CustomNavLink>
             </p>
           </div>
 
@@ -103,7 +96,7 @@ const Login = () => {
           </div>
           <div className="flex items-center gap-2 py-4">
             <input type="checkbox" />
-            <Caption>I agree to the Terms & Policy</Caption>
+            <Caption>I agree to the terms & policy</Caption>
           </div>
           <PrimaryButton
             disabled={isLoading}
@@ -111,7 +104,7 @@ const Login = () => {
           >
             {isLoading ? "PROCESSING" : "LOGIN"}
           </PrimaryButton>  
-          <p className="text-lg text-center">Don&apos;t have an account? Please <Link to='/register' className="text-green">Sign Up</Link></p>   
+          <p className="text-lg text-center">Don&apos;t have an account? Please <Link to='/register' className="text-green">Sign up</Link></p>   
         </form>
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
       </section>

@@ -297,7 +297,7 @@ const authSlice = createSlice({
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
-        state.message = action.payload;
+        state.message = action.payload || "Register Failed";
         state.user = null;
       })
       // login the user
