@@ -50,7 +50,7 @@ const ProductCard = ({ item = {} }) => {
         </div>
         <div className="details mt-4">
           <Link to={`/details/${item?._id}`}>
-            <Title className="uppercase">
+            <Title>
               {item?.title?.length > 20
                 ? item.title.slice(0, 20) + "..."
                 : item.title}

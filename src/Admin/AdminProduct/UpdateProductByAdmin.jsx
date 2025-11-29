@@ -1,16 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  PrimaryButton,
-  Caption,
-  Title,
-  commonClassNameOfInput,
-} from "../../components/common/Design";
-import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import {
-  getAllProduct,
-  updateProductByAdmin,
-} from "../../redux/features/productSlice";
+import { useNavigate, useParams } from "react-router-dom";
+import {PrimaryButton, Caption, Title, commonClassNameOfInput } from "../../components/common/Design";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProductByAdmin } from "../../redux/features/productSlice";
 
 const UpdateProductByAdmin = () => {
   const { id } = useParams();
@@ -25,7 +17,7 @@ const UpdateProductByAdmin = () => {
     const data = { commission };
 
     await dispatch(updateProductByAdmin({ id, data }));
-    await dispatch(getAllProduct());
+    // await dispatch(getAllProduct());
 
     if (isSuccess) {
       navigate("/product/admin");
@@ -52,7 +44,7 @@ const UpdateProductByAdmin = () => {
               />
             </div>
             <PrimaryButton type="submit" className="rounded-lg my-5">
-             {isLoading ? "PROCESSING" : "UPDATE"}
+             {isLoading ? "Processing..." : "Update Now"}
             </PrimaryButton>
           </form>
         </div>

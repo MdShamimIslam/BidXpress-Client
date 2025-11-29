@@ -91,7 +91,7 @@ const Catgeorylist = () => {
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 capitalize">{title}</td>
+                      <td className="px-6 py-4">{title}</td>
                       <td className="px-6 py-4">{formatDate(createdAt)}</td>
                       <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-1">
                         <NavLink

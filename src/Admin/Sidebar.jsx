@@ -29,7 +29,7 @@ const Sidebar = () => {
       dispatch(getUserProfile());
     }
     
-  },[dispatch,isLoggedIn]);
+  },[dispatch, isLoggedIn]);
 
   // logout functionality
   const handleLogout = async () => {

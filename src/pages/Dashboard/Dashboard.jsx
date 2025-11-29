@@ -37,8 +37,8 @@ const Dashboard = () => {
           <hr className="my-5" />
 
           {role === "buyer" && (
-            <h1 className="text-2xl font-semibold text-center py-8 text-green">
-              Please become a seller
+            <h1 className="text-2xl font-semibold text-center py-8">
+              Please become a seller to see your activity.
             </h1>
           )}
 

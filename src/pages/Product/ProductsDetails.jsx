@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
-
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
-import {
-  Body,
-  Caption,
-  commonClassNameOfInput,
-  Container,
-  Title,
-} from "../../components/common/Design";
+import {Caption, commonClassNameOfInput, Container, Title } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../redux/features/productSlice";
@@ -24,20 +17,7 @@ const ProductsDetails = () => {
   const [rate, setRate] = useState(0);
   const { history = {} } = useSelector((state) => state.bidding);
   const { product, isLoading } = useSelector((state) => state.product);
-  const {
-    image,
-    title,
-    description,
-    isverify,
-    price,
-    category,
-    height,
-    lengthpic,
-    width,
-    weigth,
-    mediumused,
-    isSoltout,
-  } = product || {};
+  const { image, title, description, isverify, price, category, height, lengthpic, width, weight, mediumused, isSoltout } = product || {};
 
   useEffect(() => {
     dispatch(getProduct(id));
@@ -47,7 +27,7 @@ const ProductsDetails = () => {
     if (product && !isSoltout) {
       dispatch(getBiddingHistory(id));
     }
-  }, [product]);
+  }, [product, dispatch, id, isSoltout]);
 
   useEffect(() => {
     if (history && history?.length > 0) {
@@ -56,7 +36,7 @@ const ProductsDetails = () => {
     } else if (product) {
       setRate(price);
     }
-  }, [history]);
+  }, [history, price, product]);
 
   const incrementBid = () => {
     setRate((prevRate) => prevRate + 1);
@@ -228,8 +208,8 @@ const ProductsDetails = () => {
                         <Caption>{width ?? "N/A"} (cm)</Caption>
                       </div>
                       <div className="flex justify-between border-b py-3">
-                        <Title>weigth</Title>
-                        <Caption>{weigth ?? "N/A"} (kg)</Caption>
+                        <Title>weight</Title>
+                        <Caption>{weight ?? "N/A"} (kg)</Caption>
                       </div>
                       <div className="flex justify-between py-3 border-b">
                         <Title>medium used</Title>
@@ -277,15 +257,15 @@ const ProductsDetails = () => {
                     Reviews
                   </Title>
                   <hr className="my-5" />
-                  <Title level={6} className=" font-normal text-orange-600">
-                    Sorry, it's still a work in progress!
+                  <Title level={6} className=" font-normal">
+                    Sorry, it's still a work in progress...
                   </Title>
                 </div>
               )}
               {activeTab === "moreProducts" && (
                 <div className="more-products-tab shadow-s3 p-8 rounded-md">
-                 <Title level={6} className=" font-normal text-orange-600">
-                    Sorry, it's still a work in progress!
+                 <Title level={6} className=" font-normal">
+                    Sorry, it's still a work in progress...
                   </Title>
                 </div>
               )}

@@ -56,7 +56,7 @@ const ProductEdit = () => {
     formData.append("lengthpic", product?.lengthpic);
     formData.append("width", product?.width);
     formData.append("mediumused", product?.mediumused);
-    formData.append("weigth", product?.weigth);
+    formData.append("weight", product?.weight);
     formData.append("price", product?.price);
     formData.append("description", product?.description);
     if (productImage) {
@@ -153,11 +153,11 @@ const ProductEdit = () => {
                 <span className=" text-purple-400 italic">(kg)</span>
               </Caption>
               <input
-                value={product?.weigth || ""}
+                value={product?.weight || ""}
                 onChange={handleInputChange}
                 type="number"
-                name="weigth"
-                placeholder="weigth"
+                name="weight"
+                placeholder="weight"
                 className={`${commonClassNameOfInput}`}
               />
             </div>
@@ -207,7 +207,7 @@ const ProductEdit = () => {
             )}
           </div>
           <PrimaryButton type="submit" className="rounded-lg my-5">
-            {isLoading ? "PROCESSING..." : "UPDATE"}
+            {isLoading ? "Processing..." : "Update Now"}
           </PrimaryButton>
         </form>
       </section>

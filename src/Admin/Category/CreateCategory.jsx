@@ -48,7 +48,7 @@ const CreateCategory = () => {
           </div>
 
           <PrimaryButton type="submit" className="rounded-lg my-5">
-            CREATE
+            Create Now
           </PrimaryButton>
         </form>
       </section>

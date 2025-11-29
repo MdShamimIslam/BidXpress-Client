@@ -1,14 +1,9 @@
-import {
-  Container,
-  CustomNavLink,
-  CustomNavLinkList,
-  ProfileCard,
-} from "./Design";
+import { Container, CustomNavLink, CustomNavLinkList, ProfileCard } from "./Design";
 import logo from "/images/common/bid.png";
 import { menulists } from "../../utils/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { ShowOnLogin, ShowOnLogout } from "../../utils/HiddenLink";
 import { useSelector } from "react-redux";
 
@@ -45,19 +40,11 @@ const Header = () => {
     };
   }, [user, isLoggedIn]);
 
-  // Check if it's the home page
   const isHomePage = location.pathname === "/";
 
   return (
     <>
-      <header
-        className={
-          isHomePage
-            ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}`
-            : `header bg-white shadow-s1 
-       ${isScrolled ? "scrolled" : ""}`
-        }
-      >
+      <header className={isHomePage ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}`: `header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
         <Container>
           <nav className="p-4 flex justify-between items-center relative">
             <div className="flex items-center gap-14">
@@ -91,20 +78,20 @@ const Header = () => {
                 ))}
               </div>
             </div>
-            <div className="flex items-center gap-8 icons">
+            <div className="flex items-center gap-8 icons ">
               <div className="hidden lg:flex lg:items-center lg:gap-8 text-white">
                 {isLoggedIn && user?.role === "buyer" && (
                   <ShowOnLogin>
-                    <CustomNavLink
-                      href="/seller/login"
-                      className={`${
-                        isScrolled || !isHomePage
-                          ? "text-white bg-primary hover:text-black"
-                          : "bg-yellow-700 text-white"
-                      } px-8 py-2 rounded-full md`}
-                    >
-                      Become a Seller
-                    </CustomNavLink>
+                    <NavLink
+                    to="/seller/login"
+                    className={`${
+                      isScrolled || !isHomePage
+                        ? "text-white bg-primary "
+                        : "bg-green text-white"
+                    } px-8 py-2 rounded-full`}
+                  >
+                     Become a Seller
+                  </NavLink>
                   </ShowOnLogin>
                 )}
                 <ShowOnLogout>
@@ -128,15 +115,18 @@ const Header = () => {
                   </CustomNavLink>
                 </ShowOnLogout>
                 <ShowOnLogin>
-                  <CustomNavLink href="/dashboard">
-                    <ProfileCard>
-                      <img
-                        src={user?.photo}
-                        alt=""
-                        className="w-full h-full rounded-full object-cover"
-                      />
-                    </ProfileCard>
-                  </CustomNavLink>
+                  <div className="ml-24">
+                    <CustomNavLink href="/dashboard">
+                      <ProfileCard>
+                        <img
+                          src={user?.photo}
+                          alt="profile-image"
+                          className="w-full h-full rounded-full object-cover"
+                        />
+                      </ProfileCard>
+                    </CustomNavLink>
+                  </div>
+               
                 </ShowOnLogin>
               </div>
               <div

@@ -1,30 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import CategoryDropDown from "../../components/common/CategoryDropDown";
-import {
-  Caption,
-  PrimaryButton,
-  Title,
-  commonClassNameOfInput,
-} from "../../components/common/Design";
-import {
-  createProduct,
-  resetProductState,
-} from "../../redux/features/productSlice";
-import { useEffect, useState } from "react";
+import { Caption, PrimaryButton, Title, commonClassNameOfInput } from "../../components/common/Design";
+import { createProduct, resetProductState } from "../../redux/features/productSlice";
+import { useState } from "react";
 import { toast } from "react-toastify";
-import { getUserProfile } from "../../redux/features/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const initialState = {
   title: "",
+  category: null,
   description: "",
-  price: "",
   height: "",
   lengthpic: "",
   width: "",
   mediumused: "",
-  weigth: "",
-  category: null,
+  weight: "",
+  price: ""
 };
 
 const AddProduct = () => {
@@ -33,25 +24,14 @@ const AddProduct = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {
-    title,
-    description,
-    price,
-    height,
-    lengthpic,
-    width,
-    mediumused,
-    weigth,
-    category,
-  } = product;
+  const { isSuccess, isLoading, isError } = useSelector((state) => state.product);
 
-  const { isSuccess, isLoading, isError } = useSelector(
-    (state) => state.product
-  );
+  const { title, category, description, price, height, lengthpic, width, mediumused, weight } = product || {};
 
-  useEffect(() => {
-    dispatch(getUserProfile());
-  }, [dispatch]);
+  // TODO: ami jani na keno akhane eita use krsilam..tai comment kore rakhsi debug kore pore dekhte hobe keno dichilam
+  // useEffect(() => {
+  //   dispatch(getUserProfile());
+  // }, [dispatch]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -69,12 +49,12 @@ const AddProduct = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("price", price);
     formData.append("height", height);
     formData.append("lengthpic", lengthpic);
     formData.append("width", width);
     formData.append("mediumused", mediumused);
-    formData.append("weigth", weigth);
+    formData.append("weight", weight);
+    formData.append("price", price);
     formData.append("image", productImage);
 
     if (category) {
@@ -167,7 +147,7 @@ const AddProduct = () => {
                   <Caption className="mb-2">
                     Medium used
                     <span className=" text-purple-400 italic">
-                      (Typically,Plastic, Memory Foam, Metal or other)
+                      (Typically, Plastic, Memory Foam, Metal or other)
                     </span>
                   </Caption>
                   <input
@@ -187,11 +167,11 @@ const AddProduct = () => {
                     <span className=" text-purple-400 italic">(kg)</span>
                   </Caption>
                   <input
-                    value={weigth}
+                    value={weight}
                     onChange={handleInputChange}
                     type="number"
-                    name="weigth"
-                    placeholder="weigth"
+                    name="weight"
+                    placeholder="weight"
                     className={`${commonClassNameOfInput}`}
                   />
                 </div>
@@ -243,7 +223,7 @@ const AddProduct = () => {
             )}
           </div>
           <PrimaryButton type="submit" className="rounded-lg my-5">
-            {isLoading ? "PROCESSING..." : "CREATE"}
+            {isLoading ? "Processing..." : "Create Now"}
           </PrimaryButton>
         </form>
       </section>

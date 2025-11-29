@@ -1,9 +1,9 @@
-
 import { CgDollar } from "react-icons/cg";
 import { Title } from "../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getIncome } from "../redux/features/authSlice";
+
 const Income = () => {
   const dispatch = useDispatch();
   const { income } = useSelector((state) => state.auth);

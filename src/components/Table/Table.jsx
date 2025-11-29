@@ -2,13 +2,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-const Table = ({
-  products,
-  isWon,
-  isAdmin,
-  handleSellProduct,
-  handleDeleteProduct,
-}) => {
+const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeleteProduct }) => {
 
   return (
     <>
@@ -55,16 +49,8 @@ const Table = ({
           </thead>
           <tbody>
             {products?.map((product) => {
-              const {
-                _id,
-                title,
-                commission,
-                price,
-                image,
-                biddingPrice,
-                isverify,
-                isSoldout,
-              } = product;
+              const { _id, title, commission, price, image, biddingPrice, isverify, isSoldout } = product;
+              
               return (
                 <tr key={_id} className="bg-white border-b hover:bg-gray-50">
                   <td className="px-6 py-4">{title?.length > 20 ? title?.slice(0, 20) + "..." : title}</td>
@@ -149,10 +135,8 @@ const Table = ({
                     </>
                   )}
                   {isWon && (
-                    <td className="px-6 py-3">
-                      <button disabled className="bg-green tetx-white py-1 px-3 rounded-lg">
+                    <td className="px-6 py-3 font-semibold">
                         Victory
-                      </button>
                     </td>
                   )}
                 </tr>

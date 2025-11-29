@@ -12,7 +12,7 @@ const CategoryCard = ({ item }) => {
             className="w-full h-full object-contain"
           />
         </div>
-        <Title className=" uppercase">{item.title}</Title>
+        <Title>{item.title}</Title>
       </div>
     </>
   );

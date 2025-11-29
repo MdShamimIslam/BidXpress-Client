@@ -394,14 +394,11 @@ const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload;
         state.isError = false;
-        toast.success("Logged in as a seller successfully!");
       })
       .addCase(loginUserAsSeller.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.user = null;
-        toast.error(action.payload);
       })
       // get user income
       .addCase(getUserIncome.pending, (state) => {

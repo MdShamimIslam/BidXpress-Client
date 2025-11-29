@@ -88,6 +88,7 @@ const biddingSlice = createSlice({
           state.isLoading = false;
           state.isError = true;
           state.message = action.payload;
+          toast.error(action.payload);
         })
         // get bidding history
         .addCase(getBiddingHistory.pending, (state) => {
@@ -111,6 +112,7 @@ const biddingSlice = createSlice({
           state.isLoading = false;
           state.isSuccess = true;
           state.message = action.payload;
+          toast.success("Sell success");
         })
         .addCase(sellProductByUser.rejected, (state, action) => {
           state.isLoading = false;

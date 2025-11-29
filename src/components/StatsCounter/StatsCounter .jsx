@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Users, ShoppingBag , MessageSquare, SmilePlus, MessageCircle } from 'lucide-react'
+import { Users, ShoppingBag , MessageSquare, SmilePlus, MessageCircle } from 'lucide-react';
+
 export default function StatsCounter() {
   const stats = [
     {
@@ -72,7 +73,7 @@ export default function StatsCounter() {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 my-16 lg:my-24">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-        {stats.map((stat, index) => (
+        {stats?.map((stat, index) => (
           <div
             key={index}
             className="flex flex-col items-center justify-center p-6  hover:shadow-lg transition-shadow duration-300 rounded-lg bg-green_100 shadow-s1"

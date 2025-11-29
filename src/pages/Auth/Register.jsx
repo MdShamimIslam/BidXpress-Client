@@ -66,12 +66,11 @@ const Register = () => {
           className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl"
         >
           <div className="text-center">
-            <Title level={5}>Sign Up</Title>
-            <p className="mt-2 text-lg">
-              Do you already have an account?{" "}
-              <CustomNavLink href="/login">Login Here</CustomNavLink>
-            </p>
-          </div>
+              <Title level={5}>Join BidXpress</Title>
+              <p className="mt-2 text-lg">
+                Create your account to start using all features.
+              </p>
+            </div>
           <div className="mt-10">
             <Caption className="mb-2">Username *</Caption>
             <input
@@ -136,7 +135,7 @@ const Register = () => {
           <PrimaryButton 
             disabled={isLoading} 
             className="w-full rounded-lg my-5">
-            {isLoading ? "PROCESSING" : "CREATE ACCOUNT"}
+            {isLoading ? "Processing..." : "Create an account"}
           </PrimaryButton>
         <p className="text-lg text-center">Already have an account? Please <Link to='/login' className="text-green">Login</Link></p>
         </form>

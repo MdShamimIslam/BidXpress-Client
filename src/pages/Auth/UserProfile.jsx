@@ -1,16 +1,10 @@
 import { useEffect } from "react";
-import {
-  commonClassNameOfInput,
-  PrimaryButton,
-  Caption,
-  Title,
-} from "../../components/common/Design";
+import { commonClassNameOfInput, PrimaryButton, Caption } from "../../components/common/Design";
 import { useSelector, useDispatch } from "react-redux";
 import {updateUserProfile} from "../../redux/features/authSlice";
 import { useForm } from "react-hook-form";
 
 const UserProfile = () => {
-
   const dispatch = useDispatch();
   const { user = {}, isLoading } = useSelector((state) => state?.auth);
   const { register, handleSubmit, setValue } = useForm();
@@ -26,6 +20,7 @@ const UserProfile = () => {
     if (data?.photo[0]) {
       formData.append("photo", data?.photo[0]);
     }
+
     dispatch(updateUserProfile(formData));
   };
 
@@ -42,6 +37,7 @@ const UserProfile = () => {
                 placeholder="Enter your full name"
                 {...register("name")}
                 required
+                name="name"
               />
             </div>
             <div className="w-1/2 ">
@@ -71,6 +67,7 @@ const UserProfile = () => {
                 type="file"
                 className={`${commonClassNameOfInput} rounded-md`}
                 {...register("photo", { required: false })}
+                name="photo"
               />
             </div>
           </div>

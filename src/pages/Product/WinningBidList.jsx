@@ -16,6 +16,7 @@ const WinningBidList = () => {
     return <div>Loading...</div>
   }
 
+
   return (
     <>
       <section className="shadow-s1 p-8 rounded-lg">
@@ -24,12 +25,13 @@ const WinningBidList = () => {
             Winning Product Lists
           </Title>
         </div>
+          <hr className="my-5" />
         <br />
         {wonedProducts && wonedProducts.length > 0 ? (
           <Table products={wonedProducts} isWon={true} />
         ) : (
           <div className="text-center py-5">
-            <p className="text-gray-500">
+            <p className="text-gray-500 md:text-lg">
               No products found. Start by creating a new product!
             </p>
           </div>

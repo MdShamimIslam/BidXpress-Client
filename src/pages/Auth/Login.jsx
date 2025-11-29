@@ -58,13 +58,13 @@ const Login = () => {
           onSubmit={handleLogin}
           className="bg-white shadow-s3 w-1/3 m-auto my-16 p-8 rounded-xl"
         >
-          <div className="text-center">
-            <Title level={5}>New Member</Title>
+         <div className="text-center">
+            <Title level={5}>Login to Your Account</Title>
             <p className="mt-2 text-lg">
-              Do you already have an account?{" "}
-              <CustomNavLink href="/register">Sign up Here</CustomNavLink>
+              Enter your credentials to access your account.
             </p>
           </div>
+
 
           <div className="py-5 mt-8">
             <Caption className="mb-2">Enter Your Email *</Caption>
@@ -102,9 +102,9 @@ const Login = () => {
             disabled={isLoading}
             className="w-full rounded-lg my-5"
           >
-            {isLoading ? "PROCESSING" : "LOGIN"}
+            {isLoading ? "Processing..." : "Login"}
           </PrimaryButton>  
-          <p className="text-lg text-center">Don&apos;t have an account? Please <Link to='/register' className="text-green">Sign up</Link></p>   
+          <p className="text-lg text-center">Don&apos;t have an account? Please <Link to='/register' className="text-green">Sign Up</Link></p>   
         </form>
         <div className="bg-green w-96 h-96 rounded-full opacity-20 blur-3xl absolute bottom-96 right-0"></div>
       </section>

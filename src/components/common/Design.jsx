@@ -96,7 +96,7 @@ const PrimaryButton = ({ children, className, btnCl=false }) => {
 
 const ProfileCard = ({ children, className }) => {
   return (
-    <div className={`${className} w-9 md:w-10 lg:w-12 h-9 md:h-10 lg:h-12   bg-green_100 flex items-center justify-center rounded-full`}>
+    <div className={`${className} w-9 md:w-10 lg:w-12 h-9 md:h-10 lg:h-12 bg-green_100 flex items-center justify-center rounded-full`}>
       {children}
     </div>
   );
