@@ -9,7 +9,7 @@ const CategorySidebar = () => {
       <section className="catgeory-slider mt-8 md:mt-12">
         <Container>
           <Heading
-            title="Browse the catgeorys"
+            title="Browse the categories"
             subtitle="Most viewed and all-time top-selling category"
           />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-5 my-8">

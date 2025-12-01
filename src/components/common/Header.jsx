@@ -1,11 +1,11 @@
 import { Container, CustomNavLink, CustomNavLinkList, ProfileCard } from "./Design";
-import logo from "/images/common/bid.png";
 import { menulists } from "../../utils/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ShowOnLogin, ShowOnLogout } from "../../utils/HiddenLink";
 import { useSelector } from "react-redux";
+import logo from "/images/common/logo.png";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +52,7 @@ const Header = () => {
                 <img
                   src={logo}
                   alt=""
-                  className="rounded-full ml-[-25px] md:ml-[-25px] lg:ml-[-20px] w-[35px] bg-white"
+                  className="rounded-full ml-[-25px] md:ml-[-25px] lg:ml-[-20px] w-[35px]"
                 />
                 <h3
                   className={`${

@@ -1,153 +1,133 @@
-import { FiPhoneOutgoing } from "react-icons/fi";
-import { MdOutlineAttachEmail } from "react-icons/md";
-import { IoLocationOutline } from "react-icons/io5";
-import { FaInstagram } from "react-icons/fa";
-import { CiLinkedin, CiTwitter } from "react-icons/ci";
-import { ImFacebook } from "react-icons/im";
-import { Link, useLocation } from "react-router-dom";
-import { Container, PrimaryButton, ProfileCard, Title } from "./Design";
+import { Link } from "react-router-dom";
+import logo from "/images/common/logo.png";
+import { companyInfos, contactInfos, explores, socials } from "../../utils/data";
 
 const Footer = () => {
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
-
   return (
-    <footer className=" relative bg-primary py-16 overflow-x-hidden">
-      {isHomePage && (
-        <div className="bg-white w-full py-20 -mt-10 rounded-b-[40px] z-10 absolute top-0"></div>
-      )}
-      <Container
-        className={`${
-          isHomePage ? "mt-32" : "mt-0"
-        } flex flex-col lg:flex-row md:items-center lg:justify-between gap-12`}
-      >
-        <div className="w-full md:w-3/4 lg:w-1/3 ">
-          <Link className="flex items-center gap-3" to="/">
-            <img
-              src="/images/common/bid.png"
-              alt="logo"
-              className="rounded-full w-[35px] bg-white"
-            />
-            <h3
-              className="text-white text-2xl font-bold"
-            >
-              BidXpress
-            </h3>
-          </Link>
+    <footer className="bg-gradient-to-tr from-slate-900 via-[#263b1e] to-slate-900 text-gray-200 pt-12 lg:pt-20 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+          <div className="space-y-4">
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src={logo}
+                alt="BidXpress logo"
+                className="w-11 h-11 rounded-full ml-[-8px] p-1 shadow-sm"
+              />
+              <span className="text-white text-xl font-bold">BidXpress</span>
+            </Link>
 
-          <br />
-          <p className="text-gray-300">
-            Created with the collaboration of over 60 of the worlds best Nuron
-            Artists.
-          </p>
-          <div className="bg-gray-300 h-[1px] my-8"></div>
-          <Title className=" font-normal text-gray-100">
-            Get The Latest Nuron Updates
-          </Title>
-          <div className="flex items-center justify-between mt-5">
-            <input
-              type="text"
-              placeholder="Enter your email"
-              className="w-full h-full p-3.5 py-[15px] text-sm border-none outline-none rounded-l-md"
-            />
-            <PrimaryButton
-              btnCl={true}
-              className="rounded-none py-3.5 px-8 text-sm rounded-r-md"
+            <p className="text-sm text-gray-300">
+              Premium auctions — authenticated items, transparent bidding, trusted delivery.
+            </p>
+
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="flex gap-2 mt-3"
+              aria-label="Subscribe to BidXpress newsletter"
             >
-              Submit
-            </PrimaryButton>
+              <label htmlFor="footer-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="footer-email"
+                type="email"
+                placeholder="Enter your email"
+                className="flex-1 rounded-l-lg px-3 py-2 text-sm bg-[#2d442f] placeholder-gray-400 focus:outline-none "
+              />
+              <button
+                type="submit"
+                className="rounded-r-lg px-4 py-2 bg-[#216118] hover:bg-[#328527] text-white font-medium text-sm"
+              >
+                Subscribe
+              </button>
+            </form>
+
+            <p className="text-sm text-gray-400">No spam. Unsubscribe anytime.</p>
           </div>
-          <p className="text-gray-300 text-sm mt-3">
-            Email is safe. We dont spam.
-          </p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-20 lg:gap-8 w-full md:w-2/3">
+
           <div>
-            <Title level={5} className="text-white font-normal">
-              Categories
-            </Title>
-            <ul className="flex flex-col gap-5 mt-8 text-gray-200">
-              <p className="hover:text-green cursor-pointer">Watches</p>
-              <p className="hover:text-green cursor-pointer">Vehicles</p>
-              <p className="hover:text-green cursor-pointer">Electronics</p>
-              <p className="hover:text-green cursor-pointer">Real Estate</p>
-              <p className="hover:text-green cursor-pointer">Jewelry</p>
-              <p className="hover:text-green cursor-pointer">
-                Sports & Outdoor
-              </p>
+            <h3 className="text-white font-semibold">Explore</h3>
+            <ul className="mt-4 space-y-3 text-sm text-gray-300">
+              {
+                explores?.map(({id, title, href}) => (
+                  <li key={id}>
+                    <Link to={href} className="hover:text-[#338828] transition">
+                      {title}
+                    </Link>
+                  </li>
+                ))
+              }
             </ul>
           </div>
+
           <div>
-            <Title level={5} className="text-white font-normal">
-              About Us
-            </Title>
-            <ul className="flex flex-col gap-5 mt-8 text-gray-200">
-              <p className="hover:text-green cursor-pointer">Help</p>
-              <p className="hover:text-green cursor-pointer">Affiliates</p>
-              <p className="hover:text-green cursor-pointer">Jobs</p>
-              <p className="hover:text-green cursor-pointer">Press</p>
-              <p className="hover:text-green cursor-pointer">Our blog</p>
-              <p className="hover:text-green cursor-pointer">
-                Collectors portal
-              </p>
+            <h3 className="text-white font-semibold">Company</h3>
+            <ul className="mt-4 space-y-3 text-sm text-gray-300">
+            {
+                companyInfos?.map(({id, title, href}) => (
+                  <li key={id}>
+                    <Link to={href} className="hover:text-[#338828] transition">
+                      {title}
+                    </Link>
+                  </li>
+                ))
+              }
             </ul>
           </div>
+
           <div>
-            <Title level={5} className="text-white font-normal">
-              We Are Here To Help
-            </Title>
-            <ul className="flex flex-col gap-5 mt-8 text-gray-200">
-              <p className="hover:text-green cursor-pointer">Safe and Secure</p>
-              <p className="hover:text-green cursor-pointer">
-                Shipping Information
-              </p>
-              <p className="hover:text-green cursor-pointer">Contact Us</p>
-              <p className="hover:text-green cursor-pointer">Help & FAQ</p>
+            <h3 className="text-white font-semibold">Contact</h3>
+            <ul className="mt-4 space-y-4  text-gray-300">
+              {
+                contactInfos?.map(({id, icon:Icon, title, info}) => (
+                  <li key={id} className="flex items-start gap-3">
+                  <span className="mt-1 text-[#338828]">
+                  <span className="w-5 h-5 inline-block">
+                    <Icon size={18} />
+                  </span>
+                  </span>
+                  <div>
+                    <div className="font-medium text-gray-100 text-sm">{title}</div>
+                    <div className="text-xs text-gray-300">{info}</div>
+                  </div>
+                </li>
+                ))
+              }
             </ul>
-          </div>
-          <div>
-            <Title level={5} className="text-white font-normal">
-              Follow Us
-            </Title>
-            <ul className="flex flex-col gap-5 mt-8 text-gray-200">
-              <div className="flex items-center gap-2">
-                <FiPhoneOutgoing size={19} />
-                <span>(015) 71529918</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <MdOutlineAttachEmail size={22} />
-                <span>bidxpress@support.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <IoLocationOutline size={30} />
-                <span>Sector 12, road 7, Uttara, Dhaka</span>
-              </div>
-            </ul>
-            <div className="flex items-center gap-3 mt-5 justify-between">
-              <Link>
-                <ProfileCard className="bg-white hover:bg-green hover:text-white">
-                  <ImFacebook size={22} />
-                </ProfileCard>
-              </Link>
-              <Link>
-                <ProfileCard className="bg-white hover:bg-green hover:text-white">
-                  <FaInstagram size={22} />
-                </ProfileCard>
-              </Link>
-              <Link>
-                <ProfileCard className="bg-white hover:bg-green hover:text-white">
-                  <CiTwitter size={22} />
-                </ProfileCard>
-              </Link>
-              <Link>
-                <ProfileCard className="bg-white hover:bg-green hover:text-white">
-                  <CiLinkedin size={22} />
-                </ProfileCard>
-              </Link>
+
+            <div className="mt-5 flex gap-3">
+              {
+                socials?.map(({id, icon:Icon, href}) => (
+                  <a key={id} href={href} target="_blank" className="w-9 h-9 cursor-pointer rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
+                    <Icon size={16}  />
+                  </a>
+                ))
+              }
             </div>
           </div>
         </div>
-      </Container>
+
+        <div className="mt-10 border-t border-slate-700 pt-6  flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-gray-400">
+            © {new Date().getFullYear()} BidXpress. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-4 text-sm text-gray-400">
+            <Link to="/" className="hover:text-[#338828] transition">
+              Privacy
+            </Link>
+            <span className="hidden sm:block">•</span>
+            <Link to="/" className="hover:text-[#338828] transition">
+              Cookies
+            </Link>
+            <span className="hidden sm:block">•</span>
+            <Link to="/" className="hover:text-[#338828] transition">
+              Support
+            </Link>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };

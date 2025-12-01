@@ -11,6 +11,115 @@ import man8 from "/images/testimonial/man8.jpeg";
 import man9 from "/images/testimonial/man9.jpeg";
 import man10 from "/images/testimonial/man10.jpg";
 
+// import react icons
+import { FiPhoneOutgoing } from "react-icons/fi";
+import { MdOutlineAttachEmail } from "react-icons/md";
+import { IoLocationOutline } from "react-icons/io5";
+import { FaInstagram } from "react-icons/fa";
+import { CiLinkedin, CiTwitter } from "react-icons/ci";
+import { ImFacebook } from "react-icons/im";
+
+// footer section data start
+export const explores = [
+  {
+    id: 1,
+    title: "Live Auctions",
+    href: "/"
+  },
+  {
+    id: 2,
+    title: "How it works",
+    href: "/"
+  },
+  {
+    id: 3,
+    title: "Sell with us",
+    href: "/"
+  },
+  {
+    id: 4,
+    title: "Buyers guide",
+    href: "/"
+  },
+  {
+    id: 5,
+    title: "Safety & authenticity",
+    href: "/"
+  }
+]
+export const companyInfos = [
+  {
+    id: 1,
+    title: "About BidXpress",
+    href: "/"
+  },
+  {
+    id: 2,
+    title: "Careers",
+    href: "/"
+  },
+  {
+    id: 3,
+    title: "Press",
+    href: "/"
+  },
+  {
+    id: 4,
+    title: "Blog",
+    href: "/"
+  },
+  {
+    id: 5,
+    title: "Terms & policies",
+    href: "/"
+  }
+]
+export const contactInfos = [
+  {
+    id: 1,
+    icon: FiPhoneOutgoing,
+    title: "Phone",
+    info: "+880 1571529918"
+  },
+  {
+    id: 2,
+    icon: MdOutlineAttachEmail,
+    title: "Email",
+    info:"bidxpress@support.com"
+  },
+  {
+    id: 3,
+    icon: IoLocationOutline,
+    title: "Address",
+    info: "123, Street, City, Country"
+  },
+ 
+]
+export const socials = [
+  {
+    id: 1,
+    icon: FaInstagram,
+    href:"/"
+  },
+  {
+    id: 2,
+    icon: CiLinkedin,
+    href:"/"
+  },
+  {
+    id: 3,
+    icon: CiTwitter,
+    href:"/"
+  },
+  {
+    id: 4,
+    icon: ImFacebook,
+    href:"/"
+  },
+]
+// footer section data end
+
+
 export const topSellerList = [
   {
     id: 1,
