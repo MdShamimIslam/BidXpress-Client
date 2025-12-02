@@ -3,12 +3,41 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
   font-family: "DM Sans", sans-serif;
   max-width: 100vw;
   overflow-x: hidden;
 }
-/*    Navbar   */
+
+@keyframes float-horizontal {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(18px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes float-horizontal-slow {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(28px); }
+  100% { transform: translateX(0); }
+}
+
+.animate-float-x {
+  animation: float-horizontal 4s ease-in-out infinite;
+}
+
+.animate-float-x-delayed {
+  animation: float-horizontal 5s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.animate-float-x-slow {
+  animation: float-horizontal-slow 7s ease-in-out infinite;
+}
+
+
+
 .menu-container {
   background-color: #24262b;
   opacity: 0;
@@ -25,7 +54,7 @@ body {
   opacity: 0;
   transform: translateX(-100%);
 }
-/* Add the sticky class to make the header sticky */
+
 .header {
   position: fixed;
   width: 100%;
@@ -33,7 +62,7 @@ body {
   z-index: 4;
   transition: background-color 0.3s ease;
 }
-/* Add the animation class when scrolling down */
+
 .header.scrolled {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -44,7 +73,7 @@ body {
 .active-link {
   color: #0d775e !important;
 }
-/* Keyframes for fadeInDown animation */
+
 @keyframes fadeInDown {
   from {
     transform: translateY(-50px);
@@ -56,7 +85,7 @@ body {
   }
 }
 
-/* Up Down animation effect  */
+
 .vert-move {
   animation: mover 1s infinite alternate ease-in-out;
 }

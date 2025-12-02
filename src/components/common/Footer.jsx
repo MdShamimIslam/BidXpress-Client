@@ -14,7 +14,7 @@ const Footer = () => {
                 alt="BidXpress logo"
                 className="w-11 h-11 rounded-full ml-[-8px] p-1 shadow-sm"
               />
-              <span className="text-white text-xl font-bold">BidXpress</span>
+              <span className="text-white ml-[-8px] text-xl md:text-2xl font-bold">BidXpress</span>
             </Link>
 
             <p className="text-sm text-gray-300">
