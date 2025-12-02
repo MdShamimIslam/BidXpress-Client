@@ -1,7 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
-import { Caption, PrimaryButton, Title } from "../../components/common/Design";
-import { RiAuctionFill } from "react-icons/ri";
-import { GiTakeMyMoney } from "react-icons/gi";
+import { Link } from "react-router-dom";
 import { MdOutlineFavorite } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { addFavouriteProduct } from "../../redux/features/authSlice";
@@ -10,91 +7,81 @@ import { toast } from "react-toastify";
 const ProductCard = ({ item = {} }) => {
   const dispatch = useDispatch();
 
-  const handleFavouriteProduct = async () => {
-    if(item.isSoldout){
-      toast.error("This product is sold out. You can't add it to your favourites.");
+  const handleFavourite = async () => {
+    if (item.isSoldout) {
+      toast.error("This product is sold out. You can't add it to favourites.");
       return;
     }
     await dispatch(addFavouriteProduct(item._id));
   };
 
   return (
-    <>
-      <div className="bg-white shadow-s1 rounded-xl p-3">
-        <div className="h-56 relative overflow-hidden">
-          <NavLink to={`/details/${item?._id}`}>
-            <img
-              src={item?.image?.filePath}
-              alt="product-image"
-              className="w-full h-full object-cover rounded-xl
-               hover:scale-105 hover:cursor-pointer transition-transform 
-               duration-300 ease-in-out"
-            />
-          </NavLink>
-          <div className="absolute top-0 left-0 p-2 w-full">
-            <div className="flex items-center justify-between">
-              {item?.isSoldout ? (
-                <Caption className="text-red-500 bg-white px-3 py-1 text-sm rounded-full">
-                  Sold Out
-                </Caption>
-              ) : (
-                <Caption className="text-green bg-green_100 px-3 py-1 text-sm rounded-full">
-                  On Stock
-                </Caption>
-              )}
-              <Caption className="text-green bg-green_100 px-3 py-1 text-sm rounded-full">
-                {item?.totalBids} {item?.totalBids > 1 ? "Bids" : "Bid"}
-              </Caption>
-            </div>
+    <div className="relative bg-gradient-to-tr from-green-50 to-green-100 rounded-2xl shadow-lg overflow-hidden
+                    transform hover:scale-105 hover:shadow-2xl transition-all duration-500">
+      
+      {/* Product Image */}
+      <Link to={`/details/${item._id}`}>
+        <img
+          src={item?.image?.filePath}
+          alt={item?.title}
+          className="w-full h-60 object-cover rounded-t-2xl transition-transform duration-500 hover:scale-110"
+        />
+      </Link>
+
+      {/* Badges */}
+      <span className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold
+                        ${item.isSoldout ? "bg-red-500 text-white" : "bg-[#216118] text-white"}`}>
+        {item.isSoldout ? "Sold Out" : "In Stock"}
+      </span>
+
+      {/* Favourite Button */}
+      <button
+        onClick={handleFavourite}
+        className="absolute top-3 right-3 p-2 rounded-full bg-[#599620] backdrop-blur-md shadow-md
+                   hover:bg-[#78a12c] text-white transition-all"
+      >
+        <MdOutlineFavorite size={18} />
+      </button>
+
+      {/* Product Info */}
+      <div className="p-4 space-y-3 text-center">
+        <h3 className="text-lg font-bold text-gray-900">
+          {item?.title?.length > 25 ? item.title.slice(0, 25) + "..." : item.title}
+        </h3>
+        <p className="text-gray-500 text-sm">Auction ends soon • {item?.totalBids} {item?.totalBids > 1 ? "Bids" : "Bid"}</p>
+
+        {/* Prices Section */}
+        <div className="grid grid-cols-2 gap-3 mt-2">
+          {/* Current Bid */}
+          <div className="bg-white/80 backdrop-blur-md rounded-xl p-3 shadow flex flex-col items-center">
+            <span className="text-xs text-gray-600">Current Bid</span>
+            <span className="text-lg font-bold text-green-700">${item?.biddingPrice}</span>
+          </div>
+
+          {/* Buy Now */}
+          <div className="bg-white/80 backdrop-blur-md rounded-xl p-3 shadow flex flex-col items-center">
+            <span className="text-xs text-gray-600">Buy Now</span>
+            <span className="text-lg font-bold text-red-500">${item?.price}</span>
           </div>
         </div>
-        <div className="details mt-4">
-          <Link to={`/details/${item?._id}`}>
-            <Title>
-              {item?.title?.length > 20
-                ? item.title.slice(0, 20) + "..."
-                : item.title}
-            </Title>
-          </Link>
-          <hr className="mt-3" />
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center justify-between gap-5">
-              <div>
-                <RiAuctionFill size={40} className="text-green" />
-              </div>
-              <div>
-                <Caption className="text-green">Current Bid</Caption>
-                <Title>${item?.biddingPrice}</Title>
-              </div>
-            </div>
-            <div className="w-[1px] h-10 bg-gray-300"> </div>
-            <div className="flex items-center justify-between gap-5">
-              <div>
-                <GiTakeMyMoney size={40} className="text-red-500" />
-              </div>
-              <div>
-                <Caption className="text-red-500">Buy Now</Caption>
-                <Title>${item?.price}</Title>
-              </div>
-            </div>
-          </div>
-          <hr className="mb-3" />
 
-          <div className="flex items-center  justify-between mt-3">
-          <Link to={`/details/${item?._id}`}>
-            <PrimaryButton className="rounded-lg text-sm">
+        {/* Buttons */}
+        <div className="flex justify-between mt-3 gap-3">
+          <Link to={`/details/${item._id}`} className="flex-1">
+            <button className="w-full bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white py-2 rounded-xl 
+                               font-semibold hover:opacity-90 transition">
               View Details
-            </PrimaryButton>
+            </button>
           </Link>
-            <div onClick={handleFavouriteProduct}>
-              <PrimaryButton  className="rounded-lg px-4 py-3">
-                <MdOutlineFavorite size={20} />
-              </PrimaryButton>
-            </div>
-          </div>
+          {/* <button
+            onClick={handleFavourite}
+            className="w-12 bg-[#5aa850] rounded-xl flex items-center justify-center shadow-md hover:bg-pink-500 hover:text-white transition"
+          >
+            <MdOutlineFavorite size={18} />
+          </button> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

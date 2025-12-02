@@ -4,7 +4,7 @@ import { companyInfos, contactInfos, explores, socials } from "../../utils/data"
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-tr from-slate-900 via-[#263b1e] to-slate-900 text-gray-200 pt-12 lg:pt-20 pb-8">
+    <footer className="bg-gradient-to-tr from-slate-900 via-[#263b1e] to-slate-900 text-gray-200 pt-12 lg:pt-20 pb-8 mt-2 md:mt-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
           <div className="space-y-4">

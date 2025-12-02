@@ -1,15 +1,8 @@
 import { Link } from "react-router-dom";
-import { Helmet } from 'react-helmet-async';
 import { Container } from "../../components/common/Design";
 
 const Hero = () => {
-
   return (
-    <>
-    <Helmet>
-    <title>BidXpress | Home</title>
-    </Helmet>
-    
     <section className="relative min-h-[600px] md:min-h-[700px] flex items-center overflow-hidden mt-12 md:mt-4 lg:mt-0">
       {/* Background gradient elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-amber-50 opacity-60"></div>
@@ -87,7 +80,6 @@ const Hero = () => {
       </div>
       </Container>
     </section>
-    </>
   );
 };
 

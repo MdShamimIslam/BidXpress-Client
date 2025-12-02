@@ -1,9 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Container,
-  Heading,
-  PrimaryButton,
-} from "../../components/common/Design";
+import { Container } from "../../components/common/Design";
 import ProductCard from "./ProductCard";
 import { useEffect } from "react";
 import { getAllProduct } from "../../redux/features/productSlice";
@@ -18,28 +14,36 @@ const ProductList = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <section className="product-home mt-16 md:mt-20">
+       <section className="py-12 md:py-16 bg-gradient-to-b from-stone-50 to-white">
         <Container>
-          <Heading
-            title="Featured Products"
-            subtitle="Discover the most popular and exciting products from our collection. Find what you love and start bidding today!"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 my-8">
-            {products?.slice(0, 8)?.map((item, index) => (
-              <ProductCard item={item} key={index + 1} />
-            ))}
+          <div className="flex justify-between items-end mb-12">
+          <div>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+              Discover Featured <span className="text-[#4da741]">Auctions</span>
+            </h2>
+            <p className="text-gray-600">
+              Exclusive picks with bids closing soon — don’t miss out
+            </p>
           </div>
-          
-            <Link className="inline-block" to="/products">
-              <PrimaryButton className="bg-primary rounded-2xl ">
-                Show More Products...
-              </PrimaryButton>
+
+            <Link to="/products" className="hidden md:block text-emerald-600 hover:text-emerald-700 font-semibold transition">
+              View All →
             </Link>
-          
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 my-8">
+              {products?.slice(0, 8)?.map((item, index) => (
+                <ProductCard item={item} key={index + 1} />
+              ))}
+            </div>
+
+          <div className="md:hidden mt-8 text-center">
+            <Link to="/products" className="text-emerald-600 hover:text-emerald-700 font-semibold transition">
+              View All Auctions →
+            </Link>
+          </div>
         </Container>
-      </section>
-    </>
+    </section> 
   );
 };
 

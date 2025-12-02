@@ -1,16 +1,3 @@
-import watch from "../assets/watch.png";
-import electronic from "../assets/electronic.png";
-import sport from "../assets/sport.png";
-import state from "../assets/state.png";
-import vehicle from "../assets/vehicle.png";
-import jewelery from "../assets/jewelery.png";
-import furniture from "../assets/furniture.png";
-import man6 from "/images/testimonial/man6.jpg";
-import man7 from "/images/testimonial/man7.jpg";
-import man8 from "/images/testimonial/man8.jpeg";
-import man9 from "/images/testimonial/man9.jpeg";
-import man10 from "/images/testimonial/man10.jpg";
-
 // import react icons
 import { FiPhoneOutgoing } from "react-icons/fi";
 import { MdOutlineAttachEmail } from "react-icons/md";
@@ -120,74 +107,6 @@ export const socials = [
 // footer section data end
 
 
-export const topSellerList = [
-  {
-    id: 1,
-    title: "William",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-5-1.png",
-    amount: "100",
-  },
-  {
-    id: 2,
-    title: "Orko",
-    profile:man9,
-    amount: "200",
-  },
-  {
-    id: 3,
-    title: "Nipa",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-3.png",
-    amount: "300",
-  },
-  {
-    id: 4,
-    title: "Joseph",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-2-2.png",
-    amount: "100",
-  },
-  {
-    id: 5,
-    title: "Isabella",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-10-2.png",
-    amount: "100",
-  },
-  {
-    id: 6,
-    title: "Emily",
-    profile:
-      "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/client-15-1.png",
-    amount: "100",
-  },
-  {
-    id: 7,
-    title: "Devmahbub",
-    profile:man10,
-    amount: "100",
-  },
-  {
-    id: 8,
-    title: "Alvi",
-    profile:man6,
-    amount: "100",
-  },
-  {
-    id: 9,
-    title: "Noman",
-    profile:man7,
-    amount: "100",
-  },
-  {
-    id: 10,
-    title: "Alexander",
-    profile:man8,
-    amount: "100",
-  },
-];
-
 export const menulists = (isLoggedIn) => {
   const baseMenu = [
     { id: 1, path: "/", link: "home" },
@@ -207,43 +126,31 @@ export const menulists = (isLoggedIn) => {
   return baseMenu;
 };
 
-export const categorylists = [
-  {
-    id: 1,
-    image: watch,
-    title: "watches",
-  },
-  {
-    id: 2,
-    image: electronic,
-    title: "electronics",
-  },
-  {
-    id: 3,
-    image: sport,
-    title: "sports",
-  },
-  {
-    id: 4,
-    image: state,
-    title: "real estate",
-  },
-  {
-    id: 5,
-    image: vehicle,
-    title: "vehicle",
-  },
-  {
-    id: 6,
-    image: jewelery,
-    title: "jewellery",
-  },
-  {
-    id: 7,
-    image: furniture,
-    title: "furniture",
-  },
+export const categories = [
+  { name: "Watches", icon: "⌚" },
+  { name: "Electronics", icon: "📱" },
+  { name: "Jewelry", icon: "💎" },
+  { name: "Sports", icon: "⚽" }, 
+  { name: "Real Estate", icon: "🏠" },
+  { name: "Vehicles", icon: "🚗" },
+  { name: "Fashion", icon: "👗" },
+  { name: "Furnitures", icon: "🛋️" },  
 ];
+
+export  const stats = [
+  { icon: "👥", label: "Active Users", value: "45,230+" },
+  { icon: "🔨", label: "Auctions", value: "8,950+" },
+  { icon: "⭐", label: "Satisfied Customers", value: "98.5%" },
+  { icon: "💰", label: "Total Volume", value: "$2.3M+" },
+  { icon: "🌍", label: "Countries", value: "156+" },
+];
+
+export  const sellers = [
+  { name: "Elite Auctions", rating: 4.9, sales: 1250, badge: "⭐" },
+  { name: "Treasure Hunt", rating: 4.8, sales: 1089, badge: "✨" },
+  { name: "Premium Vintage", rating: 4.9, sales: 956, badge: "👑" },
+  { name: "Luxury Goods Co", rating: 4.7, sales: 842, badge: "💎" },
+]
 
 export const productlists = [
   {
@@ -520,33 +427,34 @@ export const productlists = [
 export const processList = [
   {
     id: "01",
-    title: "Sign up",
-    desc:"Create an account by signing up with your email and a secure password. Choose whether you want to register as a buyer or seller, and log in to access all the features of the auction platform.",
+    title: "Create Your Account",
+    desc: "Sign up quickly with your email and a secure password. Choose your role — buyer or seller — and unlock the full auction platform experience.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/01/shape-7.png",
   },
   {
     id: "02",
-    title: "Auction goes online",
-    desc: "Sellers list products with details like title, description, images, and price. After admin approval, the product goes live for buyers to bid on.",
+    title: "List & Launch Auctions",
+    desc: "Sellers add products with detailed descriptions, images, and starting prices. Once approved, your auction goes live for eager bidders to join in.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction.png",
   },
   {
     id: "03",
-    title: "Closing auction",
-    desc: "Each auction runs for a set duration. When the timer ends, the highest bid wins the auction. Both the seller and the winning buyer are notified about the auction results.",
+    title: "Bid & Win",
+    desc: "Buyers compete by placing bids during the auction duration. The highest bidder wins, and both parties are instantly notified of the results.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-2.png",
   },
   {
     id: "04",
-    title: "The last steps",
-    desc: "The buyer completes the payment process, and the seller ships the product to the buyer. Feedback and reviews can be exchanged to maintain transparency and trust.",
+    title: "Complete & Celebrate",
+    desc: "Finalize payment securely, receive your product, and leave feedback. Build trust and enjoy a seamless auction experience from start to finish.",
     cover:
       "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/auction-3.png",
   },
 ];
+
 
 export const trustList = [
   {

@@ -1,53 +1,36 @@
-import {
-  Caption,
-  Container,
-  Heading,
-  ProfileCard,
-  Title,
-} from "../../components/common/Design";
-import { topSellerList } from "../../utils/data";
+import { sellers } from "../../utils/data";
 
-const TopSeller = () => {
+export default function TopSellers() {
+ 
+
   return (
-    <>
-      <section className="process py-12">
-        <Container>
-          <Heading
-            title="Top Seller"
-            subtitle="Explore the most sought-after products chosen by our loyal customers. These are the true stars of our marketplace."
-          />
+    <section className="py-16 md:py-20 bg-white border-y border-emerald-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Top <span className="text-[#4da741]">Sellers</span></h2>
+          <p className="text-gray-600">Trusted sellers with exceptional ratings</p>
+        </div>
 
-          <div className="content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 mt-8">
-            {topSellerList.map((item, index) => (
-              <div
-                className="flex items-center justify-between border p-3 rounded-lg"
-                key={index + 1}
-              >
-                <div className="flex items-center gap-3">
-                  <ProfileCard className="w-16 h-16">
-                    <img
-                      src={item.profile}
-                      alt=""
-                      className="w-full h-full rounded-full object-cover"
-                    />
-                  </ProfileCard>
-                  <div>
-                    <Title level={5} className="font-normal text-xl">
-                      {item.title}
-                    </Title>
-                    <Caption>${item.amount * item.id}</Caption>
-                  </div>
-                </div>
-                <Title level={2} className=" opacity-10">
-                  0{item.id}
-                </Title>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {sellers.map((seller, idx) => (
+            <div
+              key={idx}
+              className="bg-gradient-to-br from-stone-50 to-white border-2 border-emerald-100 rounded-xl p-6 text-center hover:shadow-lg transition duration-300"
+            >
+              <div className="text-5xl mb-4">{seller.badge}</div>
+              <h3 className="font-bold text-lg text-gray-900 mb-2">{seller.name}</h3>
+              <div className="flex justify-center gap-1 mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className={i < Math.floor(seller.rating) ? "⭐" : "☆"}></span>
+                ))}
               </div>
-            ))}
-          </div>
-        </Container>
-      </section>
-    </>
-  );
-};
-
-export default TopSeller;
+              <p className="text-sm text-gray-600 mb-3">{seller.rating} rating</p>
+              <p className="text-2xl font-bold text-emerald-600">{seller.sales}+</p>
+              <p className="text-sm text-gray-500">Successful sales</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

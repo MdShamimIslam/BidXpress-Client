@@ -1,15 +1,19 @@
-import { Caption, Container, Heading } from "../../components/common/Design";
+import { Container } from "../../components/common/Design";
 import { topList } from "../../utils/data";
 
 const TopCollection = () => {
   return (
-    <>
-      <section className="process py-8 relative z-10">
+      <section className="process py-12 md:py-26 relative z-10">
         <Container>
-          <Heading
-            title="Top Collection"
-            subtitle="Dive into our curated selection of top-notch products designed to inspire and impress."
-          />
+        <div className="text-center mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
+            Explore Our <span className="text-[#4da741]">Top Collections</span>
+          </h2>
+          <p className="text-gray-600 max-w-xl mx-auto">
+            Handpicked items from the best categories, curated to inspire and delight.
+          </p>
+        </div>
+
 
           <div className="content grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
             {topList.map((item, index) => (
@@ -24,7 +28,7 @@ const TopCollection = () => {
                     className="w-full h-full object-cover rounded-xl"
                   />
                 </div>
-                <div className=" absolute top-[45%] left-[38%] w-24 h-24 border-4 border-green rounded-full">
+                <div className=" absolute top-[45%] left-[38%] w-24 h-24 border-4 border-[#bad422] rounded-full">
                   <img
                     src={item.img2}
                     alt=""
@@ -54,9 +58,9 @@ const TopCollection = () => {
                     />
                   </div>
                 </div>
-                <div className="flex items-center justify-between mt-4">
-                  <Caption>{item.catgeory}</Caption>
-                  <span className="px-5 py-1 text-sm rounded-md bg-green text-white">
+                <div className="flex items-center justify-between mt-4 ">
+                  <p>{item.catgeory}</p>
+                  <span className="px-5 py-1 text-sm rounded-md bg-[#567c4c] text-white">
                     {item.total} Items
                   </span>
                 </div>
@@ -65,7 +69,6 @@ const TopCollection = () => {
           </div>
         </Container>
       </section>
-    </>
   );
 };
 
