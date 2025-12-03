@@ -1,67 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import man0 from "/images/testimonial/man0.jpg";
-import man1 from "/images/testimonial/man1.jpg";
-import man2 from "/images/testimonial/man2.jpg";
-import man3 from "/images/testimonial/man3.jpg";
-import man4 from "/images/testimonial/man4.jpg";
-import man5 from "/images/testimonial/man5.jpg";
+import { testimonials } from "../../utils/data";
 
 export default function TestimonialSlider() {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Johan Martin R",
-      position: "CEO Founder",
-      image: man0,
-      quote:
-        "Working with this platform transformed the way I approach auctions, making the process seamless and exciting.",
-    },
-    {
-      id: 2,
-      name: "Jamie Anderson",
-      position: "Founder",
-      image: man1,
-      quote:
-        "This service redefines convenience, offering a user-friendly way to secure the best deals without hassle.",
-    },
-    {
-      id: 3,
-      name: "John Peter",
-      position: "CEO Founder",
-      image: man2,
-      quote:
-        "A game-changer for anyone who loves auctions – reliable, efficient, and incredibly rewarding.",
-    },
-    {
-      id: 4,
-      name: "Sarah Johnson",
-      position: "Marketing Director",
-      image: man3,
-      quote:
-        "The platform combines ease of use with outstanding support, ensuring every auction is a success.",
-    },
-    {
-      id: 5,
-      name: "Michael Brown",
-      position: "Product Manager",
-      image: man4,
-      quote:
-        "Their innovative approach to auctions has simplified my purchasing experience and saved me time.",
-    },
-    {
-      id: 6,
-      name: "Emily Davis",
-      position: "Lead Designer",
-      image: man5,
-      quote:
-        "From start to finish, the experience was intuitive and rewarding, truly raising the bar for auction services.",
-    },
-  ];
-
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slidesToShow, setSlidesToShow] = useState(1);
-  const totalSlides = testimonials.length;
+  const totalSlides = testimonials?.length;
 
   // Adjust the number of slides to show based on screen width
   useEffect(() => {

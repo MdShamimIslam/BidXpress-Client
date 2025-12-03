@@ -67,18 +67,12 @@ const ProductCard = ({ item = {} }) => {
 
         {/* Buttons */}
         <div className="flex justify-between mt-3 gap-3">
-          <Link to={`/details/${item._id}`} className="flex-1">
+          <Link to={`/details/${item._id}`} className="flex-1 mt-2">
             <button className="w-full bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white py-2 rounded-xl 
                                font-semibold hover:opacity-90 transition">
               View Details
             </button>
           </Link>
-          {/* <button
-            onClick={handleFavourite}
-            className="w-12 bg-[#5aa850] rounded-xl flex items-center justify-center shadow-md hover:bg-pink-500 hover:text-white transition"
-          >
-            <MdOutlineFavorite size={18} />
-          </button> */}
         </div>
       </div>
     </div>

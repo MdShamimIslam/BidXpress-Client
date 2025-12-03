@@ -36,10 +36,7 @@ body {
   animation: float-horizontal-slow 7s ease-in-out infinite;
 }
 
-
-
 .menu-container {
-  background-color: #24262b;
   opacity: 0;
   transform: translateX(-100%);
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
@@ -71,7 +68,7 @@ body {
 }
 
 .active-link {
-  color: #0d775e !important;
+  color: #61e713 !important;
 }
 
 @keyframes fadeInDown {

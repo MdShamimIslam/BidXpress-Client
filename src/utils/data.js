@@ -6,6 +6,20 @@ import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin, CiTwitter } from "react-icons/ci";
 import { ImFacebook } from "react-icons/im";
 
+// export images
+export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
+export const User2 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
+export const User3 = "https://cdn-icons-png.flaticon.com/128/236/236831.png";
+export const User4 = "https://cdn-icons-png.flaticon.com/128/1154/1154448.png";
+
+// import images
+import man0 from "/images/testimonial/man0.jpg";
+import man1 from "/images/testimonial/man1.jpg";
+import man2 from "/images/testimonial/man2.jpg";
+import man3 from "/images/testimonial/man3.jpg";
+import man4 from "/images/testimonial/man4.jpg";
+import man5 from "/images/testimonial/man5.jpg";
+
 // footer section data start
 export const explores = [
   {
@@ -527,7 +541,55 @@ export const topList = [
   },
 ];
 
-export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
-export const User2 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
-export const User3 = "https://cdn-icons-png.flaticon.com/128/236/236831.png";
-export const User4 = "https://cdn-icons-png.flaticon.com/128/1154/1154448.png";
+export  const testimonials = [
+  {
+    id: 1,
+    name: "Johan Martin R",
+    position: "CEO Founder",
+    image: man0,
+    quote:
+      "Working with this platform transformed the way I approach auctions, making the process seamless and exciting.",
+  },
+  {
+    id: 2,
+    name: "Jamie Anderson",
+    position: "Founder",
+    image: man1,
+    quote:
+      "This service redefines convenience, offering a user-friendly way to secure the best deals without hassle.",
+  },
+  {
+    id: 3,
+    name: "John Peter",
+    position: "CEO Founder",
+    image: man2,
+    quote:
+      "A game-changer for anyone who loves auctions – reliable, efficient, and incredibly rewarding.",
+  },
+  {
+    id: 4,
+    name: "Sarah Johnson",
+    position: "Marketing Director",
+    image: man3,
+    quote:
+      "The platform combines ease of use with outstanding support, ensuring every auction is a success.",
+  },
+  {
+    id: 5,
+    name: "Michael Brown",
+    position: "Product Manager",
+    image: man4,
+    quote:
+      "Their innovative approach to auctions has simplified my purchasing experience and saved me time.",
+  },
+  {
+    id: 6,
+    name: "Emily Davis",
+    position: "Lead Designer",
+    image: man5,
+    quote:
+      "From start to finish, the experience was intuitive and rewarding, truly raising the bar for auction services.",
+  },
+];
+
+

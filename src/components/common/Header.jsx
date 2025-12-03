@@ -40,55 +40,39 @@ const Header = () => {
     };
   }, [user, isLoggedIn]);
 
-  const isHomePage = location.pathname === "/";
-
   return (
-    <>
-      <header className={isHomePage ? `header py-1 bg-primary ${isScrolled ? "scrolled" : ""}`: `header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
+      <header className={`header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
         <Container>
-          <nav className="p-4 flex justify-between items-center relative">
-            <div className="flex items-center gap-14">
-              <Link className="flex items-center gap-3" to="/">
-                <img
-                  src={logo}
-                  alt=""
-                  className="rounded-full ml-[-25px] md:ml-[-25px] lg:ml-[-20px] w-[35px]"
-                />
-                <h3
-                  className={`${
-                    isScrolled || !isHomePage ? "text-black" : "text-white"
-                  } text-2xl font-bold`}
-                >
-                  BidXpress
-                </h3>
-              </Link>
-              <div className="hidden lg:flex items-center justify-between gap-8">
+          <nav className="py-4 flex justify-between items-center relative">
+            <Link className="flex items-center gap-3" to="/">
+              <img
+                src={logo}
+                alt=""
+                className="rounded-full lg:ml-[-7px] w-[35px]"
+              />
+              <h3 className="text-2xl font-bold">  BidXpress </h3>
+            </Link>
+             
+            <div className="hidden lg:flex items-center justify-between gap-8">
                 {menus?.map((list) => (
                   <li key={list.id} className="capitalize list-none">
                     <CustomNavLinkList
                       href={list.path}
                       isActive={location.pathname === list.path}
-                      className={`${
-                        isScrolled || !isHomePage ? "text-black" : "text-white"
-                      }`}
                     >
                       {list.link}
                     </CustomNavLinkList>
                   </li>
                 ))}
-              </div>
             </div>
-            <div className="flex items-center gap-8 icons ">
-              <div className="hidden lg:flex lg:items-center lg:gap-8 text-white">
+
+            <div className="flex items-center icons ">
+              <div className="hidden lg:flex lg:items-center lg:gap-4 text-white">
                 {isLoggedIn && user?.role === "buyer" && (
                   <ShowOnLogin>
                     <NavLink
                     to="/seller/login"
-                    className={`${
-                      isScrolled || !isHomePage
-                        ? "text-white bg-primary "
-                        : "bg-green text-white"
-                    } px-8 py-2 rounded-full`}
+                    className="px-8 py-2  bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white rounded-full"
                   >
                      Become a Seller
                   </NavLink>
@@ -97,25 +81,18 @@ const Header = () => {
                 <ShowOnLogout>
                   <CustomNavLink
                     href="/login"
-                    className={`${
-                      isScrolled || !isHomePage ? "text-black" : "text-white"
-                    }`}
+                    className="bg-gradient-to-r from-[#51d4b3] to-[#144426] px-6 py-2 rounded-full text-white hover:text-white shadow-md"
                   >
-                    Sign in
+                     Sign in
                   </CustomNavLink>
                   <CustomNavLink
                     href="/register"
-                    className={`${
-                      !isHomePage || isScrolled
-                        ? "hover:bg-green bg-primary text-white "
-                        : "bg-white hover:bg-green "
-                    } px-8 py-2 rounded-full text-primary hover:text-white shadow-md`}
+                    className={` bg-gradient-to-r from-[#6fd361] to-[#1b3618] px-6 py-2 rounded-full text-white hover:text-white shadow-md`}
                   >
-                    Join
+                    Register
                   </CustomNavLink>
                 </ShowOnLogout>
                 <ShowOnLogin>
-                  <div className="ml-24">
                     <CustomNavLink href="/dashboard">
                       <ProfileCard>
                         <img
@@ -125,18 +102,24 @@ const Header = () => {
                         />
                       </ProfileCard>
                     </CustomNavLink>
-                  </div>
-               
                 </ShowOnLogin>
               </div>
-              <div
-                className={`icon flex items-center justify-center gap-6 ${
-                  isScrolled || !isHomePage ? "text-primary" : "text-white"
-                }`}
-              >
+
+              <div className="icon flex items-center justify-center gap-6">
+              <ShowOnLogin>
+                    <CustomNavLink href="/dashboard" className="lg:hidden">
+                      <ProfileCard>
+                        <img
+                          src={user?.photo}
+                          alt="profile-image"
+                          className="w-full h-full rounded-full object-cover"
+                        />
+                      </ProfileCard>
+                    </CustomNavLink>
+                </ShowOnLogin>
                 <button
                   onClick={toggleMenu}
-                  className="lg:hidden w-10 h-10 rounded-xl flex justify-center items-center bg-black text-white focus:outline-none"
+                  className="lg:hidden w-8 h-8 rounded-xl flex justify-center items-center focus:outline-none"
                 >
                   {isOpen ? (
                     <AiOutlineClose size={24} />
@@ -146,9 +129,10 @@ const Header = () => {
                 </button>
               </div>
             </div>
+
             <div
               ref={menuRef}
-              className={`lg:hidden rounded-2xl lg:items-center lg:w-auto w-1/2 md:w-1/3 p-5 absolute right-0 top-full 
+              className={`lg:hidden rounded-2xl bg-gradient-to-r from-[#6fd361] to-[#1b3618] lg:items-center lg:w-auto w-1/2 md:w-1/3 p-5 absolute right-0 top-full 
                 menu-container ${isOpen ? "open" : "closed"}`}
             >
               {menus.map((list) => (
@@ -161,11 +145,30 @@ const Header = () => {
                   </CustomNavLink>
                 </li>
               ))}
+
+            {!isLoggedIn && <>
+              <li className="capitalize list-none my-8 text-center " >
+                  <CustomNavLink href="/login" className="text-white">
+                    Sign in
+                  </CustomNavLink>
+              </li>
+              <li className="capitalize list-none my-8 text-center " >
+                  <CustomNavLink href="/register" className="text-white">
+                    Register
+                  </CustomNavLink>
+              </li>
+            </>}  
+
+             {isLoggedIn && user?.role === "buyer" && <li className="capitalize list-none my-8 text-center " >
+                  <CustomNavLink href="/seller/login" className="text-white">
+                    Become a Seller
+                  </CustomNavLink>
+              </li> } 
+
             </div>
           </nav>
         </Container>
       </header>
-    </>
   );
 };
 
