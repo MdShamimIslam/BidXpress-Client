@@ -11,7 +11,7 @@ const About = () => {
   return (
     <div className="my-12"> 
       <Helmet>
-        <title>BidXpress | About</title>
+        <title>BidXpress | About Us</title>
       </Helmet>
       <main className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
         {/* Hero Section */}
@@ -137,7 +137,7 @@ const About = () => {
         <TestimonialSlider/>
 
        {/* feedback section */}
-        <section className="py-16 md:py-20 mb-[-40px] bg-gradient-to-br from-emerald-50 via-white to-amber-50">
+        <section className="py-16 md:py-20 mb-[-50px] bg-gradient-to-br from-emerald-50 via-white to-amber-50">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">We're Always <span className="text-[#71cf25]">Listening</span></h2>
               <p className="md:text-lg text-gray-600 mb-8">

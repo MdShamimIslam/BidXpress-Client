@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react"
-
-// import StatsCounter from "../../components/StatsCounter/StatsCounter ";
-// import ContactForm from "./ContactForm";
-// import ContactInfo from "./ContactInfo";
+import { Helmet } from 'react-helmet-async';
 
 
 export default function Contact() {
@@ -43,6 +40,10 @@ export default function Contact() {
   }
 
   return (
+    <div className="my-12"> 
+      <Helmet>
+        <title>BidXpress | Contact Us</title>
+      </Helmet>
       <main className="min-h-screen bg-gradient-to-b from-stone-50 mt-16 to-white">
         {/* Hero Section */}
         <section className="py-16 md:py-20 bg-gradient-to-br from-emerald-50 via-white to-amber-50">
@@ -295,5 +296,7 @@ export default function Contact() {
           </div>
         </section>
       </main>
+
+    </div>
   )
 }

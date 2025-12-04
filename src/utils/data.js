@@ -6,7 +6,11 @@ import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin, CiTwitter } from "react-icons/ci";
 import { ImFacebook } from "react-icons/im";
 // lucide icons import
-import { BadgeCheck,Sparkles,Coins,Banknote,History,Smile } from 'lucide-react'
+import { BadgeCheck,Sparkles,Coins,Banknote,History,Smile,Users, 
+  Headphones, 
+  ShieldCheck, 
+  BadgePercent,
+  Globe  } from 'lucide-react'
 
 // export images
 export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
@@ -578,6 +582,39 @@ export const topList = [
     img2: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-05-768x768.jpg",
     img4: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-07-150x150.jpg",
     img1: "https://rainbowthemes.net/themes/nuron/wp-content/uploads/2023/09/automotive_product-04-768x768.jpg",
+  },
+];
+
+export const servicesfeatures = [
+  {
+    title: "Trusted by Millions",
+    description: "Join over 2 million active users who trust BidXpress for their auction needs.",
+    icon: Users,
+  },
+  {
+    title: "24/7 Customer Support",
+    description: "Our support team is always available to help you with any questions or issues.",
+    icon: Headphones,
+  },
+  {
+    title: "Secure Transactions",
+    description: "Industry-leading encryption ensures your data and payments are always protected.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Competitive Fees",
+    description: "We offer the most competitive rates in the auction industry with no hidden charges.",
+    icon: BadgePercent,
+  },
+  {
+    title: "Fast Payouts",
+    description: "Get paid within 24-48 hours after your auction ends. No waiting around.",
+    icon: Banknote,
+  },
+  {
+    title: "Global Reach",
+    description: "Access buyers and sellers from around the world with our international platform.",
+    icon: Globe,
   },
 ];
 
