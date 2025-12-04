@@ -82,7 +82,7 @@ export const contactInfos = [
     id: 1,
     icon: FiPhoneOutgoing,
     title: "Phone",
-    info: "+880 1571529918"
+    info: "+1 (555) 123-4567"
   },
   {
     id: 2,
@@ -94,7 +94,7 @@ export const contactInfos = [
     id: 3,
     icon: IoLocationOutline,
     title: "Address",
-    info: "123, Street, City, Country"
+    info: "1123 Auction Street, NY 10001"
   },
  
 ]

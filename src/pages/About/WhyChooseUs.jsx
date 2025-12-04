@@ -12,7 +12,7 @@ export default function WhyChooseUs() {
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight">
-            Why People Trust Our Platform
+            Why People <span className="text-[#71cf25]">Trust</span> Our Platform
           </h2>
 
           <p className="mt-4 text-gray-600 text-base md:text-lg">
