@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { testimonials } from "../../utils/data";
+import { Container } from "../../components/common/Design";
 
 export default function TestimonialSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -53,22 +54,18 @@ export default function TestimonialSlider() {
   };
 
   return (
-    <div className="container mx-auto px-4 mt-16 lg:mt-12 relative">
-
+     <Container className="py-16 md:py-20 relative">
       {/* Header Section */}
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <h2 className="text-4xl font-bold text-gray-900 mb-4">
-          What Clients Say
+      <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 px-4">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight">
+          Hear From Our Happy Bidders
         </h2>
-        <p className="text-gray-600">
-          Discover the ultimate destination for bidding enthusiasts. Join the
-          world’s largest marketplace, offering exceptional products and a
-          seamless auction experience. 
+        <p className="mt-4 text-gray-600 md:text-lg">
+          Real experiences from satisfied users who’ve discovered rare treasures and seamless auction thrills with BidXpress.
         </p>
       </div>
-
       {/* Testimonial Slider */}
-      <div className="relative w-full mx-auto px-12">
+      <div className="relative w-full mx-auto px-2 md:px-12">
         <div className="overflow-hidden">
           <div
             className="flex transition-transform duration-500 ease-in-out"
@@ -79,30 +76,37 @@ export default function TestimonialSlider() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="w-full md:w-1/3 flex-shrink-0 px-4"
+                className="w-full sm:w-1/2 md:w-1/3 flex-shrink-0 px-2 md:px-4 mb-6"
                 style={{ width: `${100 / slidesToShow}%` }}
               >
-                <div className="bg-white p-8 rounded-lg relative h-full">
-                  {/* Quote Mark */}
-                  <div className="absolute -top-4 right-8 text-6xl text-green opacity-50">
-                    ,,
+                <div className="bg-white p-6 md:p-8 rounded-2xl shadow-md relative h-full">
+                  
+                  {/* Decorative Quote */}
+                  <div className="absolute top-2 left-2 text-5xl md:text-6xl text-[#87c90e] opacity-40 select-none">
+                    “
                   </div>
 
-                  <div className="md:flex items-center mb-6">
+                  <div className="flex items-center mb-4 md:mb-6">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="w-16 h-16 rounded-full object-cover mr-4"
+                      className="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover mr-4"
                     />
                     <div>
-                      <h3 className="font-semibold text-lg">
+                      <h3 className="font-semibold text-sm md:text-lg text-gray-900">
                         {testimonial.name}
                       </h3>
-                      <p className="text-gray-600">{testimonial.position}</p>
+                      <p className="text-gray-500 text-xs md:text-sm">{testimonial.position}</p>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 italic">{testimonial.quote}</p>
+                  <p className="text-gray-600 italic text-sm md:text-base leading-relaxed">
+                    {testimonial.quote}
+                  </p>
+
+                  <div className="absolute -bottom-6 right-4 text-5xl md:text-6xl text-[#31cf12] opacity-40 select-none">
+                    ”
+                  </div>
                 </div>
               </div>
             ))}
@@ -112,20 +116,21 @@ export default function TestimonialSlider() {
         {/* Navigation Buttons */}
         <button
           onClick={prevSlide}
-          className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
+          className="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 bg-gray-100 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="w-6 h-6 text-gray-600" />
+          <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-gray-600" />
         </button>
 
         <button
           onClick={nextSlide}
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 bg-gray-100 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 transition-colors"
           aria-label="Next slide"
         >
-          <ChevronRight className="w-6 h-6 text-gray-600" />
+          <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-gray-600" />
         </button>
       </div>
-    </div>
+    </Container>
+
   );
 }

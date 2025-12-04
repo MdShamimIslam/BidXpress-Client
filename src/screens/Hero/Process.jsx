@@ -12,7 +12,7 @@ const Process = () => {
       <Container className="relative z-10 text-center md:text-left">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Your Auction Journey  <span className="text-[#4da741]">Made Easy</span></h2>
-          <p className="text-gray-600">Follow these 4 simple steps to bid, win, and celebrate</p>
+          <p className="text-gray-600 md:text-lg">Follow these 4 simple steps to bid, win, and celebrate</p>
         </div>
 
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

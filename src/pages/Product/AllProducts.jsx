@@ -36,7 +36,7 @@ const AllProducts = () => {
   return (
     <>
     <Helmet>
-    <title>BidXpress | All Products</title>
+    <title>BidXpress | Products</title>
     </Helmet>
       <section className="product-home mt-24 mb-20 md:mt-28 lg:mt-36">
         <Container>

@@ -23,7 +23,7 @@ const Hero = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link to="/products" className="bg-[#216118] text-white px-8 py-3 rounded-lg hover:bg-emerald-900 font-semibold transition shadow-lg hover:shadow-xl text-center">
+            <Link to="/products" className="bg-[#216118] hover:bg-emerald-900 text-white px-8 py-3 rounded-lg  font-semibold transition shadow-lg hover:shadow-xl text-center">
               Explore Auctions
             </Link>
             <Link 

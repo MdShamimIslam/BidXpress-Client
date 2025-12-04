@@ -5,6 +5,8 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaInstagram } from "react-icons/fa";
 import { CiLinkedin, CiTwitter } from "react-icons/ci";
 import { ImFacebook } from "react-icons/im";
+// lucide icons import
+import { BadgeCheck,Sparkles,Coins,Banknote,History,Smile } from 'lucide-react'
 
 // export images
 export const User1 = "https://cdn-icons-png.flaticon.com/128/6997/6997662.png";
@@ -123,10 +125,10 @@ export const socials = [
 
 export const menulists = (isLoggedIn) => {
   const baseMenu = [
-    { id: 1, path: "/", link: "home" },
-    { id: 2, path: "/products", link: "products" },
-    { id: 4, path: "/about", link: "about" },
+    { id: 1, path: "/", link: "Home" },
+    { id: 2, path: "/products", link: "Products" },
     { id: 5, path: "/services", link: "Services" },
+    { id: 4, path: "/about", link: "About" },
     { id: 6, path: "/contact", link: "Contact" },
   ];
   if (isLoggedIn) {
@@ -469,6 +471,44 @@ export const processList = [
   },
 ];
 
+export  const features = [
+  {
+    number: '01',
+    icon: BadgeCheck,
+    title: 'High Quality Products',
+    description: 'Voluptate aut blanditiis accusantium offic expedita dolorem inventore'
+  },
+  {
+    number: '02',
+    icon: Sparkles,
+    title: "Creator's Royalty",
+    description: 'Voluptate aut blanditiis accusantium offic expedita dolorem inventore'
+  },
+  {
+    number: '03',
+    icon: Coins,
+    title: 'Top Class Product Price',
+    description: 'Voluptate aut blanditiis accusantium offic expedita dolorem inventore'
+  },
+  {
+    number: '04',
+    icon: Banknote,
+    title: 'Support Multiple Currency',
+    description: 'Voluptate aut blanditiis accusantium offic expedita dolorem inventore'
+  },
+  {
+    number: '05',
+    icon: History,
+    title: 'Show All Bidders History',
+    description: 'Voluptate aut blanditiis accusantium offic expedita dolorem inventore'
+  },
+  {
+    number: '06',
+    icon: Smile,
+    title: '100% Happy Customer',
+    description: 'Voluptate aut blanditiis accusantium offic expedita dolorem inventore'
+  }
+]
 
 export const trustList = [
   {
@@ -541,55 +581,56 @@ export const topList = [
   },
 ];
 
-export  const testimonials = [
+export const testimonials = [
   {
     id: 1,
-    name: "Johan Martin R",
-    position: "CEO Founder",
+    name: "Liam Thompson",
+    position: "Entrepreneur",
     image: man0,
     quote:
-      "Working with this platform transformed the way I approach auctions, making the process seamless and exciting.",
+      "BidXpress made finding rare collectibles effortless. The auction process was fast, smooth, and enjoyable.",
   },
   {
     id: 2,
-    name: "Jamie Anderson",
-    position: "Founder",
+    name: "Olivia Martinez",
+    position: "Art Dealer",
     image: man1,
     quote:
-      "This service redefines convenience, offering a user-friendly way to secure the best deals without hassle.",
+      "A reliable platform for auctions. I could bid confidently and win amazing items without any stress.",
   },
   {
     id: 3,
-    name: "John Peter",
-    position: "CEO Founder",
+    name: "Ethan Walker",
+    position: "Tech Investor",
     image: man2,
     quote:
-      "A game-changer for anyone who loves auctions – reliable, efficient, and incredibly rewarding.",
+      "The bidding experience is seamless and transparent. I always know what’s happening and feel secure placing bids.",
   },
   {
     id: 4,
-    name: "Sarah Johnson",
-    position: "Marketing Director",
+    name: "Sophia Lewis",
+    position: "Collector",
     image: man3,
     quote:
-      "The platform combines ease of use with outstanding support, ensuring every auction is a success.",
+      "Finding unique products has never been easier. The platform is intuitive, fast, and full of exciting options.",
   },
   {
     id: 5,
-    name: "Michael Brown",
-    position: "Product Manager",
+    name: "Noah Robinson",
+    position: "Startup Founder",
     image: man4,
     quote:
-      "Their innovative approach to auctions has simplified my purchasing experience and saved me time.",
+      "BidXpress saves time and makes auctions enjoyable. The interface is clean, and customer support is top-notch.",
   },
   {
     id: 6,
-    name: "Emily Davis",
-    position: "Lead Designer",
+    name: "Ava Wilson",
+    position: "Designer",
     image: man5,
     quote:
-      "From start to finish, the experience was intuitive and rewarding, truly raising the bar for auction services.",
+      "From browsing to winning, every step is smooth. It’s a trustworthy and innovative auction marketplace.",
   },
 ];
+
 
 
