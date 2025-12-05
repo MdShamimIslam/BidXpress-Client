@@ -48,7 +48,7 @@ export default function Contact() {
         {/* Hero Section */}
         <section className="py-16 md:py-20 bg-gradient-to-br from-emerald-50 via-white to-amber-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Get in <span className="text-[#71cf25]">Touch</span></h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Get in <span className="text-[#2da515]">Touch</span></h1>
             <p className="md:text-lg text-gray-600">We're here to help. Reach out to us with any questions or concerns.</p>
           </div>
         </section>
@@ -262,7 +262,7 @@ export default function Contact() {
 
             {/* FAQ Section */}
             <div className="bg-gradient-to-r from-emerald-50 to-amber-50 p-8 rounded-xl border border-emerald-100">
-              <h2 className=" text-xl md:text-3xl font-bold text-gray-900 mb-8">Frequently <span className="text-[#71cf25]">Asked Questions</span></h2>
+              <h2 className=" text-xl md:text-3xl font-bold text-gray-900 mb-8">Frequently <span className="text-[#2da515]">Asked Questions</span></h2>
               <div className="space-y-6">
                 {[
                   {

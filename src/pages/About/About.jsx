@@ -17,7 +17,7 @@ const About = () => {
         {/* Hero Section */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-50 via-white to-amber-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">About <span className="text-[#71cf25]">BidXpress</span> </h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">About <span className="text-[#2da515]">BidXpress</span> </h1>
             <p className="md:text-lg text-gray-600 leading-relaxed">
               The world's most trusted platform for online auctions, connecting buyers and sellers with passion and integrity.
             </p>
@@ -35,7 +35,7 @@ const About = () => {
         <section className="py-16 md:py-20 bg-gradient-to-r from-emerald-50 to-amber-50 border-y border-emerald-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight"> Our Core <span className="text-[#71cf25]">Values</span> </h2>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight"> Our Core <span className="text-[#2da515]">Values</span> </h2>
                 <p className="mt-4 text-gray-600 text-base md:text-lg">
                   These principles guide everything we build — ensuring trust, security, and a premium experience for every user.
                 </p>
@@ -105,7 +105,7 @@ const About = () => {
 
               {/* Right Content */}
               <div>
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">Our <span className="text-[#59c710]">Story</span> </h2>
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">Our <span className="text-[#2da515]">Story</span> </h2>
                 <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                   <p>
                     Founded in 2019, BidXpress started with a simple vision: to make online
@@ -139,7 +139,7 @@ const About = () => {
        {/* feedback section */}
         <section className="py-16 md:py-20 mb-[-50px] bg-gradient-to-br from-emerald-50 via-white to-amber-50">
             <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">We're Always <span className="text-[#71cf25]">Listening</span></h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">We're Always <span className="text-[#2da515]">Listening</span></h2>
               <p className="md:text-lg text-gray-600 mb-8">
                 Your feedback drives our innovation. We're constantly evolving to meet your needs and exceed your
                 expectations.

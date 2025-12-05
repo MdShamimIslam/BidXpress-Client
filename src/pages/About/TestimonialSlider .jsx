@@ -58,7 +58,7 @@ export default function TestimonialSlider() {
       {/* Header Section */}
       <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 px-4">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight">
-          Hear From Our <span className="text-[#71cf25]">Happy Bidders</span>
+          Hear From Our <span className="text-[#2da515]">Happy Bidders</span>
         </h2>
         <p className="mt-4 text-gray-600 md:text-lg">
           Real experiences from satisfied users who’ve discovered rare treasures and seamless auction thrills with BidXpress.

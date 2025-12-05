@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
-import { Caption, commonClassNameOfInput, CustomNavLink, PrimaryButton, Title } from "../../components/common/Design";
+import { Caption, commonClassNameOfInput, PrimaryButton, Title } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";

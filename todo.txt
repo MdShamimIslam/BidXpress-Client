@@ -1,1 +1,3 @@
 1. Feedback er functionality implement korte hobe
+2. Auth page and product details page er kaj korte hobe
+3. Admin dashboard er kaj korte hobe

@@ -7,7 +7,7 @@ const TopCollection = () => {
         <Container>
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-            Explore Our <span className="text-[#4da741]">Top Collections</span>
+            Explore Our <span className="text-[#2da515]">Top Collections</span>
           </h2>
           <p className="text-gray-600 md:text-lg">
             Handpicked items from the best categories, curated to inspire and delight.

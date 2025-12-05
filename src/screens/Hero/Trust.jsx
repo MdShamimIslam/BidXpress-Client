@@ -10,7 +10,7 @@ const Trust = () => {
 
   <Container className="relative z-10 text-center">
      <div className="text-center mb-12">
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Trusted By Top <span className="text-[#4da741]">Brands</span> Worldwide </h2>
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Trusted By Top <span className="text-[#2da515]">Brands</span> Worldwide </h2>
       <p className="text-gray-600 md:text-lg">We serve leading businesses with secure, transparent, and seamless auction experiences.</p>
     </div>
 

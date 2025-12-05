@@ -14,7 +14,7 @@ const Hero = () => {
         <div className="space-y-8">
           <div className="space-y-4">
             <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-gray-900 leading-tight">
-              Where Bidding Meets <span className="text-[#216118]">Excitement!</span>
+              Where Bidding Meets <span className="text-[#2da515]">Excitement!</span>
             </h1>
             <p className="md:text-lg text-gray-600 leading-relaxed">
               Experience the thrill of live auctions. Explore rare items, compete with bidders worldwide, and take home

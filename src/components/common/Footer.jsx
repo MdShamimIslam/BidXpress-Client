@@ -99,9 +99,9 @@ const Footer = () => {
             <div className="mt-5 flex gap-3">
               {
                 socials?.map(({id, icon:Icon, href}) => (
-                  <a key={id} href={href} target="_blank" className="w-9 h-9 cursor-pointer rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
-                    <Icon size={16}  />
-                  </a>
+                  <Link key={id} to={href} target="_blank" className="w-9 h-9 cursor-pointer rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition">
+                    <Icon size={16} />
+                  </Link>
                 ))
               }
             </div>

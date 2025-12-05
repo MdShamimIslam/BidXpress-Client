@@ -7,7 +7,7 @@ export default function TopSellers() {
     <section className="py-16 md:py-20 bg-white border-y border-emerald-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Top <span className="text-[#4da741]">Sellers</span></h2>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Top <span className="text-[#2da515]">Sellers</span></h2>
           <p className="text-gray-600 md:text-lg">Trusted sellers with exceptional ratings</p>
         </div>
 

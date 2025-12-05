@@ -63,7 +63,7 @@ export default function Services() {
         {/* Hero Section */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-50 via-white to-amber-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Our <span className="text-[#71cf25]">Services</span></h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">Our <span className="text-[#2da515]">Services</span></h1>
             <p className="md:text-lg text-gray-600">Everything you need to buy and sell with confidence on BidXpress</p>
           </div>
         </section>
@@ -98,7 +98,7 @@ export default function Services() {
         <section className="py-16 md:py-20 bg-gradient-to-r from-emerald-50 to-amber-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-12 text-center">
-              Why <span className="text-[#71cf25]">Choose</span> BidXpress?
+              Why <span className="text-[#2da515]">Choose</span> BidXpress?
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -124,7 +124,7 @@ export default function Services() {
         <section className="py-16 md:py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-12 text-center">
-              Simple, Transparent <span className="text-[#71cf25]">Pricing</span> 
+              Simple, Transparent <span className="text-[#2da515]">Pricing</span> 
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:mt-16">
               {[
