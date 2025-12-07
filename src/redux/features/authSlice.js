@@ -137,26 +137,6 @@ export const updateUserProfile = createAsyncThunk(
   }
 );
 
-export const loginUserAsSeller = createAsyncThunk(
-  "auth/login-as-seller",
-  async (userData, thunkAPI) => {
-    try {
-     const res = await authService.loginUserAsSeller(userData);
-     localStorage.setItem("user", JSON.stringify(res));
-     return res;
-    } catch (error) {
-      const errorMessage =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString() ||
-        error;
-      return thunkAPI.rejectWithValue(errorMessage);
-    }
-  }
-);
-
 export const getUserIncome = createAsyncThunk(
   "auth/user-income",
   async (_, thunkAPI) => {
@@ -384,21 +364,6 @@ const authSlice = createSlice({
         state.message = action.payload;
         state.isLoggedIn = true;
         toast.error("Profile updated Failed!");
-      })
-      // login as a seller
-      .addCase(loginUserAsSeller.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(loginUserAsSeller.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.user = action.payload;
-        state.isError = false;
-      })
-      .addCase(loginUserAsSeller.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
       })
       // get user income
       .addCase(getUserIncome.pending, (state) => {

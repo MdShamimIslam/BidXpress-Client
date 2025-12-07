@@ -1,36 +1,58 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../components/common/Logo";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { register } from "../../redux/features/authSlice";
+
+const initialState = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: ""
+};
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [userType, setUserType] = useState("buyer")
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    city: "",
-    password: "",
-    confirmPassword: "",
-    agreeTerms: false,
-  })
-  const [isLoading, setIsLoading] = useState(false)
+  const [role, setRole] = useState("buyer")
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(initialState);
+  const { name, email, password, confirmPassword } = formData;
+  const { isLoggedIn, isLoading } = useSelector( (state) => state.auth );
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }))
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setTimeout(() => setIsLoading(false), 1500)
+    e.preventDefault();
+
+    if (!name || !email || !password || !confirmPassword) {
+      return toast.error("All fields are required");
+    }
+    if (password.length < 8) {
+      return toast.error("Password must be at least 8 characters");
+    }
+    if (password !== confirmPassword) {
+      return toast.error("Passwords do not match");
+    }
+    const userData = { name, email, password, role };
+    console.log(userData);
+
+    dispatch(register(userData));
+    
   }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      toast.success("Registration successful!");
+      navigate("/dashboard");
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <div className="min-h-screen bg-white flex">
@@ -48,9 +70,9 @@ export default function Register() {
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
-                onClick={() => setUserType("buyer")}
+                onClick={() => setRole("buyer")}
                 className={`py-3 px-4 rounded-xl border-2 font-bold transition-all ${
-                  userType === "buyer"
+                  role === "buyer"
                     ? "border-emerald-600 bg-emerald-50 text-emerald-600"
                     : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
                 }`}
@@ -59,9 +81,9 @@ export default function Register() {
               </button>
               <button
                 type="button"
-                onClick={() => setUserType("seller")}
+                onClick={() => setRole("seller")}
                 className={`py-3 px-4 rounded-xl border-2 font-bold transition-all ${
-                  userType === "seller"
+                  role === "seller"
                     ? "border-amber-600 bg-amber-50 text-amber-600"
                     : "border-gray-200 bg-white text-gray-700 hover:border-gray-300"
                 }`}
@@ -73,16 +95,16 @@ export default function Register() {
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label htmlFor="fullName" className="block text-sm font-semibold text-gray-900 mb-2">
+              <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
                 Full Name
               </label>
               <div className="relative">
                 <User className="absolute left-4 top-3.5 w-5 h-5 text-gray-400" />
                 <input
-                  id="fullName"
+                  id="name"
                   type="text"
-                  name="fullName"
-                  value={formData.fullName}
+                  name="name"
+                  value={name}
                   onChange={handleChange}
                   placeholder="John Doe"
                   className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 transition-all bg-gray-50 hover:bg-white"
@@ -101,7 +123,7 @@ export default function Register() {
                     id="email"
                     type="email"
                     name="email"
-                    value={formData.email}
+                    value={email}
                     onChange={handleChange}
                     placeholder="you@example.com"
                     className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 transition-all bg-gray-50 hover:bg-white"
@@ -121,7 +143,7 @@ export default function Register() {
                     id="password"
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    value={formData.password}
+                    value={password}
                     onChange={handleChange}
                     placeholder="••••••••"
                     className="w-full pl-12 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 transition-all bg-gray-50 hover:bg-white"
@@ -146,7 +168,7 @@ export default function Register() {
                     id="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
-                    value={formData.confirmPassword}
+                    value={confirmPassword}
                     onChange={handleChange}
                     placeholder="••••••••"
                     className="w-full pl-12 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-emerald-500 transition-all bg-gray-50 hover:bg-white"
@@ -168,8 +190,8 @@ export default function Register() {
                 id="agreeTerms"
                 type="checkbox"
                 name="agreeTerms"
-                checked={formData.agreeTerms}
-                onChange={handleChange}
+                // checked={formData.agreeTerms}
+                // onChange={handleChange}
                 className="w-5 h-5 text-emerald-600 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 mt-0.5 cursor-pointer"
                 required
               />
@@ -187,7 +209,7 @@ export default function Register() {
 
             <button
               type="submit"
-              disabled={isLoading || !formData.agreeTerms}
+              disabled={isLoading}
               className="w-full bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white font-bold py-3 rounded-xl transition-all duration-200 
               transform hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 md:text-lg"
             >

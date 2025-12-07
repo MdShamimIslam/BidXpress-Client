@@ -2,7 +2,7 @@ import { Container, CustomNavLink, CustomNavLinkList, ProfileCard } from "./Desi
 import { menulists } from "../../utils/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ShowOnLogin, ShowOnLogout } from "../../utils/HiddenLink";
 import { useSelector } from "react-redux";
 import Logo from "./Logo";
@@ -61,16 +61,6 @@ const Header = () => {
 
             <div className="flex items-center icons ">
               <div className="hidden lg:flex lg:items-center lg:gap-4 text-white">
-                {isLoggedIn && user?.role === "buyer" && (
-                  <ShowOnLogin>
-                    <NavLink
-                    to="/seller/login"
-                    className="px-8 py-2  bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white rounded-full"
-                  >
-                     Become a Seller
-                  </NavLink>
-                  </ShowOnLogin>
-                )}
                 <ShowOnLogout>
                   <CustomNavLink
                     href="/login"
@@ -151,13 +141,6 @@ const Header = () => {
                   </CustomNavLink>
               </li>
             </>}  
-
-             {isLoggedIn && user?.role === "buyer" && <li className="capitalize list-none my-8 text-center " >
-                  <CustomNavLink href="/seller/login" className="text-white">
-                    Become a Seller
-                  </CustomNavLink>
-              </li> } 
-
             </div>
           </nav>
         </Container>

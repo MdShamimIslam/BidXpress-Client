@@ -38,11 +38,6 @@ const updateUserProfile = async (data) => {
     return res?.data;
 };
 
-const loginUserAsSeller = async (userData) => {
-    const res = await axios.post(`${AUTH_URL}/seller`, userData, { withCredentials: true });
-    return res?.data;
-};
-
 const getUserIncome = async () => {
   const res = await axios.get(`${AUTH_URL}/sell-amount`, { withCredentials: true });
   return res?.data;
@@ -93,7 +88,6 @@ const authService = {
   getLogInStatus,
   getUserProfile,
   updateUserProfile,
-  loginUserAsSeller,
   getUserIncome,
   getIncome,
   getAllUser,

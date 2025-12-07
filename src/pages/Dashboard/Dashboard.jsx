@@ -5,18 +5,17 @@ import { BsCashCoin } from "react-icons/bs";
 import { MdDashboard, MdOutlineCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
-import { useUserProfile } from "../../hooks/useUserProfile";
 import { useEffect } from "react";
 import { getAllUser, getUserIncome, getUserProfile } from "../../redux/features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct, getAllProductOfUser, getAllWonedProductOfUser } from "../../redux/features/productSlice";
 
 const Dashboard = () => {
-  const { role } = useUserProfile();
-  const { income, users } = useSelector((state) => state.auth);
+  const { income, user, users } = useSelector((state) => state.auth);
   const { products, userProducts, wonedProducts } = useSelector( (state) => state.product );
-
   const dispatch = useDispatch();
+
+  const { role } = user || {};
 
   useEffect(() => {
     dispatch(getUserProfile());
@@ -24,25 +23,47 @@ const Dashboard = () => {
     dispatch(getAllProduct());
     dispatch(getAllWonedProductOfUser());
     dispatch(getAllProductOfUser());
-    dispatch(getAllUser());
   }, [dispatch]);
+
+  
+  useEffect(() => {
+    if (role === "admin") {
+      dispatch(getAllUser());
+    }
+  }, [dispatch, role]);
 
   return (
     <>
       <section>
-        <div className="shadow-s1 p-8 rounded-lg  mb-12">
-          <Title level={4} className="font-semibold">
-            My Activity
-          </Title>
-          <hr className="my-5" />
-
+        <div className="shadow-s1 p-8 rounded-lg mb-12">
           {role === "buyer" && (
-            <h1 className="text-2xl font-semibold text-center py-8">
-              Please become a seller to see your activity.
-            </h1>
+            <div className="py-8 text-center mt-8">
+              
+              <h2 className="text-lg md:text-3xl font-semibold text-gray-800 mb-3">
+                Welcome to BidXpress 🚀
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed md:text-lg">
+                Discover live products on BidXpress, place your bids, and compete with others 
+                in real-time auctions. Your next winning deal starts here!
+              </p>
+
+              <div className="flex justify-center gap-4 mt-6">
+                <NavLink
+                  to="/products"
+                  className="bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white px-6 py-3 rounded-lg shadow transition md:text-lg font-semibold"
+                >
+                  Explore Products
+                </NavLink>
+              </div>
+            </div>
           )}
 
           {(role === "admin" || role === "seller") && (
+            <>
+            <Title level={4} className="font-semibold">
+            My Activity
+          </Title>
+          <hr className="my-5" />
             <div className="grid grid-cols-1  lg:grid-cols-3 gap-8 mt-8">
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                 <BsCashCoin size={80} className="text-green" />
@@ -84,6 +105,7 @@ const Dashboard = () => {
                 </>
               )}
             </div>
+            </>
           )}
         </div>
       </section>

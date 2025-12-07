@@ -4,7 +4,6 @@ import Layout from "./components/common/layout/Layout";
 import Home from "./pages/Home/Home";
 import ProductsDetails from "./pages/Product/ProductsDetails";
 import Login from "./pages/Auth/Login";
-import LoginAsSeller from "./pages/Auth/LoginAsSeller";
 import PrivateRoute from "./router/PrivateRoute";
 import Register from "./pages/Auth/Register";
 import DashboardLayout from "./components/common/layout/DashboardLayout";
@@ -73,16 +72,6 @@ function App() {
               <Layout>
                 <Services />
               </Layout>
-            }
-          />
-          <Route
-            path="/seller/login"
-            element={
-              <PrivateRoute allowedRoles={["buyer"]}>
-                <Layout>
-                  <LoginAsSeller />
-                </Layout>
-              </PrivateRoute>
             }
           />
           <Route
