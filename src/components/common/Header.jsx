@@ -2,10 +2,10 @@ import { Container, CustomNavLink, CustomNavLinkList, ProfileCard } from "./Desi
 import { menulists } from "../../utils/data";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { ShowOnLogin, ShowOnLogout } from "../../utils/HiddenLink";
 import { useSelector } from "react-redux";
-import logo from "/images/common/logo.png";
+import Logo from "./Logo";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,14 +44,7 @@ const Header = () => {
       <header className={`header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
         <Container>
           <nav className="py-4 flex justify-between items-center relative">
-            <Link className="flex items-center gap-3" to="/">
-              <img
-                src={logo}
-                alt=""
-                className="rounded-full lg:ml-[-7px] w-[35px]"
-              />
-              <h3 className="text-2xl font-bold">  BidXpress </h3>
-            </Link>
+            <Logo/>
              
             <div className="hidden lg:flex items-center justify-between gap-8">
                 {menus?.map((list) => (

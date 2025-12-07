@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "/images/common/logo.png";
 import { companyInfos, contactInfos, explores, socials } from "../../utils/data";
+import Logo from "./Logo";
 
 const Footer = () => {
   return (
@@ -8,15 +8,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-3">
-              <img
-                src={logo}
-                alt="BidXpress logo"
-                className="w-11 h-11 rounded-full ml-[-8px] p-1 shadow-sm"
-              />
-              <span className="text-white ml-[-8px] text-xl md:text-2xl font-bold">BidXpress</span>
-            </Link>
-
+            <Logo/>
+            
             <p className="text-sm text-gray-300">
               Premium auctions — authenticated items, transparent bidding, trusted delivery.
             </p>

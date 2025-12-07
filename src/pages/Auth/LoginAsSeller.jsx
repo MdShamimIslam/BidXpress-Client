@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Caption,
-  Container,
-  CustomNavLink,
-  PrimaryButton,
-  Title,
-  commonClassNameOfInput,
-} from "../../components/common/Design";
+import {Caption,PrimaryButton,Title, commonClassNameOfInput} from "../../components/common/Design";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
