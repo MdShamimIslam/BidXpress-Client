@@ -43,7 +43,7 @@ const Header = () => {
   return (
       <header className={`header bg-white shadow-s1 ${isScrolled ? "scrolled" : ""}`}>
         <Container>
-          <nav className="py-4 flex justify-between items-center relative">
+          <nav className="py-4 flex justify-between items-center relative pointer-events-auto">
             <Logo/>
              
             <div className="hidden lg:flex items-center justify-between gap-8">
@@ -59,7 +59,7 @@ const Header = () => {
                 ))}
             </div>
 
-            <div className="flex items-center icons ">
+            <div className="flex items-center">
               <div className="hidden lg:flex lg:items-center lg:gap-4 text-white">
                 <ShowOnLogout>
                   <CustomNavLink
@@ -88,7 +88,7 @@ const Header = () => {
                 </ShowOnLogin>
               </div>
 
-              <div className="icon flex items-center justify-center gap-6">
+              <div className="flex items-center justify-center gap-2">
               <ShowOnLogin>
                     <CustomNavLink href="/dashboard" className="lg:hidden">
                       <ProfileCard>
@@ -116,7 +116,7 @@ const Header = () => {
             <div
               ref={menuRef}
               className={`lg:hidden rounded-2xl bg-gradient-to-r from-[#6fd361] to-[#1b3618] lg:items-center lg:w-auto w-1/2 md:w-1/3 p-5 absolute right-0 top-full 
-                menu-container ${isOpen ? "open" : "closed"}`}
+                menu-container ${isOpen ? "open pointer-events-auto" : "closed pointer-events-none"}`}
             >
               {menus.map((list) => (
                 <li

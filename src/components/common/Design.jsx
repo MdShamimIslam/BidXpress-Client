@@ -78,7 +78,15 @@ const CustomLink = ({ className, children }) => {
 };
 
 const Container = ({ children, className }) => {
-  return <div className={`${className} w-[85%] m-auto`}>{children}</div>;
+  return (
+    <div 
+      // className={`${className} w-[85%] m-auto`}
+      className={`${className} w-[95%] sm:w-[90%] lg:w-[85%] m-auto`}
+    >
+      {children}
+    </div>
+  )
+  
 };
 
 const PrimaryButton = ({ children, className, btnCl=false }) => {

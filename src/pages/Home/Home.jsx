@@ -22,6 +22,7 @@ const Home = () => {
       <Process />
       <Trust />
       <TopCollection />
+      
     </>
   );
 };

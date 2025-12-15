@@ -1,51 +1,65 @@
 import { useEffect, useState } from "react";
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
-import {Caption, commonClassNameOfInput, Container, Title } from "../../components/common/Design";
+import { Caption, commonClassNameOfInput, Container } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProduct } from "../../redux/features/productSlice";
-import { formatDate } from "../../utils/formateDate";
 import { getBiddingHistory, placebid } from "../../redux/features/biddingSlice";
 import { toast } from "react-toastify";
 import Countdown from "../../components/CountDown/CountDown";
+import { AuctionHistory } from "./AuctionHistory";
+import { Helmet } from 'react-helmet-async';
 
 const ProductsDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState("description");
   const [rate, setRate] = useState(0);
-  const { history = {} } = useSelector((state) => state.bidding);
+  const { history = [] } = useSelector((state) => state.bidding);
   const { product, isLoading } = useSelector((state) => state.product);
-  const { image, title, description, isverify, price, category, height, lengthpic, width, weight, mediumused, isSoltout } = product || {};
+  const {
+    image,
+    title,
+    description,
+    isverify,
+    price,
+    category,
+    height,
+    lengthpic,
+    width,
+    weight,
+    mediumused,
+    isSoldout,
+  } = product || {};
 
   useEffect(() => {
-    dispatch(getProduct(id));
+    if (id) dispatch(getProduct(id));
   }, [dispatch, id]);
 
   useEffect(() => {
-    if (product && !isSoltout) {
+    if (product && !isSoldout) {
       dispatch(getBiddingHistory(id));
     }
-  }, [product, dispatch, id, isSoltout]);
+  }, [product, dispatch, id, isSoldout]);
 
   useEffect(() => {
-    if (history && history?.length > 0) {
-      const highestBid = Math.max(...history.map((bid) => bid.price));
+    if (history && history.length > 0) {
+      const highestBid = Math.max(...history.map((bid) => Number(bid.price || 0)));
       setRate(highestBid);
     } else if (product) {
-      setRate(price);
+      setRate(Number(price || 0));
     }
   }, [history, price, product]);
 
   const incrementBid = () => {
-    setRate((prevRate) => prevRate + 1);
+    setRate((prevRate) => Number(prevRate) + 1);
   };
 
   const handlePlaceBid = async (e) => {
     e.preventDefault();
 
-    if (price >= parseFloat(rate)) {
+    if (Number(price) >= parseFloat(rate)) {
       return toast.error("Your bid must be greater than the current bid.");
     }
 
@@ -57,8 +71,9 @@ const ProductsDetails = () => {
     try {
       await dispatch(placebid(data)).unwrap();
       dispatch(getBiddingHistory(id));
+      toast.success("Bid placed successfully!");
     } catch (error) {
-      return toast.error(error.message );
+      return toast.error(error?.message || "Failed to place bid");
     }
   };
 
@@ -66,207 +81,196 @@ const ProductsDetails = () => {
     setActiveTab(tab);
   };
 
-  if (isLoading) return <p>Loading...</p>
+
+  if (isLoading) {
+    return (
+      <div className="min-h-[40vh] flex items-center justify-center">
+        <p className="text-gray-600">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <>
-      <section className="pt-24 px-8">
+      <Helmet>
+        <title>BidXpress | Product Details</title>
+      </Helmet>
+
+      <section className="pt-24 lg:pt-28 pb-8">
         <Container>
-          <div className="flex justify-between gap-8">
-            <div className="w-1/2 mt-4">
-              <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <div className="w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
                 <img
                   src={image?.filePath}
-                  alt="product-image"
-                  className="w-full h-full object-cover rounded-xl"
+                  alt={title}
+                  className="w-full h-[260px] sm:h-[320px] md:h-[420px] object-cover"
                 />
+
               </div>
             </div>
-            <div className="w-1/2 mt-1">
-              <Title level={2} className="capitalize">
-                {title}
-              </Title>
-              <div className="flex gap-5">
-                <div className="flex text-green ">
-                  <IoIosStar size={20} />
-                  <IoIosStar size={20} />
-                  <IoIosStar size={20} />
-                  <IoIosStarHalf size={20} />
-                  <IoIosStarOutline size={20} />
+            <div className="space-y-6">
+              <div>
+                <h1 className="text-xl lg:text-2xl font-extrabold text-gray-800">{title}</h1>
+                <div className="mt-3 flex items-center gap-4">
+                  <div className="flex items-center gap-1 text-[#0b811b]">
+                    <IoIosStar size={18} />
+                    <IoIosStar size={18} />
+                    <IoIosStar size={18} />
+                    <IoIosStarHalf size={18} />
+                    <IoIosStarOutline size={18} />
+                  </div>
+                  <Caption className="text-gray-500">• 2 customer reviews</Caption>
                 </div>
-                <Caption>(2 customer reviews)</Caption>
               </div>
-              <br />
-              <Title className="flex items-center gap-2">Auction ends:</Title>
-              <Countdown />
-              <Title className="flex items-center gap-2 my-7">
-                Price:<Caption>${price} </Caption>
-              </Title>
-              <Title className="flex items-center gap-2">
-                Current bid:<Caption className="text-3xl">${rate} </Caption>
-              </Title>
-              <div className="p-7 shadow-lg rounded-lg bg-[#ecf0ef] mt-6">
-                <form
-                  onSubmit={handlePlaceBid}
-                  className="flex gap-3 justify-between"
-                >
-                  <input
-                    value={rate}
-                    onChange={(e) => setRate(e.target.value)}
-                    className={`${commonClassNameOfInput} rounded-lg`}
-                    min={price}
-                    type="number"
-                    name="price"
-                  />
-                  <button
-                    onClick={incrementBid}
-                    type="button"
-                    className="bg-gray-300 rounded-md px-5 py-3"
-                  >
-                    <AiOutlinePlus />
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSoltout || !isverify}
-                    className={`py-3 px-8 rounded-lg ${
-                      isSoltout || !isverify
-                        ? " bg-gray-400 text-gray-700 cursor-not-allowed"
-                        : "bg-green text-white"
-                    }`}
-                  >
-                    Submit
-                  </button>
-                </form>
+
+              <Caption className=" text-gray-500 border-b-2 border-emerald-600 inline-block">Auction ends</Caption>
+              <div className="mt-2 flex items-center gap-3">
+                <Countdown />
+              </div>
+
+              <div className="p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                 <div className="flex justify-between lg:justify-normal flex-col sm:flex-row gap-6 sm:gap-8">
+                    <div>
+                      <div className="text-sm text-gray-500">Price</div>
+                      <div className="text-xl md:text-2xl lg:text-3xl font-bold text-emerald-600">${price}</div>
+                      <div className="text-xs text-gray-500 mt-1">Starting price</div>
+                    </div>
+                    <div className="w-full sm:w-px sm:h-auto h-px bg-emerald-600"></div>
+                    <div>
+                      <div className="text-sm text-gray-500">Current Bid</div>
+                      <div className="text-xl md:text-2xl lg:text-3xl font-bold text-emerald-600">${rate}</div>
+                      <div className="text-xs text-gray-500 mt-1">Highest bid amount</div>
+                    </div>
+                 </div>
+
+                  <div className="w-full lg:w-2/5">
+                    <form onSubmit={handlePlaceBid} className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <input
+                          value={rate}
+                          onChange={(e) => setRate(e.target.value)}
+                          className={`${commonClassNameOfInput} flex-1 rounded-lg py-3 text-gray-800`}
+                          min={price}
+                          type="number"
+                          name="price"
+                          aria-label="Bid amount"
+                        />
+
+                        <button
+                          onClick={incrementBid}
+                          type="button"
+                          className="bg-gray-100 hover:bg-gray-200 p-3 rounded-md text-gray-700 shrink-0"
+                          title="Increase by 1"
+                        >
+                          <AiOutlinePlus />
+                        </button>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSoldout || !isverify}
+                        className={`w-full px-4 py-3 rounded-lg font-semibold ${
+                          isSoldout || !isverify
+                            ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                            : "bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white hover:bg-emerald-700"
+                        }`}
+                      >
+                        Submit
+                      </button>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="details my-16">
-            <div className="flex items-center gap-5">
-              <button
-                className={`rounded-md px-10 py-4 text-black shadow-s3 ${
-                  activeTab === "description"
-                    ? "bg-green text-white"
-                    : "bg-white"
-                }`}
-                onClick={() => handleTabClick("description")}
-              >
-                Description
-              </button>
-              <button
-                className={`rounded-md px-10 py-4 text-black shadow-s3 ${
-                  activeTab === "auctionHistory"
-                    ? "bg-green text-white"
-                    : "bg-white"
-                }`}
-                onClick={() => handleTabClick("auctionHistory")}
-              >
-                Auction History
-              </button>
-              <button
-                className={`rounded-md px-10 py-4 text-black shadow-s3 ${
-                  activeTab === "reviews" ? "bg-green text-white" : "bg-white"
-                }`}
-                onClick={() => handleTabClick("reviews")}
-              >
-                Reviews(2)
-              </button>
-              <button
-                className={`rounded-md px-10 py-4 text-black shadow-s3 ${
-                  activeTab === "moreProducts"
-                    ? "bg-green text-white"
-                    : "bg-white"
-                }`}
-                onClick={() => handleTabClick("moreProducts")}
-              >
-                More Products
-              </button>
+
+          {/* Tabs */}
+          <div className="mt-10 relative">
+            <div className="flex overflow-x-auto gap-3 pb-2">
+              {[
+                { key: "description", label: "Description" },
+                { key: "auctionHistory", label: "Auction History" },
+                { key: "reviews", label: `Reviews (${2})` },
+                { key: "moreProducts", label: "More Products" },
+              ].map((t) => (
+                <button
+                  key={t.key}
+                  onClick={() => handleTabClick(t.key)}
+                  className={`px-5 py-3 rounded-md text-sm font-medium transition ${
+                    activeTab === t.key ? "bg-emerald-600 text-white shadow" : "bg-white border border-gray-200 text-gray-700"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
             </div>
-            <div className="tab-content mt-8">
+
+            <div className="mt-8">
               {activeTab === "description" && (
-                <div className="description-tab shadow-s3 p-8 rounded-md">
-                  <Title level={5}>Description</Title>
-                  <br />
-                  <Caption className="leading-7">{description}</Caption>
-                  <br />
-                  <Title level={5}>Product Overview</Title>
-                  <div className="flex justify-between gap-20">
-                    <div className="mt-4 capitalize w-1/2">
-                      <div className="flex justify-between border-b py-3">
-                        <Title>category</Title>
-                        <Caption>{category}</Caption>
+                <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
+                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">Description</h3>
+                  <p className="text-gray-700 leading-7">{description}</p>
+
+                  <hr className="my-6" />
+
+                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">Product Overview</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div className="space-y-3">
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Category</span>
+                        <span className="font-medium text-gray-800">{category}</span>
                       </div>
-                      <div className="flex justify-between border-b py-3">
-                        <Title>height</Title>
-                        <Caption>{height ?? "N/A"} (cm)</Caption>
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Height</span>
+                        <span className="font-medium text-gray-800">{height ?? "N/A"} cm</span>
                       </div>
-                      <div className="flex justify-between border-b py-3">
-                        <Title>length</Title>
-                        <Caption>{lengthpic ?? "N/A"} (cm)</Caption>
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Length</span>
+                        <span className="font-medium text-gray-800">{lengthpic ?? "N/A"} cm</span>
                       </div>
-                      <div className="flex justify-between border-b py-3">
-                        <Title>width</Title>
-                        <Caption>{width ?? "N/A"} (cm)</Caption>
-                      </div>
-                      <div className="flex justify-between border-b py-3">
-                        <Title>weight</Title>
-                        <Caption>{weight ?? "N/A"} (kg)</Caption>
-                      </div>
-                      <div className="flex justify-between py-3 border-b">
-                        <Title>medium used</Title>
-                        <Caption> {mediumused} </Caption>
-                      </div>
-                      <div className="flex justify-between py-3 border-b">
-                        <Title>Price</Title>
-                        <Caption> ${price} </Caption>
-                      </div>
-                      <div className="flex justify-between py-3 border-b">
-                        <Title>Sold out</Title>
-                        {product?.isSoldout ? (
-                          <Caption>Sold out</Caption>
-                        ) : (
-                          <Caption>On Stock</Caption>
-                        )}
-                      </div>
-                      <div className="flex justify-between py-3 border-b">
-                        <Title>verify</Title>
-                        {isverify ? (
-                          <Caption>Yes</Caption>
-                        ) : (
-                          <Caption>No</Caption>
-                        )}
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Width</span>
+                        <span className="font-medium text-gray-800">{width ?? "N/A"} cm</span>
                       </div>
                     </div>
-                    <div className="w-1/2 mt-7">
-                      <div className="h-[50vh] p-2 bg-green rounded-xl">
-                        <img
-                          src={image?.filePath}
-                          alt="product-image"
-                          className="w-full h-full object-cover rounded-xl"
-                        />
+
+                    <div className="space-y-3">
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Weight</span>
+                        <span className="font-medium text-gray-800">{weight ?? "N/A"} kg</span>
+                      </div>
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Medium Used</span>
+                        <span className="font-medium text-gray-800">{mediumused || "N/A"}</span>
+                      </div>
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Price</span>
+                        <span className="font-medium text-gray-800">${price}</span>
+                      </div>
+                      <div className="flex justify-between border-b py-2">
+                        <span className="text-gray-600">Sold</span>
+                        <span className="font-medium text-gray-800">{product?.isSoldout ? "Yes" : "No"}</span>
                       </div>
                     </div>
                   </div>
                 </div>
               )}
-              {activeTab === "auctionHistory" && (
-                <AuctionHistory history={history} />
-              )}
+
+              {activeTab === "auctionHistory" && <AuctionHistory history={history} /> }
+
               {activeTab === "reviews" && (
-                <div className="reviews-tab shadow-s3 p-8 rounded-md">
-                  <Title level={5} className=" font-normal">
-                    Reviews
-                  </Title>
-                  <hr className="my-5" />
-                  <Title level={6} className=" font-normal">
-                    Sorry, it's still a work in progress...
-                  </Title>
+                <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
+                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">Reviews</h3>
+                  <p className="text-gray-600">Sorry, it's still a work in progress...</p>
                 </div>
               )}
+
               {activeTab === "moreProducts" && (
-                <div className="more-products-tab shadow-s3 p-8 rounded-md">
-                 <Title level={6} className=" font-normal">
-                    Sorry, it's still a work in progress...
-                  </Title>
+                <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
+                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">More Products</h3>
+                  <p className="text-gray-600">Sorry, it's still a work in progress...</p>
                 </div>
               )}
             </div>
@@ -278,65 +282,3 @@ const ProductsDetails = () => {
 };
 
 export default ProductsDetails;
-
-export const AuctionHistory = ({ history }) => {
-  return (
-    <>
-      <div className="shadow-s1 p-8 rounded-lg">
-        <Title level={5} className=" font-normal">
-          Auction History
-        </Title>
-        <hr className="my-5" />
-        {history?.length === 0 ? (
-          <h2 className="m-2">No Bidding Record Found!</h2>
-        ) : (
-          <div className="relative overflow-x-auto rounded-lg">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-100">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Image
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Email
-                  </th>
-                  <th scope="col" className="px-6 py-5">
-                    Date
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Bid Amount(USD)
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {history?.map((item) => (
-                  <tr
-                    key={item._id}
-                    className="bg-white border-b hover:bg-gray-50"
-                  >
-                    <td className="px-6 py-4">
-                      <img
-                        className="w-10 h-10 rounded-xl"
-                        src={item?.user?.photo}
-                        alt=""
-                      />
-                    </td>
-                    <td className="px-6 py-4">{item?.user?.name}</td>
-                    <td className="px-6 py-4">{item?.user?.email}</td>
-                    <td className="px-6 py-4">
-                      {item?.createdAt ? formatDate(item?.createdAt) : "N/A"}
-                    </td>
-                    <td className="px-6 py-4">${item?.price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-    </>
-  );
-};

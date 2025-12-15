@@ -68,7 +68,7 @@ const Hero = () => {
           </div>
           <div className="bg-gradient-to-br from-emerald-600 to-[#216118] p-6 rounded-2xl shadow-xl text-white
                           transform hover:scale-105 transition duration-500 animate-float-x-delayed ml-10">
-            <div className="text-sm font-semibold opacity-90 mb-3">Your Balance</div>
+            <div className="text-sm font-semibold opacity-90 mb-3">Balance</div>
             <p className="text-3xl font-bold mb-4">$12,580</p>
             <div className="flex gap-3">
               <div className="w-8 h-6 bg-white/20 rounded opacity-60"></div>

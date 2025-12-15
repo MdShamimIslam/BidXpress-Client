@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Countdown() {
   const [timeLeft, setTimeLeft] = useState({
@@ -49,9 +49,9 @@ export default function Countdown() {
   }, [])
 
   return (
-    <div className="flex gap-8 text-center mt-3">
+    <div className="grid grid-cols-3 md:grid-cols-4 gap-4 text-center">
       {Object.entries(timeLeft).map(([unit, value]) => (
-        <div key={unit} className="p-5 px-10 shadow-md rounded-lg">
+        <div key={unit} className="p-5 px-10  bg-white shadow-sm rounded-2xl border border-gray-100">
           <h4 className="text-2xl font-bold">{value.toString().padStart(2, '0')}</h4>
           <p className="text-sm text-gray-600 capitalize">{unit}</p>
         </div>

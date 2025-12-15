@@ -4,7 +4,7 @@ import { trustList } from "../../utils/data";
 const Trust = () => {
   return (
     <section className="relative py-16 md:py-20 bg-gradient-to-b from-green-50 to-green-100 overflow-hidden">
-  {/* Floating background decorative circles shifted to the right */}
+
   <div className="absolute -top-32 right-1/4 w-96 h-96 bg-emerald-200 rounded-full filter blur-3xl opacity-20 animate-blob"></div>
   <div className="absolute -bottom-36 right-0 w-96 h-96 bg-green-300 rounded-full filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
 

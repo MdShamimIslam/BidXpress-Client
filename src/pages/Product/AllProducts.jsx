@@ -34,7 +34,7 @@ const AllProducts = () => {
       <section className="mt-28 md:mt-32 lg:mt-36 mb-16 lg:mb-20">
         <Container>
 
-          <div className="text-center mb-16">
+          <div className="text-center mb-12">
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900">
               Discover Our Entire <span className="text-[#2da515]">Collection</span> 
             </h2>
