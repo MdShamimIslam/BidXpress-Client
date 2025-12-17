@@ -1,37 +1,23 @@
 import { useEffect, useState } from "react";
-import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Caption, commonClassNameOfInput, Container } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../../redux/features/productSlice";
+import { getProduct, getProductReview } from "../../redux/features/productSlice";
 import { getBiddingHistory, placebid } from "../../redux/features/biddingSlice";
 import { toast } from "react-toastify";
 import Countdown from "../../components/CountDown/CountDown";
-import { AuctionHistory } from "./AuctionHistory";
 import { Helmet } from 'react-helmet-async';
+import Tab from "./Tab/Tab";
+import StarRating from "./Tab/StarRating";
 
 const ProductsDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [activeTab, setActiveTab] = useState("description");
   const [rate, setRate] = useState(0);
   const { history = [] } = useSelector((state) => state.bidding);
-  const { product, isLoading } = useSelector((state) => state.product);
-  const {
-    image,
-    title,
-    description,
-    isverify,
-    price,
-    category,
-    height,
-    lengthpic,
-    width,
-    weight,
-    mediumused,
-    isSoldout,
-  } = product || {};
+  const { product, productReviews, isLoading } = useSelector((state) => state.product);
+  const { image, title, isverify, price, isSoldout, rating, numReviews } = product || {};
 
   useEffect(() => {
     if (id) dispatch(getProduct(id));
@@ -51,6 +37,13 @@ const ProductsDetails = () => {
       setRate(Number(price || 0));
     }
   }, [history, price, product]);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getProductReview(id));
+    }
+  }, [dispatch, id]);
+  
 
   const incrementBid = () => {
     setRate((prevRate) => Number(prevRate) + 1);
@@ -76,11 +69,6 @@ const ProductsDetails = () => {
       return toast.error(error?.message || "Failed to place bid");
     }
   };
-
-  const handleTabClick = (tab) => {
-    setActiveTab(tab);
-  };
-
 
   if (isLoading) {
     return (
@@ -113,15 +101,11 @@ const ProductsDetails = () => {
               <div>
                 <h1 className="text-xl lg:text-2xl font-extrabold text-gray-800">{title}</h1>
                 <div className="mt-3 flex items-center gap-4">
-                  <div className="flex items-center gap-1 text-[#0b811b]">
-                    <IoIosStar size={18} />
-                    <IoIosStar size={18} />
-                    <IoIosStar size={18} />
-                    <IoIosStarHalf size={18} />
-                    <IoIosStarOutline size={18} />
-                  </div>
-                  <Caption className="text-gray-500">• 2 customer reviews</Caption>
-                </div>
+                    <StarRating rating={rating || 0} />
+                    <Caption className="text-gray-500">
+                      • {numReviews || 0}{" "}
+                      {numReviews === 1 ? "customer review" : "customer reviews"}
+                    </Caption>                </div>
               </div>
 
               <Caption className=" text-gray-500 border-b-2 border-emerald-600 inline-block">Auction ends</Caption>
@@ -185,96 +169,7 @@ const ProductsDetails = () => {
               </div>
             </div>
           </div>
-
-          {/* Tabs */}
-          <div className="mt-10 relative">
-            <div className="flex overflow-x-auto gap-3 pb-2">
-              {[
-                { key: "description", label: "Description" },
-                { key: "auctionHistory", label: "Auction History" },
-                { key: "reviews", label: `Reviews (${2})` },
-                { key: "moreProducts", label: "More Products" },
-              ].map((t) => (
-                <button
-                  key={t.key}
-                  onClick={() => handleTabClick(t.key)}
-                  className={`px-5 py-3 rounded-md text-sm font-medium transition ${
-                    activeTab === t.key ? "bg-emerald-600 text-white shadow" : "bg-white border border-gray-200 text-gray-700"
-                  }`}
-                >
-                  {t.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="mt-8">
-              {activeTab === "description" && (
-                <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
-                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">Description</h3>
-                  <p className="text-gray-700 leading-7">{description}</p>
-
-                  <hr className="my-6" />
-
-                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">Product Overview</h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="space-y-3">
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Category</span>
-                        <span className="font-medium text-gray-800">{category}</span>
-                      </div>
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Height</span>
-                        <span className="font-medium text-gray-800">{height ?? "N/A"} cm</span>
-                      </div>
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Length</span>
-                        <span className="font-medium text-gray-800">{lengthpic ?? "N/A"} cm</span>
-                      </div>
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Width</span>
-                        <span className="font-medium text-gray-800">{width ?? "N/A"} cm</span>
-                      </div>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Weight</span>
-                        <span className="font-medium text-gray-800">{weight ?? "N/A"} kg</span>
-                      </div>
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Medium Used</span>
-                        <span className="font-medium text-gray-800">{mediumused || "N/A"}</span>
-                      </div>
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Price</span>
-                        <span className="font-medium text-gray-800">${price}</span>
-                      </div>
-                      <div className="flex justify-between border-b py-2">
-                        <span className="text-gray-600">Sold</span>
-                        <span className="font-medium text-gray-800">{product?.isSoldout ? "Yes" : "No"}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeTab === "auctionHistory" && <AuctionHistory history={history} /> }
-
-              {activeTab === "reviews" && (
-                <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
-                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">Reviews</h3>
-                  <p className="text-gray-600">Sorry, it's still a work in progress...</p>
-                </div>
-              )}
-
-              {activeTab === "moreProducts" && (
-                <div className="bg-white rounded-xl p-8 border border-gray-100 shadow-sm">
-                  <h3 className="mb-3 text-lg md:text-xl font-bold text-gray-800">More Products</h3>
-                  <p className="text-gray-600">Sorry, it's still a work in progress...</p>
-                </div>
-              )}
-            </div>
-          </div>
+          <Tab {...{ product, history, reviews:productReviews }} />
         </Container>
       </section>
     </>

@@ -55,6 +55,19 @@ const deleteProductByAdmin = async (id) => {
   return res?.data;
 };
 
+// add product review
+export const addProuductReview = async ({id, data}) => {
+  const res = await axios.post(`${PRODUCT_URL}/review/${id}`, data, { withCredentials: true });
+  console.log(res?.data);
+  return res?.data;
+}
+
+// get product review
+export const getProductReview = async (id) => {
+  const res = await axios.get(`${PRODUCT_URL}/review/${id}`, { withCredentials: true });
+  return res?.data;
+}
+
 const productService = {
   createProduct,
   getAllProduct,
@@ -65,6 +78,8 @@ const productService = {
   updateProduct,
   updateProductByAdmin,
   deleteProductByAdmin,
+  addProuductReview,
+  getProductReview
 };
 
 export default productService;

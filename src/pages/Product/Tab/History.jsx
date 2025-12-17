@@ -1,6 +1,6 @@
-import { formatDate } from "../../utils/formateDate";
+import { formatDate } from "../../../utils/formateDate";
 
-export const AuctionHistory = ({ history }) => {
+export const History = ({ history }) => {
   return (
     <div className="bg-white shadow-sm rounded-2xl border border-gray-100 p-4 sm:p-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">

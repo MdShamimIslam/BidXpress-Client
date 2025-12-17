@@ -9,6 +9,7 @@ const initialState = {
   userProducts: [],
   wonedProducts: [],
   product: null,
+  productReviews: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -186,6 +187,46 @@ export const deleteProductByAdmin = createAsyncThunk(
   }
 );
 
+export const addProuductReview = createAsyncThunk(
+  "product/addProuductReview",
+  async ({id, data}, thunkAPI) => {
+    try {
+      const res = await productService.addProuductReview({id, data});
+      return res;
+    }
+    catch (error) {
+      const errorMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString() ||
+        error;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+)
+
+export const getProductReview = createAsyncThunk(
+  "product/getProductReview",
+  async (id, thunkAPI) => {
+    try {
+      const res = await productService.getProductReview(id);
+      return res;
+    }
+    catch (error) {
+      const errorMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString() ||
+        error;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+)
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -331,9 +372,42 @@ const productSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         toast.error("Failed to delete product");
-      });
+      })
+      // add product review
+      .addCase(addProuductReview.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addProuductReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.productReviews = action.payload;
+        toast.success("Review added successfully");
+      })
+     .addCase(addProuductReview.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error("Failed to add review");
+      })
+      // get product review
+      .addCase(getProductReview.pending, (state) => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addCase(getProductReview.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.productReviews = action.payload;
+      })
+     .addCase(getProductReview.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error("Failed to load reviews");
+      })
   },
 });
+
 export const { resetProductState } = productSlice.actions;
 export default productSlice.reducer;
 export const selectProduct = state => state.product?.product;
