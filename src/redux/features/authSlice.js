@@ -248,7 +248,6 @@ export const removeFavouriteProduct = createAsyncThunk(
   }
 );
 
-
 const authSlice = createSlice({
   name: "auth",
   initialState,

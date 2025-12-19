@@ -41,7 +41,6 @@ export default function Register() {
       return toast.error("Passwords do not match");
     }
     const userData = { name, email, password, role };
-    console.log(userData);
 
     dispatch(register(userData));
     
@@ -190,8 +189,6 @@ export default function Register() {
                 id="agreeTerms"
                 type="checkbox"
                 name="agreeTerms"
-                // checked={formData.agreeTerms}
-                // onChange={handleChange}
                 className="w-5 h-5 text-emerald-600 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 mt-0.5 cursor-pointer"
                 required
               />

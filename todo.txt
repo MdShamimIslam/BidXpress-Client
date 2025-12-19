@@ -1,2 +1,1 @@
-1. Feedback er functionality implement korte hobe
-3. Admin dashboard er redesign korte hobe
+1. Admin dashboard er redesign korte hobe

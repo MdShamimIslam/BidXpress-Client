@@ -18,14 +18,6 @@ export const User2 = "https://cdn-icons-png.flaticon.com/128/236/236832.png";
 export const User3 = "https://cdn-icons-png.flaticon.com/128/236/236831.png";
 export const User4 = "https://cdn-icons-png.flaticon.com/128/1154/1154448.png";
 
-// import images
-import man0 from "/images/testimonial/man0.jpg";
-import man1 from "/images/testimonial/man1.jpg";
-import man2 from "/images/testimonial/man2.jpg";
-import man3 from "/images/testimonial/man3.jpg";
-import man4 from "/images/testimonial/man4.jpg";
-import man5 from "/images/testimonial/man5.jpg";
-
 // footer section data start
 export const explores = [
   {
@@ -125,7 +117,6 @@ export const socials = [
   },
 ]
 // footer section data end
-
 
 export const menulists = (isLoggedIn) => {
   const baseMenu = [
@@ -618,56 +609,39 @@ export const servicesfeatures = [
   },
 ];
 
-export const testimonials = [
+export const values = [
   {
-    id: 1,
-    name: "Liam Thompson",
-    position: "Entrepreneur",
-    image: man0,
-    quote:
-      "BidXpress made finding rare collectibles effortless. The auction process was fast, smooth, and enjoyable.",
+    icon: "✅",
+    title: "Transparency",
+    desc: "Clear processes and open communication with zero hidden charges.",
   },
   {
-    id: 2,
-    name: "Olivia Martinez",
-    position: "Art Dealer",
-    image: man1,
-    quote:
-      "A reliable platform for auctions. I could bid confidently and win amazing items without any stress.",
+    icon: "🔒",
+    title: "Security",
+    desc: "Advanced protection, secure transactions, and encrypted user data.",
   },
   {
-    id: 3,
-    name: "Ethan Walker",
-    position: "Tech Investor",
-    image: man2,
-    quote:
-      "The bidding experience is seamless and transparent. I always know what’s happening and feel secure placing bids.",
+    icon: "🤝",
+    title: "Trust",
+    desc: "We build long-term relationships based on honesty and integrity.",
   },
   {
-    id: 4,
-    name: "Sophia Lewis",
-    position: "Collector",
-    image: man3,
-    quote:
-      "Finding unique products has never been easier. The platform is intuitive, fast, and full of exciting options.",
+    icon: "⚡",
+    title: "Performance",
+    desc: "Fast bidding, smooth navigation, and seamless user experience.",
   },
   {
-    id: 5,
-    name: "Noah Robinson",
-    position: "Startup Founder",
-    image: man4,
-    quote:
-      "BidXpress saves time and makes auctions enjoyable. The interface is clean, and customer support is top-notch.",
+    icon: "🎯",
+    title: "Accuracy",
+    desc: "Reliable results, precise bidding data, and real-time updates.",
   },
   {
-    id: 6,
-    name: "Ava Wilson",
-    position: "Designer",
-    image: man5,
-    quote:
-      "From browsing to winning, every step is smooth. It’s a trustworthy and innovative auction marketplace.",
+    icon: "🌱",
+    title: "Growth",
+    desc: "We help our users grow by providing better tools and better outcomes.",
   },
-];
+]
+
 
 
 

@@ -5,6 +5,8 @@ import TestimonialSlider from "./TestimonialSlider ";
 import WhyChooseUs from "./WhyChooseUs";
 import { Helmet } from 'react-helmet-async';
 import story from "/images/about/story.jpg";
+import FeedbackSection from "./FeedbackSection";
+import { values } from "../../utils/data";
 
 
 const About = () => {
@@ -14,7 +16,6 @@ const About = () => {
         <title>BidXpress | About Us</title>
       </Helmet>
       <main className="min-h-screen bg-gradient-to-b from-stone-50 to-white">
-        {/* Hero Section */}
         <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-50 via-white to-amber-50">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">About <span className="text-[#2da515]">BidXpress</span> </h1>
@@ -24,14 +25,12 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section */}
         <section className="bg-gradient-to-t from-emerald-50 to-amber-50">
           <AboutSection/>
         </section>
 
         <WhyChooseUs/>
 
-        {/* Values Section */}
         <section className="py-16 md:py-20 bg-gradient-to-r from-emerald-50 to-amber-50 border-y border-emerald-100">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center max-w-3xl mx-auto mb-16">
@@ -42,38 +41,7 @@ const About = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[
-                  {
-                    icon: "✅",
-                    title: "Transparency",
-                    desc: "Clear processes and open communication with zero hidden charges.",
-                  },
-                  {
-                    icon: "🔒",
-                    title: "Security",
-                    desc: "Advanced protection, secure transactions, and encrypted user data.",
-                  },
-                  {
-                    icon: "🤝",
-                    title: "Trust",
-                    desc: "We build long-term relationships based on honesty and integrity.",
-                  },
-                  {
-                    icon: "⚡",
-                    title: "Performance",
-                    desc: "Fast bidding, smooth navigation, and seamless user experience.",
-                  },
-                  {
-                    icon: "🎯",
-                    title: "Accuracy",
-                    desc: "Reliable results, precise bidding data, and real-time updates.",
-                  },
-                  {
-                    icon: "🌱",
-                    title: "Growth",
-                    desc: "We help our users grow by providing better tools and better outcomes.",
-                  },
-                ].map((value, idx) => (
+                {values?.map((value, idx) => (
                   <div
                     key={idx}
                     className="bg-white p-8 rounded-xl border-2 border-emerald-100 hover:border-emerald-400 transition text-center"
@@ -89,21 +57,18 @@ const About = () => {
           </div>
         </section>
 
-        {/* Story Section */}
         <Container>
           <section className="py-16 md:py-20 ">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* Left Image */}
+          
               <div className="w-full">
                 <img
                   src={story}
                   alt="Our story"
                   className="rounded-2xl shadow-lg object-cover w-full h-full"
                 />
-                {/* h-[250px] md:h-[300px] lg:h-[350px] */}
               </div>
 
-              {/* Right Content */}
               <div>
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">Our <span className="text-[#2da515]">Story</span> </h2>
                 <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
@@ -136,19 +101,7 @@ const About = () => {
 
         <TestimonialSlider/>
 
-       {/* feedback section */}
-        <section className="py-16 md:py-20 mb-[-50px] bg-gradient-to-br from-emerald-50 via-white to-amber-50">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">We're Always <span className="text-[#2da515]">Listening</span></h2>
-              <p className="md:text-lg text-gray-600 mb-8">
-                Your feedback drives our innovation. We're constantly evolving to meet your needs and exceed your
-                expectations.
-              </p>
-              <button className="bg-[#216118] hover:bg-emerald-900 text-white px-8 py-3 rounded-lg font-semibold transition">
-                Share Your Feedback
-              </button>
-            </div>
-        </section>
+       <FeedbackSection/>
         
       </main>
     </div>

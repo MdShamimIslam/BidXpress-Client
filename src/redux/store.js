@@ -4,6 +4,7 @@ import authReducer from "./features/authSlice";
 import categoryReducer from "./features/categorySlice";
 import productReducer from "./features/productSlice";
 import biddingReducer from "./features/biddingSlice";
+import feedbackReducer from "./features/feedbackSlice";
 
 export const store = configureStore({
     reducer:{
@@ -11,5 +12,6 @@ export const store = configureStore({
         category : categoryReducer,
         product : productReducer,
         bidding : biddingReducer,
+        feedback : feedbackReducer,
     }
 })

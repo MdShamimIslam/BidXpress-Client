@@ -25,13 +25,7 @@ const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isSuccess, isLoading, isError } = useSelector((state) => state.product);
-
   const { title, category, description, price, height, lengthpic, width, mediumused, weight } = product || {};
-
-  // TODO: ami jani na keno akhane eita use krsilam..tai comment kore rakhsi debug kore pore dekhte hobe keno dichilam
-  // useEffect(() => {
-  //   dispatch(getUserProfile());
-  // }, [dispatch]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
