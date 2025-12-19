@@ -19,13 +19,20 @@ const AllProducts = () => {
   useEffect(() => {
     const params = {
       ...(searchTitle && { title: searchTitle }),
-      ...(currentPage && limit && { page: currentPage, limit }),
+      ...(selectedCategory?.title !== "all" && {
+        category: selectedCategory.title,
+      }),
+      page: currentPage,
+      limit,
     };
+  
     dispatch(getAllProduct(params));
-  }, [dispatch, currentPage, limit, searchTitle]);
+  }, [dispatch, currentPage, limit, searchTitle, selectedCategory]);
 
-  const filteredProducts = selectedCategory?.title === "all" ? products : products?.filter((product) => product?.category === selectedCategory?.title);
-
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchTitle]);
+  
   return (
     <>
     <Helmet>
@@ -54,14 +61,14 @@ const AllProducts = () => {
 
           {isLoading ? (
             <p className="text-center text-primary text-xl font-semibold mt-24">Loading...</p>
-          ) : filteredProducts?.length === 0 ? (
+          ) : products?.length === 0 ? (
             <p className="text-center text-gray-600 font-semibold my-16">
               No product found.
             </p>
           ) : (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 my-10">
-                {filteredProducts?.map((item, index) => (
+                {products?.map((item, index) => (
                   <ProductCard item={item} key={index + 1} />
                 ))}
               </div>

@@ -1,4 +1,2 @@
 1. Feedback er functionality implement korte hobe
-2. product details page er get related more products er functionality korte hobe
 3. Admin dashboard er redesign korte hobe
-4. All Products a all category add korte hobe, sports category er issue ache next page a keno dekhay
