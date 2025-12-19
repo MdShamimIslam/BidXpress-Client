@@ -10,6 +10,7 @@ const initialState = {
   wonedProducts: [],
   product: null,
   productReviews: [],
+  relatedProducts: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -227,6 +228,26 @@ export const getProductReview = createAsyncThunk(
   }
 )
 
+export const getRelatedProducts = createAsyncThunk(
+  "product/getRelatedProducts",
+  async (id, thunkAPI) => {
+    try {
+      const res = await productService.getRelatedProducts(id);
+      return res;
+    }
+    catch (error) {
+      const errorMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString() ||
+        error;
+      return thunkAPI.rejectWithValue(errorMessage);
+    }
+  }
+)
+
 const productSlice = createSlice({
   name: "product",
   initialState,
@@ -404,6 +425,22 @@ const productSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         toast.error("Failed to load reviews");
+      })
+
+      // get related products
+     .addCase(getRelatedProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+     .addCase(getRelatedProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.relatedProducts = action.payload;
+      })
+    .addCase(getRelatedProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        toast.error("Failed to load related products");
       })
   },
 });

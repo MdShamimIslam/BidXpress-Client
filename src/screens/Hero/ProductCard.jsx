@@ -15,6 +15,8 @@ const ProductCard = ({ item = {} }) => {
     await dispatch(addFavouriteProduct(item._id));
   };
 
+  // console.log(item);
+
   return (
     <div className="relative bg-gradient-to-tr from-green-50 to-green-100 rounded-2xl shadow-lg overflow-hidden
                     transform hover:scale-105 hover:shadow-2xl transition-all duration-500">

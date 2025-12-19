@@ -5,7 +5,7 @@ import MoreProducts from "./MoreProducts";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 
-const Tab = ({product, history, reviews }) => {
+const Tab = ({product, history, reviews, relatedProducts }) => {
   const [activeTab, setActiveTab] = useState("description");
 
   return (
@@ -42,7 +42,7 @@ const Tab = ({product, history, reviews }) => {
                 </div>
             )}
 
-            {activeTab === "moreProducts" && <MoreProducts/> }
+            {activeTab === "moreProducts" && <MoreProducts {...{relatedProducts}}/> }
         </div>
   </div>
   )

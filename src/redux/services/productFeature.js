@@ -67,6 +67,11 @@ export const getProductReview = async (id) => {
   const res = await axios.get(`${PRODUCT_URL}/review/${id}`, { withCredentials: true });
   return res?.data;
 }
+// get related products
+export const getRelatedProducts = async (id) => {
+  const res = await axios.get(`${PRODUCT_URL}/related/${id}`, { withCredentials: true });
+  return res?.data;
+}
 
 const productService = {
   createProduct,
@@ -79,7 +84,8 @@ const productService = {
   updateProductByAdmin,
   deleteProductByAdmin,
   addProuductReview,
-  getProductReview
+  getProductReview,
+  getRelatedProducts
 };
 
 export default productService;

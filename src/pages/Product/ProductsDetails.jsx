@@ -3,7 +3,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { Caption, commonClassNameOfInput, Container } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProduct, getProductReview } from "../../redux/features/productSlice";
+import { getProduct, getProductReview, getRelatedProducts } from "../../redux/features/productSlice";
 import { getBiddingHistory, placebid } from "../../redux/features/biddingSlice";
 import { toast } from "react-toastify";
 import Countdown from "../../components/CountDown/CountDown";
@@ -16,7 +16,7 @@ const ProductsDetails = () => {
   const dispatch = useDispatch();
   const [rate, setRate] = useState(0);
   const { history = [] } = useSelector((state) => state.bidding);
-  const { product, productReviews, isLoading } = useSelector((state) => state.product);
+  const { product, productReviews, relatedProducts, isLoading } = useSelector((state) => state.product);
   const { image, title, isverify, price, isSoldout, rating, numReviews } = product || {};
 
   useEffect(() => {
@@ -41,6 +41,7 @@ const ProductsDetails = () => {
   useEffect(() => {
     if (id) {
       dispatch(getProductReview(id));
+      dispatch(getRelatedProducts(id));
     }
   }, [dispatch, id]);
   
@@ -88,27 +89,40 @@ const ProductsDetails = () => {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div className="space-y-4">
-              <div className="w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
-                <img
-                  src={image?.filePath}
-                  alt={title}
-                  className="w-full h-[260px] sm:h-[320px] md:h-[420px] object-cover"
-                />
+            <div className="w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200 relative">
+              <img
+                src={image?.filePath}
+                alt={title}
+                className="w-full h-[260px] sm:h-[320px] md:h-[420px] object-cover"
+              />
 
+              <div className="absolute bottom-4 right-4 flex items-center gap-2">
+                {isverify ? (
+                <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-700">
+                  ✔ Verified
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-700">
+                  ⏳ Pending Verification
+                </span>
+              )}
               </div>
+            </div>
             </div>
             <div className="space-y-6">
               <div>
                 <h1 className="text-xl lg:text-2xl font-extrabold text-gray-800">{title}</h1>
+              
                 <div className="mt-3 flex items-center gap-4">
                     <StarRating rating={rating || 0} />
-                    <Caption className="text-gray-500">
+                    <Caption className="text-gray-500 text-base">
                       • {numReviews || 0}{" "}
                       {numReviews === 1 ? "customer review" : "customer reviews"}
-                    </Caption>                </div>
+                    </Caption>
+                </div>
               </div>
 
-              <Caption className=" text-gray-500 border-b-2 border-emerald-600 inline-block">Auction ends</Caption>
+              <Caption className=" text-gray-500 border-b-2 border-emerald-600 inline-block text-base">Auction ends</Caption>
               <div className="mt-2 flex items-center gap-3">
                 <Countdown />
               </div>
@@ -169,7 +183,7 @@ const ProductsDetails = () => {
               </div>
             </div>
           </div>
-          <Tab {...{ product, history, reviews:productReviews }} />
+          <Tab {...{ product, history, reviews:productReviews, relatedProducts }} />
         </Container>
       </section>
     </>
