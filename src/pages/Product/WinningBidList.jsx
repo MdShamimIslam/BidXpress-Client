@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Title } from "../../components/common/Design";
 import { useEffect } from "react";
 import { getAllWonedProductOfUser } from "../../redux/features/productSlice";
 import Table from "../../components/Table/Table";
+import DashboardTitle from "../../components/common/DashboardTitle";
 
 const WinningBidList = () => {
   const dispatch = useDispatch();
@@ -21,9 +21,7 @@ const WinningBidList = () => {
     <>
       <section className="shadow-s1 p-8 rounded-lg">
         <div className="flex justify-between">
-          <Title level={5} className=" font-normal">
-            Winning Product Lists
-          </Title>
+          <DashboardTitle title="Winning Product Lists" />
         </div>
           <hr className="my-5" />
         <br />

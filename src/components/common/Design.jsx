@@ -72,17 +72,14 @@ const CustomNavLink = ({ href, className, isActive, children }) => {
 };
 
 const CustomLink = ({ className, children }) => {
-  const linkStyles = "text-[15px] font-medium text-gray-600 font-sans cursor-pointer list-none";
+  const linkStyles =   "text-[15px] md:text-[17px] font-medium cursor-pointer list-none transition-all hover:text-green";
 
   return <NavLink className={`${className} ${linkStyles}`}>{children}</NavLink>;
 };
 
 const Container = ({ children, className }) => {
   return (
-    <div 
-      // className={`${className} w-[85%] m-auto`}
-      className={`${className} w-[95%] sm:w-[90%] lg:w-[85%] m-auto`}
-    >
+    <div className={`${className} w-[95%] sm:w-[90%] lg:w-[85%] m-auto`} >
       {children}
     </div>
   )

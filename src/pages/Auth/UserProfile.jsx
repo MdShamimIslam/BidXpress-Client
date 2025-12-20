@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { commonClassNameOfInput, PrimaryButton, Caption } from "../../components/common/Design";
+import { commonClassNameOfInput, Caption } from "../../components/common/Design";
 import { useSelector, useDispatch } from "react-redux";
 import {updateUserProfile} from "../../redux/features/authSlice";
 import { useForm } from "react-hook-form";
@@ -25,11 +25,10 @@ const UserProfile = () => {
   };
 
   return (
-    <>
       <section className="shadow-s1 p-8 rounded-lg">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex items-center gap-5 mt-10">
-            <div className="w-1/2">
+          <div className="flex flex-col md:flex-row items-center gap-5">
+            <div className="w-full md:w-1/2">
               <Caption className="mb-2">Full Name </Caption>
               <input
                 type="text"
@@ -40,7 +39,7 @@ const UserProfile = () => {
                 name="name"
               />
             </div>
-            <div className="w-1/2 ">
+            <div className="w-full md:w-1/2 ">
               <Caption className="mb-2">Email</Caption>
               <input
                 type="email"
@@ -51,8 +50,8 @@ const UserProfile = () => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-5 mt-7">
-            <div className="w-1/2">
+          <div className="flex flex-col md:flex-row items-center gap-5 mt-7">
+            <div className="w-full md:w-1/2">
               <Caption className="mb-2">Role</Caption>
               <input
                 type="text"
@@ -61,7 +60,7 @@ const UserProfile = () => {
                 disabled
               />
             </div>
-            <div className="w-1/2">
+            <div className="w-full md:w-1/2">
               <Caption className="mb-2">Image URL</Caption>
               <input
                 type="file"
@@ -71,16 +70,15 @@ const UserProfile = () => {
               />
             </div>
           </div>
-          <PrimaryButton
+          <button
             type="submit"
-            className="rounded-lg mt-10"
+            className="rounded-lg mt-10 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-4 py-2 font-semibold"
             disabled={isLoading}
           >
             {isLoading ? "Updating..." : "Update Profile"}
-          </PrimaryButton>
+          </button>
         </form>
       </section>
-    </>
   );
 };
 

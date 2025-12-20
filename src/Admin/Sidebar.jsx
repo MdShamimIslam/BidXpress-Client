@@ -31,33 +31,32 @@ const Sidebar = () => {
     
   },[dispatch, isLoggedIn]);
 
-  // logout functionality
   const handleLogout = async () => {
     await dispatch(logout());
     dispatch(RESET());
     navigate("/");
   };
 
-  const className = "flex items-center gap-3 p-4 rounded-full";
+  const className =  "flex items-center gap-3 p-3 md:p-4 rounded-lg hover:bg-green_100";
 
   return (
     <>
     <Helmet>
     <title>BidXpress | Dashboard</title>
     </Helmet>
-      <section className="sidebar flex flex-col justify-between h-full">
-        <div className="profile flex items-center text-center justify-center gap-8 flex-col">
+    <section className="sidebar flex flex-col h-full">
+      <div className="profile flex flex-col items-center gap-4 text-center mb-6">
           <img
             src={user?.photo}
             alt="user-img"
-            className="w-32 h-32 rounded-full object-cover"
+            className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover"
           />
           <div>
-            <Title className="capitalize">{user?.name}</Title>
-            <Caption>{user?.email}</Caption>
+            <Title className="capitalize text-base md:text-lg">{user?.name}</Title>
+            <Caption className="text-sm break-all">{user?.email}</Caption>
           </div>
-        </div>
-        <div className="mt-8">
+      </div>
+      <div className="mt-6 space-y-1 overflow-y-auto lg:overflow-visible max-h-[65vh] lg:max-h-full pr-1">
           <CustomNavLink
             href="/dashboard"
             isActive={location.pathname === "/dashboard"}
@@ -66,7 +65,7 @@ const Sidebar = () => {
             <span>
               <CiGrid41 size={22} />
             </span>
-            <span>Dashbaord</span>
+            <span>Dashboard</span>
           </CustomNavLink>
 
           {(role === "seller" || role === "admin") && (
@@ -173,17 +172,20 @@ const Sidebar = () => {
             <span>Personal Profile</span>
           </CustomNavLink>
 
-          <button
-            onClick={handleLogout}
-            className="flex items-center font-semibold w-full gap-3 mt-4 bg-red-500 mb-3 hover:text-white p-4 rounded-lg text-white"
-          >
-            <span>
-              <IoIosLogOut size={22} />
-            </span>
-            <span>Log Out</span>
-          </button>
-        </div>
-      </section>
+          <div>
+            <button
+                onClick={handleLogout}
+                className="flex w-full items-center justify-center gap-3 mt-4 bg-red-500 hover:bg-red-600 p-3 md:p-4 rounded-lg text-white font-semibold"
+                 >
+                    <span>
+                      <IoIosLogOut size={22} />
+                    </span>
+                    <span>Log Out</span>
+            </button>
+          </div>
+          
+      </div>
+    </section>
     </>
   );
 };

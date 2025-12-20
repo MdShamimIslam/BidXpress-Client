@@ -21,24 +21,16 @@ const DashboardLayout = ({ children }) => {
 
 
   return (
-    <>
-      <div className="my-32">
-        <Container className="flex">
-          <div
-            className={`${
-              role === "admin"
-                ? "h-[110vh]"
-                : role === "seller"
-                ? "h-auto"
-                : "h-auto"
-            } w-[25%] shadow-s1 py-8 p-5 rounded-lg`}
-          >
+      <div className=" mt-28 lg:mt-32 mb-8 md:mb-0 lg:mb-12">
+        <Container className="flex flex-col lg:flex-row gap-6">
+          <div className={` w-full lg:w-[25%] ${role === "admin" ? "lg:min-h-[100vh]" : ""} shadow-s1 p-5 rounded-xl`}>
             <Sidebar role={role} />
           </div>
-          <div className="w-[85%] px-5 ml-10 rounded-lg">{children}</div>
+          <div className="w-full lg:w-[75%]">
+            {children}
+          </div>        
         </Container>
       </div>
-    </>
   );
 };
 

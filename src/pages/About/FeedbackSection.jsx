@@ -29,7 +29,7 @@ const FeedbackSection = () => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white w-full max-w-lg rounded-xl shadow-lg relative p-6">
+          <div className="bg-white w-full max-w-lg rounded-xl shadow-lg relative p-6 m-4 md:m-0">
             {/* Close Icon */}
             <button
               onClick={closeModal}

@@ -1,9 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getFavouriteProducts, removeFavouriteProduct } from "../../redux/features/authSlice";
-import { ProfileCard, Title } from "../../components/common/Design";
+import { ProfileCard } from "../../components/common/Design";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { toast } from "react-toastify";
+import DashboardTitle from "../../components/common/DashboardTitle";
+import Swal from 'sweetalert2'
+
 
 const FavouriteProductList = () => {
   const dispatch = useDispatch();
@@ -16,16 +19,27 @@ const FavouriteProductList = () => {
   if (isLoading) return <p>Loading...</p>;
 
   const handleRemoveFavouriteProduct = async (_id) => {
-    await dispatch(removeFavouriteProduct(_id));
-    toast.success("Product removed from favorites!");
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+  
+    if (result.isConfirmed) {
+      dispatch(removeFavouriteProduct(_id));
+      toast.success("Product removed from favorites!");
+    }
   };
+  
 
   return (
     <section className="shadow-s1 p-8 rounded-lg">
       <div className="flex justify-between">
-        <Title level={5} className=" font-normal">
-          Favourite Product Lists
-        </Title>
+        <DashboardTitle title="Favourite Product Lists" />
       </div>
       <hr className="my-5" />
       {favoriteProducts?.length === 0 ? <>
@@ -62,7 +76,7 @@ const FavouriteProductList = () => {
                   <td className="px-10 py-4">{index + 1}</td>
                   <td className="px-10 py-4 capitalize">{title?.length > 20 ? title?.slice(0, 20) + "..." : title}</td>
                   <td className="px-10 py-4">{category}</td>
-                  <td className="px-10 py-4 capitalize">{price}</td>
+                  <td className="px-10 py-4 capitalize">${price}</td>
                   <td className="px-10 py-4">
                     <ProfileCard>
                       <img
@@ -72,7 +86,7 @@ const FavouriteProductList = () => {
                       />
                     </ProfileCard>
                   </td>
-                  <td className="py-4 flex justify-end px-8">
+                  <td className="pt-8 lg:pt-6 flex justify-end px-8">
                     <button
                       onClick={() => handleRemoveFavouriteProduct(_id)}
                       className="font-medium text-red-500"

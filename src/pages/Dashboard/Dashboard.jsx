@@ -35,11 +35,11 @@ const Dashboard = () => {
   return (
     <>
       <section>
-        <div className="shadow-s1 p-8 rounded-lg mb-12">
+        <div className="shadow-s1 p-8 rounded-lg">
           {role === "buyer" && (
             <div className="py-8 text-center mt-8">
               
-              <h2 className="text-lg md:text-3xl font-semibold text-gray-800 mb-3">
+              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">
                 Welcome to BidXpress 🚀
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed md:text-lg">
