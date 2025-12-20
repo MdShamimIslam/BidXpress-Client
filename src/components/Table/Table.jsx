@@ -17,10 +17,10 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
                 Commission
               </th>
               <th scope="col" className="px-6 py-3">
-                Original Price
+                 Price
               </th>
               <th scope="col" className="px-6 py-3">
-                Current Bidding(USD)
+                Current Bidding
               </th>
               <th scope="col" className="px-6 py-3">
                 Image
@@ -55,8 +55,8 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
                 <tr key={_id} className="bg-white border-b hover:bg-gray-50">
                   <td className="px-6 py-4">{title?.length > 20 ? title?.slice(0, 20) + "..." : title}</td>
                   <td className="px-6 py-4">{commission}%</td>
-                  <td className="px-6 py-4">{price}</td>
-                  <td className="px-6 py-4">{biddingPrice}</td>
+                  <td className="px-6 py-4">${price}</td>
+                  <td className="px-6 py-4">${biddingPrice}</td>
                   <td className="px-6 py-4">
                     <img
                       className="w-10 h-10 rounded-md"
@@ -106,7 +106,7 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
                           </td>
                         </>
                       )}
-                      <td className="px-6 py-4 text-center flex items-center gap-3 mt-1">
+                      <td className="px-6 py-4 text-center flex items-center gap-3 mt-4 lg:mt-2">
                         {isAdmin ? (
                           <NavLink
                             to={`/product/admin/update/${_id}`}

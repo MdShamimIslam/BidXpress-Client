@@ -1,18 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-  Caption,
-  commonClassNameOfInput,
-  PrimaryButton,
-  Title,
-} from "../../components/common/Design";
+import {Caption,commonClassNameOfInput } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  getAllProduct,
-  getProduct,
-  selectProduct,
-  updateProduct,
-} from "../../redux/features/productSlice";
+import { getAllProduct, getProduct, selectProduct, updateProduct } from "../../redux/features/productSlice";
+import DashboardTitle from "../../components/common/DashboardTitle";
 
 const ProductEdit = () => {
   const { id } = useParams();
@@ -75,13 +66,11 @@ const ProductEdit = () => {
   return (
     <>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
-        <Title level={5} className=" font-normal mb-5">
-          Update Product
-        </Title>
+        <DashboardTitle title="Update Product" />
         <hr className="my-5" />
         <form onSubmit={handleSubmit}>
           <div className="w-full">
-            <Caption className="mb-2">Title *</Caption>
+            <Caption className="mb-2 text-base">Title *</Caption>
             <input
               value={product?.title || ""}
               onChange={handleInputChange}
@@ -93,9 +82,9 @@ const ProductEdit = () => {
             />
           </div>
 
-          <div className="flex items-center gap-5 my-4">
-            <div className="w-1/2">
-              <Caption className="mb-2">Height (cm) </Caption>
+          <div className="flex flex-col md:flex-row items-center gap-5 my-4">
+            <div className="w-full md:w-1/2">
+              <Caption className="mb-2 text-base">Height (cm) </Caption>
               <input
                 value={product?.height || ""}
                 onChange={handleInputChange}
@@ -105,8 +94,8 @@ const ProductEdit = () => {
                 className={`${commonClassNameOfInput}`}
               />
             </div>
-            <div className="w-1/2">
-              <Caption className="mb-2">Length (cm) </Caption>
+            <div className="w-full md:w-1/2">
+              <Caption className="mb-2 text-base">Length (cm) </Caption>
               <input
                 value={product?.lengthpic || ""}
                 onChange={handleInputChange}
@@ -117,9 +106,9 @@ const ProductEdit = () => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-5 my-4">
-            <div className="w-1/2">
-              <Caption className="mb-2">Width (cm) </Caption>
+          <div className="flex flex-col md:flex-row items-center gap-5 my-4">
+            <div className="w-full md:w-1/2">
+              <Caption className="mb-2 text-base">Width (cm) </Caption>
               <input
                 value={product?.width || ""}
                 onChange={handleInputChange}
@@ -129,11 +118,11 @@ const ProductEdit = () => {
                 className={`${commonClassNameOfInput}`}
               />
             </div>
-            <div className="w-1/2">
-              <Caption className="mb-2">
-                Medium used
-                <span className=" text-purple-400 italic">
-                  (Typically, pencil, ink, charcoal or other)
+            <div className="w-full md:w-1/2">
+              <Caption className="mb-2 text-base">
+                Medium used {""}
+                <span className="italic">
+                  (Typically, pencil or other)
                 </span>
               </Caption>
               <input
@@ -146,11 +135,11 @@ const ProductEdit = () => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-5 mt-4">
-            <div className="w-1/2">
-              <Caption className="mb-2">
-                Weight of piece
-                <span className=" text-purple-400 italic">(kg)</span>
+          <div className="flex flex-col md:flex-row items-center gap-5 mt-4">
+            <div className="w-full md:w-1/2">
+              <Caption className="mb-2 text-base">
+                Weight of piece {""}
+                <span className=" italic">(kg)</span>
               </Caption>
               <input
                 value={product?.weight || ""}
@@ -161,8 +150,8 @@ const ProductEdit = () => {
                 className={`${commonClassNameOfInput}`}
               />
             </div>
-            <div className="w-1/2">
-              <Caption className="mb-2">Price Range*</Caption>
+            <div className="w-full md:w-1/2">
+              <Caption className="mb-2 text-base">Price Range*</Caption>
               <input
                 value={product?.price || ""}
                 onChange={handleInputChange}
@@ -176,7 +165,7 @@ const ProductEdit = () => {
           </div>
 
           <div>
-            <Caption className="mb-2">Description *</Caption>
+            <Caption className="mb-2 mt-4 text-base">Description *</Caption>
             <textarea
               value={product?.description || ""}
               onChange={handleInputChange}
@@ -187,7 +176,7 @@ const ProductEdit = () => {
             ></textarea>
           </div>
           <div>
-            <Caption className="mb-2">Image </Caption>
+            <Caption className="mb-2 mt-2 text-base">Image </Caption>
             <input
               onChange={(e) => handleImageChange(e)}
               type="file"
@@ -206,9 +195,13 @@ const ProductEdit = () => {
               <p className="mt-2">No image set for this product.</p>
             )}
           </div>
-          <PrimaryButton type="submit" className="rounded-lg my-5">
+          <button
+            type="submit"
+            className="rounded-lg transition-transform hover:scale-105 mt-6 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-8 py-2 font-semibold"
+            disabled={isLoading}
+          >
             {isLoading ? "Processing..." : "Update Now"}
-          </PrimaryButton>
+          </button>
         </form>
       </section>
     </>

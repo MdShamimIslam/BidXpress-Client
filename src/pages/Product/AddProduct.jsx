@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import CategoryDropDown from "../../components/common/CategoryDropDown";
-import { Caption, PrimaryButton, Title, commonClassNameOfInput } from "../../components/common/Design";
+import { Caption, commonClassNameOfInput } from "../../components/common/Design";
 import { createProduct, resetProductState } from "../../redux/features/productSlice";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import DashboardTitle from "../../components/common/DashboardTitle";
 
 const initialState = {
   title: "",
@@ -72,13 +73,11 @@ const AddProduct = () => {
   return (
     <>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
-        <Title level={5} className="font-normal mb-5">
-          Create Product
-        </Title>
+        <DashboardTitle title="Create Product" />
         <hr className="my-5" />
         <form onSubmit={handleSubmit}>
           <div className="w-full">
-            <Caption className="mb-2">Title *</Caption>
+            <Caption className="mb-2 text-base">Title *</Caption>
             <input
               value={title}
               onChange={handleInputChange}
@@ -90,7 +89,7 @@ const AddProduct = () => {
             />
           </div>
           <div className="py-5">
-            <Caption className="mb-2">Category *</Caption>
+            <Caption className="mb-2 text-base">Category *</Caption>
             <CategoryDropDown
               value={category}
               onChange={(selectCategory) =>
@@ -101,9 +100,9 @@ const AddProduct = () => {
           </div>
           {category && (
             <>
-              <div className="flex items-center gap-5 my-4">
-                <div className="w-1/2">
-                  <Caption className="mb-2">Height (cm) </Caption>
+              <div className="flex flex-col md:flex-row items-center gap-5 my-4">
+                <div className="w-full md:w-1/2">
+                  <Caption className="mb-2 text-base">Height (cm) </Caption>
                   <input
                     value={height}
                     onChange={handleInputChange}
@@ -113,8 +112,8 @@ const AddProduct = () => {
                     className={`${commonClassNameOfInput}`}
                   />
                 </div>
-                <div className="w-1/2">
-                  <Caption className="mb-2">Length (cm) </Caption>
+                <div className="w-full md:w-1/2">
+                  <Caption className="mb-2 text-base">Length (cm) </Caption>
                   <input
                     value={lengthpic}
                     onChange={handleInputChange}
@@ -125,9 +124,9 @@ const AddProduct = () => {
                   />
                 </div>
               </div>
-              <div className="flex items-center gap-5 my-4">
-                <div className="w-1/2">
-                  <Caption className="mb-2">Width (cm) </Caption>
+              <div className="flex flex-col md:flex-row items-center gap-5 my-4">
+                <div className="w-full md:w-1/2">
+                  <Caption className="mb-2 text-base">Width (cm) </Caption>
                   <input
                     value={width}
                     onChange={handleInputChange}
@@ -137,11 +136,11 @@ const AddProduct = () => {
                     className={`${commonClassNameOfInput}`}
                   />
                 </div>
-                <div className="w-1/2">
-                  <Caption className="mb-2">
+                <div className="w-full md:w-1/2">
+                  <Caption className="mb-2 text-base">
                     Medium used
-                    <span className=" text-purple-400 italic">
-                      (Typically, Plastic, Memory Foam, Metal or other)
+                    <span className=" italic">
+                      (Typically, Plastic or other)
                     </span>
                   </Caption>
                   <input
@@ -154,11 +153,11 @@ const AddProduct = () => {
                   />
                 </div>
               </div>
-              <div className="flex items-center gap-5 mt-4">
-                <div className="w-1/2">
-                  <Caption className="mb-2">
+              <div className="flex flex-col md:flex-row items-center gap-5 mt-4">
+                <div className="w-full md:w-1/2">
+                  <Caption className="mb-2 text-base">
                     Weight of piece
-                    <span className=" text-purple-400 italic">(kg)</span>
+                    <span className="  italic">(kg)</span>
                   </Caption>
                   <input
                     value={weight}
@@ -169,8 +168,8 @@ const AddProduct = () => {
                     className={`${commonClassNameOfInput}`}
                   />
                 </div>
-                <div className="w-1/2">
-                  <Caption className="mb-2">Price Range(USD)*</Caption>
+                <div className="w-full md:w-1/2">
+                  <Caption className="mb-2 text-base">Price Range(USD)*</Caption>
                   <input
                     value={price}
                     onChange={handleInputChange}
@@ -186,7 +185,7 @@ const AddProduct = () => {
           )}
 
           <div>
-            <Caption className="mb-2">Description *</Caption>
+            <Caption className="mb-2 mt-4 text-base">Description *</Caption>
             <textarea
               value={description}
               onChange={handleInputChange}
@@ -197,7 +196,7 @@ const AddProduct = () => {
             ></textarea>
           </div>
           <div>
-            <Caption className="mb-2">Image </Caption>
+            <Caption className="mb-2 mt-2 text-base">Image </Caption>
             <input
               onChange={(e) => handleImageChange(e)}
               type="file"
@@ -213,12 +212,16 @@ const AddProduct = () => {
                 />
               </div>
             ) : (
-              <p className="mt-2">No image set for this product.</p>
+              <p className="mt-4 text-gray_100">No image set for this product.</p>
             )}
           </div>
-          <PrimaryButton type="submit" className="rounded-lg my-5">
+          <button
+            type="submit"
+            className="rounded-lg transition-transform hover:scale-105 mt-6 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-8 py-2 font-semibold"
+            disabled={isLoading}
+          >
             {isLoading ? "Processing..." : "Create Now"}
-          </PrimaryButton>
+          </button>
         </form>
       </section>
     </>

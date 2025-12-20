@@ -86,7 +86,7 @@ const FavouriteProductList = () => {
                       />
                     </ProfileCard>
                   </td>
-                  <td className="pt-8 lg:pt-6 flex justify-end px-8">
+                  <td className="px-6 py-4 text-center flex justify-end items-center gap-3 mt-4 lg:mt-2">
                     <button
                       onClick={() => handleRemoveFavouriteProduct(_id)}
                       className="font-medium text-red-500"

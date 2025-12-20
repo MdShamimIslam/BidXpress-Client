@@ -3,6 +3,7 @@ import { Title } from "../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getIncome } from "../redux/features/authSlice";
+import DashboardTitle from "../components/common/DashboardTitle";
 
 const Income = () => {
   const dispatch = useDispatch();
@@ -16,14 +17,13 @@ const Income = () => {
     <>
     <section>
       <div className="shadow-s1 p-8 rounded-lg  mb-12">
-        <Title level={5} className=" font-normal">
-          Commission Income
-        </Title>
+        <DashboardTitle title="Commission Income" />
+        <hr className="my-5" />
 
         <div className="shadow-s3 py-16 my-16 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
           <CgDollar size={80} className="text-green" />
           <div>
-            <Title level={1}>${income?.commissionBalance?.toFixed(2)}</Title>
+            <Title level={3}>${income?.commissionBalance?.toFixed(2)}</Title>
             <Title>Total Income</Title>
           </div>
         </div>

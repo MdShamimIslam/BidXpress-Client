@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Title } from "../../components/common/Design";
 import Table from "../../components/Table/Table";
 import { useEffect } from "react";
 import { deleteProductByAdmin, getAllProduct } from "../../redux/features/productSlice";
+import DashboardTitle from "../../components/common/DashboardTitle";
+import Swal from "sweetalert2";
 
 const AdminProductList = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,23 @@ const AdminProductList = () => {
       dispatch(getAllProduct());
   }, [dispatch]);
 
-  const handleDeleteProduct = async(id) => {
-    await dispatch(deleteProductByAdmin(id));
-    await dispatch(getAllProduct());
- 
-   };
+
+   const handleDeleteProduct = async (id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+  
+    if (result.isConfirmed) {
+      await dispatch(deleteProductByAdmin(id));
+      await dispatch(getAllProduct());
+    }
+  };
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -33,9 +46,7 @@ const AdminProductList = () => {
     <>
       <section className="shadow-s1 p-8 rounded-lg">
         <div className="flex justify-between">
-          <Title level={5} className=" font-normal">
-            Product Lists
-          </Title>
+          <DashboardTitle title="Product Lists" />
         </div>
         <hr className="my-5" />
         <Table products={products} isAdmin={true} handleDeleteProduct = {handleDeleteProduct} />

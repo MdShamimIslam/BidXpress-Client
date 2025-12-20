@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { getAllUser, getUserIncome, getUserProfile } from "../../redux/features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct, getAllProductOfUser, getAllWonedProductOfUser } from "../../redux/features/productSlice";
+import DashboardTitle from "../../components/common/DashboardTitle";
 
 const Dashboard = () => {
   const { income, user, users } = useSelector((state) => state.auth);
@@ -60,29 +61,27 @@ const Dashboard = () => {
 
           {(role === "admin" || role === "seller") && (
             <>
-            <Title level={4} className="font-semibold">
-            My Activity
-          </Title>
-          <hr className="my-5" />
-            <div className="grid grid-cols-1  lg:grid-cols-3 gap-8 mt-8">
+            <DashboardTitle title="My Activity" />
+            <hr className="my-5" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                 <BsCashCoin size={80} className="text-green" />
                 <div>
-                  <Title level={1}>{income?.balance}</Title>
+                  <Title level={3}>${income?.balance}</Title>
                   <Title>Balance</Title>
                 </div>
               </div>
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                 <CiMedal size={80} className="text-green" />
                 <div>
-                  <Title level={1}>{wonedProducts?.length}</Title>
+                  <Title level={3}>{wonedProducts?.length}</Title>
                   <Title>Items Won</Title>
                 </div>
               </div>
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                 <GiBarbedStar size={80} className="text-green" />
                 <div>
-                  <Title level={1}>{userProducts?.length}</Title>
+                  <Title level={3}>{userProducts?.length}</Title>
                   <Title>Your Products </Title>
                 </div>
               </div>
@@ -91,21 +90,21 @@ const Dashboard = () => {
                   <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                     <MdOutlineCategory size={80} className="text-green" />
                     <div>
-                      <Title level={1}>{products?.length}</Title>
+                      <Title level={3}>{products?.length}</Title>
                       <Title>All Products </Title>
                     </div>
                   </div>
                   <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                     <HiOutlineUsers size={80} className="text-green" />
                     <div>
-                      <Title level={1}>{users?.length}</Title>
+                      <Title level={3}>{users?.length}</Title>
                       <Title>All Users </Title>
                     </div>
                   </div>
                 </>
               )}
             </div>
-            </>
+          </>
           )}
         </div>
       </section>

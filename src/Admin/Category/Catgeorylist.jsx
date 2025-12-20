@@ -1,19 +1,14 @@
-import {
-  Title,
-  PrimaryButton,
-  ProfileCard,
-} from "../../components/common/Design";
+import { ProfileCard } from "../../components/common/Design";
 import { AiOutlinePlus } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  deleteCategory,
-  getAllCategory,
-} from "../../redux/features/categorySlice";
+import { deleteCategory,getAllCategory } from "../../redux/features/categorySlice";
 import { formatDate } from "../../utils/formateDate";
+import DashboardTitle from "../../components/common/DashboardTitle";
+import Swal from "sweetalert2";
 
 const Catgeorylist = () => {
   const dispatch = useDispatch();
@@ -23,22 +18,33 @@ const Catgeorylist = () => {
     dispatch(getAllCategory());
   }, [dispatch, categories]);
 
-  const handleCategoryDelete = (_id) => {
-    dispatch(deleteCategory(_id));
+
+  const handleCategoryDelete = async (_id) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+  
+    if (result.isConfirmed) {
+      dispatch(deleteCategory(_id));
+    }
   };
 
   return (
     <>
       <section className="shadow-s1 p-8 rounded-lg">
-        <div className="flex justify-between">
-          <Title level={5} className=" font-normal">
-            Category Lists
-          </Title>
+        <div className="flex justify-between items-center">
+          <DashboardTitle title="Category Lists" />
           <NavLink to="/category/create">
-            <PrimaryButton className="flex items-center gap-3 px-5 py-2 text-sm rounded-md transition-transform hover:scale-105">
+          <button className="flex items-center gap-1 rounded-lg transition-transform hover:scale-105 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-4 py-2 font-semibold">
               <AiOutlinePlus size={20} />
               <span>Create Category</span>
-            </PrimaryButton>
+            </button>
           </NavLink>
         </div>
         <hr className="my-5" />
@@ -93,7 +99,7 @@ const Catgeorylist = () => {
                       </td>
                       <td className="px-6 py-4">{title}</td>
                       <td className="px-6 py-4">{formatDate(createdAt)}</td>
-                      <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-1">
+                      <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-4 lg:mt-2">
                         <NavLink
                           to={`/category/update/${_id}`}
                           className="font-medium text-green"

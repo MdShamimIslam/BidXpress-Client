@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {PrimaryButton, Caption, Title, commonClassNameOfInput } from "../../components/common/Design";
+import { Caption, commonClassNameOfInput } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProductByAdmin } from "../../redux/features/productSlice";
+import DashboardTitle from "../../components/common/DashboardTitle";
 
 const UpdateProductByAdmin = () => {
   const { id } = useParams();
@@ -14,10 +15,9 @@ const UpdateProductByAdmin = () => {
 
   const save = async (e) => {
     e.preventDefault();
+    
     const data = { commission };
-
     await dispatch(updateProductByAdmin({ id, data }));
-    // await dispatch(getAllProduct());
 
     if (isSuccess) {
       navigate("/product/admin");
@@ -27,14 +27,12 @@ const UpdateProductByAdmin = () => {
   return (
     <>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
-        <Title level={5} className=" font-normal mb-5">
-          Update Product
-        </Title>
+        <DashboardTitle title="Update Product" />
         <hr className="my-5" />
         <div className="create-product">
           <form onSubmit={save}>
             <div className="w-full">
-              <Caption className="mb-2">Commission *</Caption>
+              <Caption className="mb-2 text-base">Commission *</Caption>
               <input
                 value={commission}
                 onChange={(e) => setCommission(e.target.value)}
@@ -43,9 +41,13 @@ const UpdateProductByAdmin = () => {
                 className={`${commonClassNameOfInput}`}
               />
             </div>
-            <PrimaryButton type="submit" className="rounded-lg my-5">
+            <button
+            type="submit"
+            className="rounded-lg transition-transform hover:scale-105 mt-6 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-8 py-2 font-semibold"
+            disabled={isLoading}
+          >
              {isLoading ? "Processing..." : "Update Now"}
-            </PrimaryButton>
+          </button>
           </form>
         </div>
       </section>
