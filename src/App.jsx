@@ -26,6 +26,7 @@ import FavouriteProductList from "./pages/Product/FavouriteProductList";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Services from "./pages/Services/Services";
+import Checkout from "./pages/Product/Checkout";
 
 function App() {
 
@@ -215,6 +216,18 @@ function App() {
                 <Layout>
                   <DashboardLayout>
                     <WinningBidList />
+                  </DashboardLayout>
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/checkout/:productId"
+            element={
+              <PrivateRoute allowedRoles={["buyer","admin"]}>
+                <Layout>
+                  <DashboardLayout>
+                    <Checkout/>
                   </DashboardLayout>
                 </Layout>
               </PrivateRoute>

@@ -58,7 +58,7 @@ export default function AboutSection() {
             ))}
           </div>
 
-          <button className="bg-[#216118] hover:bg-emerald-900 font-semibold text-white px-4 py-2 md:px-6 md:py-3 rounded-lg transition duration-300">
+          <button className="bg-[#216118] hover:bg-emerald-900 font-semibold text-white px-6 py-2 md:px-10 md:py-3 rounded-lg transition duration-300">
             More About
           </button>
         </div>

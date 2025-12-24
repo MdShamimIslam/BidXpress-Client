@@ -6,6 +6,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import DashboardTitle from "../../components/common/DashboardTitle";
+import { Helmet } from "react-helmet-async";
 
 const initialState = {
   title: "",
@@ -72,6 +73,9 @@ const AddProduct = () => {
 
   return (
     <>
+      <Helmet>
+          <title>BidXpress | Create Product</title>
+      </Helmet>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
         <DashboardTitle title="Create Product" />
         <hr className="my-5" />

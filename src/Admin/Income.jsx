@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getIncome } from "../redux/features/authSlice";
 import DashboardTitle from "../components/common/DashboardTitle";
+import { Helmet } from "react-helmet-async";
 
 const Income = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,9 @@ const Income = () => {
 
   return (
     <>
+    <Helmet>
+        <title>BidXpress | Commission Income</title>
+      </Helmet>
     <section>
       <div className="shadow-s1 p-8 rounded-lg  mb-12">
         <DashboardTitle title="Commission Income" />

@@ -198,7 +198,7 @@ export default function Services() {
             <p className="md:text-lg  mb-8">
               Join thousands of satisfied users and start your bidding journey today.
             </p>
-            <button className="bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white px-6 py-3 rounded-lg font-bold  hover:bg-emerald-50 transition shadow-lg hover:shadow-xl">
+            <button className="bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white px-12 py-3 rounded-lg font-bold  hover:bg-emerald-50 transition shadow-lg hover:shadow-xl">
               Join Now
             </button>
           </div>

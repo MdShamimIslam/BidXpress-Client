@@ -41,9 +41,11 @@ const Sidebar = () => {
 
   return (
     <>
-    <Helmet>
-    <title>BidXpress | Dashboard</title>
-    </Helmet>
+    {location?.pathname === "/dashboard" && <Helmet>
+        <title>BidXpress | Dashboard</title>
+      </Helmet> 
+    }
+    
     <section className="sidebar flex flex-col h-full">
       <div className="profile flex flex-col items-center gap-4 text-center mb-6">
           <img

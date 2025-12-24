@@ -7,6 +7,7 @@ import Table from "../../components/Table/Table";
 import { sellProductByUser } from "../../redux/features/biddingSlice";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -46,30 +47,33 @@ const ProductList = () => {
 
   return (
     <>
-    <section className="shadow-s1 p-8 rounded-lg">
-        <DashboardTitle title="Product Lists" />
+      <Helmet>
+          <title>BidXpress | My Products</title>
+      </Helmet>
+      <section className="shadow-s1 p-8 rounded-lg">
+          <DashboardTitle title="Product Lists" />
+          <hr className="my-5" />
+        {
+          userProducts?.length === 0 ?  <h1 className="mt-12 mb-8 text-lg md:text-xl text-gray-700 text-center">No products found.</h1>: <>
+          <div className="flex justify-end">
+          
+          <NavLink to="/add">
+            <button className="flex items-center gap-1 rounded-lg transition-transform hover:scale-105 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-4 py-2 font-semibold">
+              <AiOutlinePlus size={20} />
+              <span>Create Product</span>
+            </button>
+          </NavLink>
+        </div>
         <hr className="my-5" />
-      {
-        userProducts?.length === 0 ?  <h1 className="mt-12 mb-8 text-lg md:text-xl text-gray-700 text-center">No products found.</h1>: <>
-        <div className="flex justify-end">
+        <Table 
+          products={userProducts}
+          handleDeleteProduct={handleDeleteProduct}
+          handleSellProduct={handleSellProduct}
+        />
+          </>
+        }
         
-        <NavLink to="/add">
-          <button className="flex items-center gap-1 rounded-lg transition-transform hover:scale-105 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-4 py-2 font-semibold">
-            <AiOutlinePlus size={20} />
-            <span>Create Product</span>
-          </button>
-        </NavLink>
-      </div>
-      <hr className="my-5" />
-      <Table 
-        products={userProducts}
-        handleDeleteProduct={handleDeleteProduct}
-        handleSellProduct={handleSellProduct}
-      />
-        </>
-      }
-      
-    </section>
+      </section>
   </>
   )
 }

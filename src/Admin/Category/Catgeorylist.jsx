@@ -9,6 +9,7 @@ import { deleteCategory,getAllCategory } from "../../redux/features/categorySlic
 import { formatDate } from "../../utils/formateDate";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Catgeorylist = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Catgeorylist = () => {
 
   useEffect(() => {
     dispatch(getAllCategory());
-  }, [dispatch, categories]);
+  }, [dispatch]);
 
 
   const handleCategoryDelete = async (_id) => {
@@ -37,6 +38,9 @@ const Catgeorylist = () => {
 
   return (
     <>
+      <Helmet>
+        <title>BidXpress | Category List</title>
+      </Helmet>
       <section className="shadow-s1 p-8 rounded-lg">
         <div className="flex justify-between items-center">
           <DashboardTitle title="Category Lists" />
@@ -73,7 +77,7 @@ const Catgeorylist = () => {
               <tbody>
                 {categories?.map((category, index) => {
                   const { _id, title, user, createdAt } = category;
-                  const { name, photo, email } = user;
+                  const { name, photo, email } = user || {};
                   return (
                     <tr
                       key={_id}

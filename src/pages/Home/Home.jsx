@@ -11,9 +11,9 @@ import { Helmet } from 'react-helmet-async';
 const Home = () => {
   return (
     <>
-    <Helmet>
-    <title>BidXpress | Home</title>
-    </Helmet>
+      <Helmet>
+        <title>BidXpress | Home</title>
+      </Helmet>
       <Hero />
       <Stats/>
       <Categories/>

@@ -1,1 +1,4 @@
-1. Admin dashboard er redesign korte hobe
+1. Kothay payment kora jay seta ber kore implement korte hobe
+2. Server & client side a real url dite hobe and deploy korte hobe
+3. Mailchamp and cloudinary explore korte hobe
+4. isSoltout niye aktu explore korte hobe valo kore karon eta tokhoni true korte hobe jokhon payment hobe tar age na

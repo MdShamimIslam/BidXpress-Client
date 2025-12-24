@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { getAllWonedProductOfUser } from "../../redux/features/productSlice";
 import Table from "../../components/Table/Table";
 import DashboardTitle from "../../components/common/DashboardTitle";
+import { Helmet } from "react-helmet-async";
 
 const WinningBidList = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ const WinningBidList = () => {
 
   return (
     <>
+      <Helmet>
+        <title>BidXpress | Winning Products</title>
+      </Helmet>
       <section className="shadow-s1 p-8 rounded-lg">
         <div className="flex justify-between">
           <DashboardTitle title="Winning Product Lists" />

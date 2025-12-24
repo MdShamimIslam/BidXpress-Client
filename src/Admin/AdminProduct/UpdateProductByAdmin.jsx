@@ -4,6 +4,7 @@ import { Caption, commonClassNameOfInput } from "../../components/common/Design"
 import { useDispatch, useSelector } from "react-redux";
 import { updateProductByAdmin } from "../../redux/features/productSlice";
 import DashboardTitle from "../../components/common/DashboardTitle";
+import { Helmet } from "react-helmet-async";
 
 const UpdateProductByAdmin = () => {
   const { id } = useParams();
@@ -26,6 +27,9 @@ const UpdateProductByAdmin = () => {
 
   return (
     <>
+      <Helmet>
+          <title>BidXpress | Update Product</title>
+      </Helmet>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
         <DashboardTitle title="Update Product" />
         <hr className="my-5" />

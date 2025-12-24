@@ -49,7 +49,7 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
           </thead>
           <tbody>
             {products?.map((product) => {
-              const { _id, title, commission, price, image, biddingPrice, isverify, isSoldout } = product;
+              const { _id, title, commission, price, image, biddingPrice, isverify, isSoldout, paymentStatus  } = product;
               
               return (
                 <tr key={_id} className="bg-white border-b hover:bg-gray-50">
@@ -135,8 +135,19 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
                     </>
                   )}
                   {isWon && (
-                    <td className="px-6 py-3 font-semibold">
-                        Victory
+                    <td className="px-6 py-4">
+                      {paymentStatus === "paid" ? (
+                        <span className="inline-block bg-green-100 text-green px-3 py-1 rounded-full text-xs font-semibold">
+                          Paid
+                        </span>
+                      ) : (
+                        <NavLink
+                          to={`/checkout/${_id}`}
+                          className="inline-block bg-green text-white px-3 py-1 rounded hover:bg-green-600"
+                        >
+                          Pay Now
+                        </NavLink>
+                      )}
                     </td>
                   )}
                 </tr>

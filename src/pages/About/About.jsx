@@ -101,7 +101,7 @@ const About = () => {
 
         <TestimonialSlider/>
 
-       <FeedbackSection/>
+        <FeedbackSection/>
         
       </main>
     </div>

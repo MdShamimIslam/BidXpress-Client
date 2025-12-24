@@ -1,11 +1,21 @@
 import { useState } from "react";
 import AddFeedback from "./AddFeedback"; 
 import { AiOutlineClose } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const FeedbackSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user } = useSelector((state) => state?.auth); 
 
-  const openModal = () => setIsModalOpen(true);
+  const openModal = () => {
+    if (!user) {
+      toast.warning("Please login first to share your feedback");
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
   const closeModal = () => setIsModalOpen(false);
 
   return (

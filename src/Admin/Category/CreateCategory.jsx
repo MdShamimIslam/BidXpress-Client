@@ -5,6 +5,7 @@ import { useState } from "react";
 import { createCategory } from "../../redux/features/categorySlice";
 import { toast } from "react-toastify";
 import DashboardTitle from "../../components/common/DashboardTitle";
+import { Helmet } from "react-helmet-async";
 
 const CreateCategory = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ const CreateCategory = () => {
 
   return (
     <>
+      <Helmet>
+          <title>BidXpress | Add Category</title>
+      </Helmet>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
         <DashboardTitle title="Create Category" />
         <hr className="my-5" />

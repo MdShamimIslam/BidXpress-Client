@@ -13,9 +13,9 @@ const AddFeedback = ({ closeModal }) => {
   const [feedback, setFeedback] = useState(initialState);
 
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth); 
+  const { user } = useSelector((state) => state?.auth); 
   
-  const { isLoading, isSuccess } = useSelector((state) => state.feedback);
+  const { isLoading, isSuccess } = useSelector((state) => state?.feedback);
   const { position, quote } = feedback;
 
   const handleInputChange = (e) => {

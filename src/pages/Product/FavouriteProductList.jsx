@@ -5,7 +5,8 @@ import { ProfileCard } from "../../components/common/Design";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { toast } from "react-toastify";
 import DashboardTitle from "../../components/common/DashboardTitle";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import { Helmet } from "react-helmet-async";
 
 
 const FavouriteProductList = () => {
@@ -37,6 +38,10 @@ const FavouriteProductList = () => {
   
 
   return (
+    <>
+    <Helmet>
+      <title>BidXpress | Favourite Products</title>
+    </Helmet>
     <section className="shadow-s1 p-8 rounded-lg">
       <div className="flex justify-between">
         <DashboardTitle title="Favourite Product Lists" />
@@ -102,6 +107,7 @@ const FavouriteProductList = () => {
       </div> }
       
     </section>
+    </>
   );
 };
 

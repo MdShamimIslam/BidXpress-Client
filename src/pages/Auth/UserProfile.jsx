@@ -3,6 +3,7 @@ import { commonClassNameOfInput, Caption } from "../../components/common/Design"
 import { useSelector, useDispatch } from "react-redux";
 import {updateUserProfile} from "../../redux/features/authSlice";
 import { useForm } from "react-hook-form";
+import { Helmet } from "react-helmet-async";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,10 @@ const UserProfile = () => {
   };
 
   return (
+    <>
+      <Helmet>
+        <title>BidXpress | Personal Profile</title>
+      </Helmet>
       <section className="shadow-s1 p-8 rounded-lg">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col md:flex-row items-center gap-5">
@@ -79,6 +84,7 @@ const UserProfile = () => {
           </button>
         </form>
       </section>
+    </>
   );
 };
 
