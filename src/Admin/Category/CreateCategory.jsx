@@ -29,7 +29,7 @@ const CreateCategory = () => {
   return (
     <>
       <Helmet>
-          <title>BidXpress | Add Category</title>
+          <title>BidXpress | Create Category</title>
       </Helmet>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
         <DashboardTitle title="Create Category" />

@@ -65,7 +65,7 @@ const Sidebar = () => {
             className={className}
           >
             <span>
-              <CiGrid41 size={22} />
+              <CiGrid41 size={20} />
             </span>
             <span>Dashboard</span>
           </CustomNavLink>
@@ -78,7 +78,7 @@ const Sidebar = () => {
                 className={className}
               >
                 <span>
-                  <MdOutlineCategory size={22} />
+                  <MdOutlineCategory size={20} />
                 </span>
                 <span>My Products</span>
               </CustomNavLink>
@@ -88,7 +88,7 @@ const Sidebar = () => {
                 className={className}
               >
                 <span>
-                  <FaPlusCircle size={22} />
+                  <FaPlusCircle size={20} />
                 </span>
                 <span>Create Product</span>
               </CustomNavLink>
@@ -104,9 +104,9 @@ const Sidebar = () => {
                 className={className}
               >
                 <span>
-                  <FiUser size={22} />
+                  <FiUser size={20} />
                 </span>
-                <span>All User</span>
+                <span>All Users</span>
               </CustomNavLink>
 
               <CustomNavLink
@@ -115,9 +115,9 @@ const Sidebar = () => {
                 className={className}
               >
                 <span>
-                  <CgProductHunt size={22} />
+                  <CgProductHunt size={20} />
                 </span>
-                <span> All product List</span>
+                <span> All Products</span>
               </CustomNavLink>
 
               <CustomNavLink
@@ -126,7 +126,7 @@ const Sidebar = () => {
                 className={className}
               >
                 <span>
-                  <MdOutlineCategory size={22} />
+                  <MdOutlineCategory size={20} />
                 </span>
                 <span>Categories</span>
               </CustomNavLink>
@@ -136,7 +136,7 @@ const Sidebar = () => {
                 className={className}
               >
                 <span>
-                  <TbCurrencyDollar size={22} />
+                  <TbCurrencyDollar size={20} />
                 </span>
                 <span>Income</span>
               </CustomNavLink>
@@ -149,7 +149,7 @@ const Sidebar = () => {
             className={className}
           >
             <span>
-              <RiAuctionLine size={22} />
+              <RiAuctionLine size={20} />
             </span>
             <span>Winning Bids</span>
           </CustomNavLink>
@@ -159,7 +159,7 @@ const Sidebar = () => {
             className={className}
           >
             <span>
-              <IoIosHeartEmpty size={22} />
+              <IoIosHeartEmpty size={20} />
             </span>
             <span>My Favorites</span>
           </CustomNavLink>
@@ -169,7 +169,7 @@ const Sidebar = () => {
             className={className}
           >
             <span>
-              <IoSettingsOutline size={22} />
+              <IoSettingsOutline size={20} />
             </span>
             <span>Personal Profile</span>
           </CustomNavLink>
@@ -180,7 +180,7 @@ const Sidebar = () => {
                 className="flex w-full items-center justify-center gap-3 mt-4 bg-red-500 hover:bg-red-600 p-3 md:p-4 rounded-lg text-white font-semibold"
                  >
                     <span>
-                      <IoIosLogOut size={22} />
+                      <IoIosLogOut size={20} />
                     </span>
                     <span>Log Out</span>
             </button>

@@ -56,7 +56,7 @@ const CustomNavLinkList = ({ href, className, isActive, children }) => {
 };
 
 const CustomNavLink = ({ href, className, isActive, children }) => {
-  const linkStyles = "text-[17px] font-medium cursor-pointer list-none hover:text-green transition-all ease-in-out";
+  const linkStyles = "text-[15px] lg:text-[17px] font-medium cursor-pointer list-none hover:text-green transition-all ease-in-out";
   const activeClass = isActive ? "bg-green_100 text-green" : "";
 
   return (
@@ -101,7 +101,7 @@ const PrimaryButton = ({ children, className, btnCl=false }) => {
 
 const ProfileCard = ({ children, className }) => {
   return (
-    <div className={`${className} w-9 md:w-10 lg:w-12 h-9 md:h-10 lg:h-12 bg-green_100 flex items-center justify-center rounded-full`}>
+    <div className={`${className} w-9 lg:w-10 h-9 lg:h-10 bg-green_100 flex items-center justify-center rounded-full`}>
       {children}
     </div>
   );

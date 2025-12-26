@@ -93,7 +93,7 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
                             ) : (
                               <button
                                 onClick={() => handleSellProduct(_id)}
-                                disabled={!isverify  }
+                                disabled={!isverify}
                                 className={` px-3 py-1 rounded-lg ${
                                   isverify
                                     ? "bg-green text-white"

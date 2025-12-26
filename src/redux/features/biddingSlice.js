@@ -82,7 +82,6 @@ const biddingSlice = createSlice({
           state.isLoading = false;
           state.isSuccess = true;
           state.bidding = action.payload;
-          toast.success("Apply success");
         })
         .addCase(placebid.rejected, (state, action) => {
           state.isLoading = false;
@@ -121,6 +120,6 @@ const biddingSlice = createSlice({
           toast.error(action.payload);
         })
     },
-  });
+});
 
-  export default biddingSlice.reducer;
+export default biddingSlice.reducer;

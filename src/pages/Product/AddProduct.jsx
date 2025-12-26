@@ -57,6 +57,7 @@ const AddProduct = () => {
       formData.append("category", category.label);
     }
 
+
     try {
       await dispatch(createProduct(formData));
 
@@ -81,7 +82,7 @@ const AddProduct = () => {
         <hr className="my-5" />
         <form onSubmit={handleSubmit}>
           <div className="w-full">
-            <Caption className="mb-2 text-base">Title *</Caption>
+            <Caption className="mb-2 text-base">Title</Caption>
             <input
               value={title}
               onChange={handleInputChange}
@@ -93,7 +94,7 @@ const AddProduct = () => {
             />
           </div>
           <div className="py-5">
-            <Caption className="mb-2 text-base">Category *</Caption>
+            <Caption className="mb-2 text-base">Category</Caption>
             <CategoryDropDown
               value={category}
               onChange={(selectCategory) =>
@@ -114,6 +115,7 @@ const AddProduct = () => {
                     name="height"
                     placeholder="height"
                     className={`${commonClassNameOfInput}`}
+                    required
                   />
                 </div>
                 <div className="w-full md:w-1/2">
@@ -125,6 +127,7 @@ const AddProduct = () => {
                     name="lengthpic"
                     placeholder="Length"
                     className={`${commonClassNameOfInput}`}
+                    required
                   />
                 </div>
               </div>
@@ -138,6 +141,7 @@ const AddProduct = () => {
                     name="width"
                     placeholder="width"
                     className={`${commonClassNameOfInput}`}
+                    required
                   />
                 </div>
                 <div className="w-full md:w-1/2">
@@ -154,13 +158,14 @@ const AddProduct = () => {
                     name="mediumused"
                     placeholder="Medium used"
                     className={commonClassNameOfInput}
+                    required
                   />
                 </div>
               </div>
               <div className="flex flex-col md:flex-row items-center gap-5 mt-4">
                 <div className="w-full md:w-1/2">
                   <Caption className="mb-2 text-base">
-                    Weight of piece
+                    Weight {" "}
                     <span className="  italic">(kg)</span>
                   </Caption>
                   <input
@@ -170,10 +175,11 @@ const AddProduct = () => {
                     name="weight"
                     placeholder="weight"
                     className={`${commonClassNameOfInput}`}
+                    required
                   />
                 </div>
                 <div className="w-full md:w-1/2">
-                  <Caption className="mb-2 text-base">Price Range(USD)*</Caption>
+                  <Caption className="mb-2 text-base">Price (USD)</Caption>
                   <input
                     value={price}
                     onChange={handleInputChange}
@@ -189,7 +195,7 @@ const AddProduct = () => {
           )}
 
           <div>
-            <Caption className="mb-2 mt-4 text-base">Description *</Caption>
+            <Caption className="mb-2 mt-4 text-base">Description</Caption>
             <textarea
               value={description}
               onChange={handleInputChange}
@@ -197,6 +203,8 @@ const AddProduct = () => {
               className={`${commonClassNameOfInput}`}
               cols="30"
               rows="5"
+              placeholder="Type Description..."
+              required
             ></textarea>
           </div>
           <div>
@@ -206,6 +214,8 @@ const AddProduct = () => {
               type="file"
               className={`${commonClassNameOfInput}`}
               name="image"
+              accept="image/*"
+              required
             />
             {imagePreview !== null ? (
               <div>

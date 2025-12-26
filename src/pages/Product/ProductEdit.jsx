@@ -70,7 +70,7 @@ const ProductEdit = () => {
         <hr className="my-5" />
         <form onSubmit={handleSubmit}>
           <div className="w-full">
-            <Caption className="mb-2 text-base">Title *</Caption>
+            <Caption className="mb-2 text-base">Title</Caption>
             <input
               value={product?.title || ""}
               onChange={handleInputChange}
@@ -151,7 +151,7 @@ const ProductEdit = () => {
               />
             </div>
             <div className="w-full md:w-1/2">
-              <Caption className="mb-2 text-base">Price Range*</Caption>
+              <Caption className="mb-2 text-base">Price (USD)</Caption>
               <input
                 value={product?.price || ""}
                 onChange={handleInputChange}
@@ -165,7 +165,7 @@ const ProductEdit = () => {
           </div>
 
           <div>
-            <Caption className="mb-2 mt-4 text-base">Description *</Caption>
+            <Caption className="mb-2 mt-4 text-base">Description</Caption>
             <textarea
               value={product?.description || ""}
               onChange={handleInputChange}
@@ -173,6 +173,7 @@ const ProductEdit = () => {
               className={`${commonClassNameOfInput}`}
               cols="30"
               rows="5"
+              placeholder="Type Description..."
             ></textarea>
           </div>
           <div>

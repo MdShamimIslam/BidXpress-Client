@@ -25,6 +25,7 @@ const CategoryDropDown = ( props ) => {
     options={allCategory}
     onChange={handleChange}
     value={props?.value}
+    required
      />}
   </>;
 };

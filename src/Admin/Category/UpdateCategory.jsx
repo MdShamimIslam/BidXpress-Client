@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCategory, updateCategory } from "../../redux/features/categorySlice";
 import {toast} from "react-toastify";
 import DashboardTitle from "../../components/common/DashboardTitle";
+import { Helmet } from "react-helmet-async";
 
 const UpdateCategory = () => {
   const { id } = useParams();
@@ -40,6 +41,9 @@ const UpdateCategory = () => {
 
   return (
     <>
+      <Helmet>
+          <title>BidXpress | Update Category</title>
+      </Helmet>
       <section className="bg-white shadow-s1 p-8 rounded-xl">
         <DashboardTitle title="Update Category" />
         <hr className="my-5" />
