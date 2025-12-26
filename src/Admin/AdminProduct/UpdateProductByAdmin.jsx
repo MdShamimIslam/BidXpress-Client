@@ -20,6 +20,7 @@ const UpdateProductByAdmin = () => {
     const data = { commission };
     await dispatch(updateProductByAdmin({ id, data }));
 
+
     if (isSuccess) {
       navigate("/product/admin");
     }

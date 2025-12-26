@@ -1,7 +1,7 @@
 import { NavLink} from "react-router-dom";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { deleteProduct, getAllProductOfUser } from "../../redux/features/productSlice";
 import Table from "../../components/Table/Table";
 import { sellProductByUser } from "../../redux/features/biddingSlice";
@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet-async";
 const ProductList = () => {
   const dispatch = useDispatch();
   const {userProducts, isLoading } =  useSelector(state => state.product);
+  const [sellLoading, setSellLoading] = useState(false);
 
   useEffect(() => {
       dispatch(getAllProductOfUser());
@@ -37,7 +38,9 @@ const ProductList = () => {
   };
 
   const handleSellProduct = async(productId) => {
+    setSellLoading(true);
     await dispatch(sellProductByUser(productId));
+    setSellLoading(false);
     await dispatch(getAllProductOfUser());
   };
 
@@ -69,6 +72,7 @@ const ProductList = () => {
           products={userProducts}
           handleDeleteProduct={handleDeleteProduct}
           handleSellProduct={handleSellProduct}
+          sellLoading={sellLoading}
         />
           </>
         }

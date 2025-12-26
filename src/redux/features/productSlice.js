@@ -376,7 +376,7 @@ const productSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        toast.error("Failed to update product");
+        toast.error(action?.payload || "Failed to verify product");
       })
       // delete product by admin
       .addCase(deleteProductByAdmin.pending, (state) => {

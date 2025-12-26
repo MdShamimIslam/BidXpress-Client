@@ -67,7 +67,7 @@ const ProductsDetails = () => {
       dispatch(getBiddingHistory(id));
       toast.success("Bid placed successfully!");
     } catch (error) {
-      return toast.error(error?.message || "Failed to place bid");
+      return toast.error(error);
     }
   };
 

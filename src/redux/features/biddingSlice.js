@@ -28,7 +28,7 @@ export const placebid = createAsyncThunk(
         return thunkAPI.rejectWithValue(errorMessage);
       }
     }
-  );
+);
 
 export const getBiddingHistory = createAsyncThunk(
     "bid/getBiddingHistory",
@@ -87,7 +87,6 @@ const biddingSlice = createSlice({
           state.isLoading = false;
           state.isError = true;
           state.message = action.payload;
-          toast.error(action.payload);
         })
         // get bidding history
         .addCase(getBiddingHistory.pending, (state) => {

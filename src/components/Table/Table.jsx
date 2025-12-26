@@ -2,54 +2,33 @@ import { CiEdit } from "react-icons/ci";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
-const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeleteProduct }) => {
-
+const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeleteProduct, sellLoading }) => {
   return (
     <>
       <div className="relative overflow-x-auto rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-100">
             <tr>
-              <th scope="col" className="px-6 py-5">
-                Title
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Commission
-              </th>
-              <th scope="col" className="px-6 py-3">
-                 Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Current Bidding
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Image
-              </th>
-              {isWon && (
-                <th scope="col" className="px-6 py-3">
-                  Status
-                </th>
-              )}
+              <th scope="col" className="px-6 py-5"> Title </th>
+              <th scope="col" className="px-6 py-3"> Commission </th>
+              <th scope="col" className="px-6 py-3"> Price </th>
+              <th scope="col" className="px-6 py-3"> Current Bidding </th>
+              <th scope="col" className="px-6 py-3"> Image </th>
+              { isWon &&  <th scope="col" className="px-6 py-3"> Payment Status </th> }
               {!isWon && (
                 <>
-                  <th scope="col" className="px-6 py-3">
-                    Verify
-                  </th>
+                  <th scope="col" className="px-6 py-3"> Verify </th>
                   {!isAdmin && (
-                    <th scope="col" className="px-6 py-3">
-                      Sold
-                    </th>
+                    <th scope="col" className="px-6 py-3"> Sale Status </th>
                   )}
-                  <th scope="col" className="px-6 py-3">
-                    Action
-                  </th>
+                  <th scope="col" className="px-6 py-3"> Action </th>
                 </>
               )}
             </tr>
           </thead>
           <tbody>
             {products?.map((product) => {
-              const { _id, title, commission, price, image, biddingPrice, isverify, isSoldout, paymentStatus  } = product;
+              const { _id, title, commission, price, image, biddingPrice, isverify, saleStatus  } = product || {};
               
               return (
                 <tr key={_id} className="bg-white border-b hover:bg-gray-50">
@@ -81,30 +60,28 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
                       </td>
 
                       {!isAdmin && (
-                        <>
                           <td className="px-6 py-4">
-                            {isSoldout ? (
-                              <button
-                                disabled={isSoldout}
-                                className="bg-slate-300 text-white py-1 px-3 rounded-lg"
-                              >
-                                Sold out
-                              </button>
-                            ) : (
-                              <button
-                                onClick={() => handleSellProduct(_id)}
-                                disabled={!isverify}
-                                className={` px-3 py-1 rounded-lg ${
-                                  isverify
-                                    ? "bg-green text-white"
-                                    : "bg-gray-300 text-black cursor-not-allowed"
-                                }`}
-                              >
-                                Sell
-                              </button>
-                            )}
+                              {saleStatus === "completed" ? (
+                                <button disabled className="bg-slate-500 text-white py-1 px-3 rounded-lg">Sold Out</button>
+                              ) : saleStatus === "pending" ? (
+                                <button disabled className="bg-yellow-600 text-white py-1 px-3 rounded-lg">Payment Pending</button>
+                              ) : (
+                                <button
+                                  onClick={() => handleSellProduct(_id)}
+                                  disabled={!isverify}
+                                  className={`px-4 py-1 rounded-lg ${
+                                    isverify
+                                      ? "bg-green text-white"
+                                      : "bg-gray-300 text-black cursor-not-allowed"
+                                  }`}
+                                > 
+                                 <div className="flex justify-center items-center">
+                                   {sellLoading && <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2"></div>}
+                                    <p>Sell</p>
+                                  </div>
+                                </button>
+                              )}
                           </td>
-                        </>
                       )}
                       <td className="px-6 py-4 text-center flex items-center gap-3 mt-4 lg:mt-2">
                         {isAdmin ? (
@@ -136,17 +113,19 @@ const Table = ({ products=[], isWon, isAdmin, handleSellProduct, handleDeletePro
                   )}
                   {isWon && (
                     <td className="px-6 py-4">
-                      {paymentStatus === "paid" ? (
-                        <span className="inline-block bg-green-100 text-green px-3 py-1 rounded-full text-xs font-semibold">
+                      {saleStatus === "completed" ? (
+                        <span className="inline-block bg-[#729918] text-white px-3 py-1 rounded-full text-xs font-semibold">
                           Paid
                         </span>
-                      ) : (
+                      ) : saleStatus === "pending" ? (
                         <NavLink
                           to={`/checkout/${_id}`}
-                          className="inline-block bg-green text-white px-3 py-1 rounded hover:bg-green-600"
+                          className="inline-block bg-[#31b162] text-white px-3 py-1 rounded-full text-xs font-semibold"
                         >
                           Pay Now
                         </NavLink>
+                      ) : (
+                        <span className="text-white inline-block bg-[#9c9310] px-3 py-1 rounded-full text-xs font-semibold">Not ready</span>
                       )}
                     </td>
                   )}
