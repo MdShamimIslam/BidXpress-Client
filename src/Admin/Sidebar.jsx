@@ -5,7 +5,6 @@ import { RiAuctionLine } from "react-icons/ri";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoIosLogOut } from "react-icons/io";
 import { CgProductHunt } from "react-icons/cg";
-import { TbCurrencyDollar } from "react-icons/tb";
 import { FiUser } from "react-icons/fi";
 import { FaPlusCircle } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -129,16 +128,6 @@ const Sidebar = () => {
                   <MdOutlineCategory size={20} />
                 </span>
                 <span>Categories</span>
-              </CustomNavLink>
-              <CustomNavLink
-                href="/admin/income"
-                isActive={location.pathname === "/admin/income"}
-                className={className}
-              >
-                <span>
-                  <TbCurrencyDollar size={20} />
-                </span>
-                <span>Income</span>
               </CustomNavLink>
             </>
           )}

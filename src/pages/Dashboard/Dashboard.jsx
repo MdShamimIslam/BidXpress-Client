@@ -3,33 +3,33 @@ import { CiMedal } from "react-icons/ci";
 import { GiBarbedStar } from "react-icons/gi";
 import { BsCashCoin } from "react-icons/bs";
 import { MdDashboard, MdOutlineCategory } from "react-icons/md";
+import { CgDollar } from "react-icons/cg";
 import { NavLink } from "react-router-dom";
 import { HiOutlineUsers } from "react-icons/hi2";
 import { useEffect } from "react";
-import { getAllUser, getUserIncome, getUserProfile } from "../../redux/features/authSlice";
+import { getAllUser, getIncome, getUserIncome, getUserProfile } from "../../redux/features/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct, getAllProductOfUser, getAllWonedProductOfUser } from "../../redux/features/productSlice";
 import DashboardTitle from "../../components/common/DashboardTitle";
 
 const Dashboard = () => {
-  const { income, user, users } = useSelector((state) => state.auth);
+  const { sellingIncome, commissionIncome, user, users } = useSelector((state) => state.auth);
   const { products, userProducts, wonedProducts } = useSelector( (state) => state.product );
   const dispatch = useDispatch();
-
   const { role } = user || {};
 
   useEffect(() => {
     dispatch(getUserProfile());
     dispatch(getUserIncome());
-    dispatch(getAllProduct());
     dispatch(getAllWonedProductOfUser());
     dispatch(getAllProductOfUser());
   }, [dispatch]);
-
   
   useEffect(() => {
     if (role === "admin") {
+      dispatch(getIncome());
       dispatch(getAllUser());
+      dispatch(getAllProduct());
     }
   }, [dispatch, role]);
 
@@ -38,24 +38,31 @@ const Dashboard = () => {
       <section>
         <div className="shadow-s1 p-8 rounded-lg">
           {role === "buyer" && (
-            <div className="py-8 text-center mt-8">
-              
-              <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-3">
+            <div>
+              <div className="pt-4 pb-8 text-center">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-3">
                 Welcome to BidXpress 🚀
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto leading-relaxed md:text-lg">
                 Discover live products on BidXpress, place your bids, and compete with others 
                 in real-time auctions. Your next winning deal starts here!
               </p>
-
               <div className="flex justify-center gap-4 mt-6">
                 <NavLink
                   to="/products"
-                  className="bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white px-6 py-3 rounded-lg shadow transition md:text-lg font-semibold"
+                  className="bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white px-6 py-2 rounded-lg shadow transition  font-semibold"
                 >
                   Explore Products
                 </NavLink>
               </div>
+            </div>
+            <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
+            <MdOutlineCategory size={80} className="text-green" />
+            <div>
+              <Title level={3}>{wonedProducts?.length}</Title>
+              <Title>Products Won</Title>
+            </div>
+          </div>
             </div>
           )}
 
@@ -67,15 +74,23 @@ const Dashboard = () => {
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                 <BsCashCoin size={80} className="text-green" />
                 <div>
-                  <Title level={3}>${income?.balance}</Title>
-                  <Title>Balance</Title>
+                  <Title level={3}>${sellingIncome?.balance.toFixed(2)}</Title>
+                  <Title>Total Sales Earnings</Title>
                 </div>
               </div>
+              {role === "admin" && <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
+                
+                <CgDollar size={80} className="text-green" />
+                <div>
+                  <Title level={3}>${commissionIncome?.commissionBalance.toFixed(2) || 0}</Title>
+                  <Title>Commission Earnings</Title>
+                </div>
+              </div> }
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">
                 <CiMedal size={80} className="text-green" />
                 <div>
                   <Title level={3}>{wonedProducts?.length}</Title>
-                  <Title>Items Won</Title>
+                  <Title>Products Won</Title>
                 </div>
               </div>
               <div className="shadow-s3 border border-green bg-green_100 p-8 flex items-center text-center justify-center gap-5 flex-col rounded-xl">

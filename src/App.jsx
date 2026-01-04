@@ -8,7 +8,6 @@ import PrivateRoute from "./router/PrivateRoute";
 import Register from "./pages/Auth/Register";
 import DashboardLayout from "./components/common/layout/DashboardLayout";
 import AddProduct from "./pages/Product/AddProduct";
-import Income from "./Admin/Income";
 import ProductEdit from "./pages/Product/ProductEdit";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import AdminProductList from "./Admin/AdminProduct/AdminProductList";
@@ -26,7 +25,7 @@ import FavouriteProductList from "./pages/Product/FavouriteProductList";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Services from "./pages/Services/Services";
-import Checkout from "./pages/Product/Checkout";
+import CheckoutSuccess from "./components/CheckoutSuccess/CheckoutSuccess";
 
 function App() {
 
@@ -108,18 +107,6 @@ function App() {
             }
           />
           <Route
-            path="/admin/income"
-            element={
-              <PrivateRoute allowedRoles={["admin"]}>
-                <Layout>
-                  <DashboardLayout>
-                    <Income />
-                  </DashboardLayout>
-                </Layout>
-              </PrivateRoute>
-            }
-          />
-          <Route
             path="/products"
             element={
               <Layout>
@@ -127,6 +114,14 @@ function App() {
               </Layout>
             }
           />
+
+          <Route 
+            path="/checkout-success" 
+            element={
+                <CheckoutSuccess />
+            }
+          />
+
           <Route
             path="/product/update/:id"
             element={
@@ -216,18 +211,6 @@ function App() {
                 <Layout>
                   <DashboardLayout>
                     <WinningBidList />
-                  </DashboardLayout>
-                </Layout>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/checkout/:productId"
-            element={
-              <PrivateRoute allowedRoles={["buyer","admin"]}>
-                <Layout>
-                  <DashboardLayout>
-                    <Checkout/>
                   </DashboardLayout>
                 </Layout>
               </PrivateRoute>

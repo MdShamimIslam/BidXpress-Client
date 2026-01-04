@@ -17,7 +17,9 @@ const ProductsDetails = () => {
   const [rate, setRate] = useState(0);
   const { history = [] } = useSelector((state) => state.bidding);
   const { product, productReviews, relatedProducts, isLoading } = useSelector((state) => state.product);
-  const { image, title, isverify, price, isSoldout, rating, numReviews } = product || {};
+  const { image, title, isverify, price, isSoldout, rating, numReviews, saleStatus, winningBid } = product || {};
+
+  const isPaid = saleStatus === "completed" || isSoldout === true;
 
   useEffect(() => {
     if (id) dispatch(getProduct(id));
@@ -95,6 +97,13 @@ const ProductsDetails = () => {
                 alt={title}
                 className="w-full h-[260px] sm:h-[320px] md:h-[420px] object-cover"
               />
+               {isPaid && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="bg-red-600 text-white px-6 py-3 rounded-full text-base font-semibold md:text-lg md:font-bold shadow-lg">
+                      SOLD
+                    </span>
+                  </div>
+                )}
 
               <div className="absolute bottom-4 right-4 flex items-center gap-2">
                 {isverify ? (
@@ -112,7 +121,6 @@ const ProductsDetails = () => {
             <div className="space-y-6">
               <div>
                 <h1 className="text-xl lg:text-2xl font-extrabold text-gray-800">{title}</h1>
-              
                 <div className="mt-3 flex items-center gap-4">
                     <StarRating rating={rating || 0} />
                     <Caption className="text-gray-500 text-base">
@@ -122,65 +130,94 @@ const ProductsDetails = () => {
                 </div>
               </div>
 
-              <Caption className=" text-gray-500 border-b-2 border-emerald-600 inline-block text-base">Auction ends</Caption>
-              <div className="mt-2 flex items-center gap-3">
-                <Countdown />
-              </div>
+              {isPaid ? (
+                <div className="p-6 rounded-xl border border-red-200 bg-red-50 space-y-4">
+                  <h2 className="text-lg font-bold text-red-700">
+                    This auction has ended
+                  </h2>
 
-              <div className="p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                 <div className="flex justify-between lg:justify-normal flex-col sm:flex-row gap-6 sm:gap-8">
+                  <div className="flex justify-between">
                     <div>
-                      <div className="text-sm text-gray-500">Price</div>
-                      <div className="text-xl md:text-2xl lg:text-3xl font-bold text-emerald-600">${price}</div>
-                      <div className="text-xs text-gray-500 mt-1">Starting price</div>
+                      <p className="text-sm text-gray-600">Winning Bid</p>
+                      <p className="text-2xl font-bold text-emerald-600">
+                        ${winningBid}
+                      </p>
                     </div>
-                    <div className="w-full sm:w-px sm:h-auto h-px bg-emerald-600"></div>
+
                     <div>
-                      <div className="text-sm text-gray-500">Current Bid</div>
-                      <div className="text-xl md:text-2xl lg:text-3xl font-bold text-emerald-600">${rate}</div>
-                      <div className="text-xs text-gray-500 mt-1">Highest bid amount</div>
+                      <p className="text-sm text-gray-600">Status</p>
+                      <p className="font-semibold text-[#5f9e72]">
+                        Payment Completed
+                      </p>
                     </div>
-                 </div>
+                  </div>
 
-                  <div className="w-full lg:w-2/5">
-                    <form onSubmit={handlePlaceBid} className="space-y-3">
-                      <div className="flex items-center gap-2">
-                        <input
-                          value={rate}
-                          onChange={(e) => setRate(e.target.value)}
-                          className={`${commonClassNameOfInput} flex-1 rounded-lg py-3 text-gray-800`}
-                          min={price}
-                          type="number"
-                          name="price"
-                          aria-label="Bid amount"
-                        />
-
-                        <button
-                          onClick={incrementBid}
-                          type="button"
-                          className="bg-gray-100 hover:bg-gray-200 p-3 rounded-md text-gray-700 shrink-0"
-                          title="Increase by 1"
-                        >
-                          <AiOutlinePlus />
-                        </button>
+                  <p className="text-sm text-gray-500">
+                    This product is no longer available for bidding.
+                  </p>
+                </div>
+                ) : <>
+                      <Caption className=" text-gray-500 border-b-2 border-emerald-600 inline-block text-base">Auction ends</Caption>
+                      <div className="mt-2 flex items-center gap-3">
+                        <Countdown />
                       </div>
 
-                      <button
-                        type="submit"
-                        disabled={isSoldout || !isverify}
-                        className={`w-full px-4 py-3 rounded-lg font-semibold ${
-                          isSoldout || !isverify
-                            ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                            : "bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white hover:bg-emerald-700"
-                        }`}
-                      >
-                        Submit
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
+                      <div className="p-6 rounded-xl bg-gradient-to-br from-white to-gray-50 border border-gray-200 shadow">
+                        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                        <div className="flex justify-between lg:justify-normal flex-col sm:flex-row gap-6 sm:gap-8">
+                            <div>
+                              <div className="text-sm text-gray-500">Price</div>
+                              <div className="text-xl md:text-2xl lg:text-3xl font-bold text-emerald-600">${price}</div>
+                              <div className="text-xs text-gray-500 mt-1">Starting price</div>
+                            </div>
+                            <div className="w-full sm:w-px sm:h-auto h-px bg-emerald-600"></div>
+                            <div>
+                              <div className="text-sm text-gray-500">Current Bid</div>
+                              <div className="text-xl md:text-2xl lg:text-3xl font-bold text-emerald-600">${rate}</div>
+                              <div className="text-xs text-gray-500 mt-1">Highest bid amount</div>
+                            </div>
+                        </div>
+
+                          <div className="w-full lg:w-2/5">
+                            <form onSubmit={handlePlaceBid} className="space-y-3">
+                              <div className="flex items-center gap-2">
+                                <input
+                                  value={rate}
+                                  onChange={(e) => setRate(e.target.value)}
+                                  className={`${commonClassNameOfInput} flex-1 rounded-lg py-3 text-gray-800`}
+                                  min={price}
+                                  type="number"
+                                  name="price"
+                                  aria-label="Bid amount"
+                                />
+
+                                <button
+                                  onClick={incrementBid}
+                                  type="button"
+                                  className="bg-gray-100 hover:bg-gray-200 p-3 rounded-md text-gray-700 shrink-0"
+                                  title="Increase by 1"
+                                >
+                                  <AiOutlinePlus />
+                                </button>
+                              </div>
+
+                              <button
+                                type="submit"
+                                disabled={isSoldout || !isverify}
+                                className={`w-full px-4 py-3 rounded-lg font-semibold ${
+                                  isSoldout || !isverify
+                                    ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                                    : "bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white hover:bg-emerald-700"
+                                }`}
+                              >
+                                Submit
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+              }
             </div>
           </div>
           <Tab {...{ product, history, reviews:productReviews, relatedProducts }} />

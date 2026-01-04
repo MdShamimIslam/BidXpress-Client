@@ -12,13 +12,11 @@ import { Helmet } from "react-helmet-async";
 const ProductList = () => {
   const dispatch = useDispatch();
   const {userProducts, isLoading } =  useSelector(state => state.product);
-  const [sellLoading, setSellLoading] = useState(false);
+  const [sellingProductId, setSellingProductId] = useState(null);
 
   useEffect(() => {
       dispatch(getAllProductOfUser());
   }, [dispatch]);
-
-
 
   const handleDeleteProduct = async (id) => {
     const result = await Swal.fire({
@@ -38,10 +36,16 @@ const ProductList = () => {
   };
 
   const handleSellProduct = async(productId) => {
-    setSellLoading(true);
-    await dispatch(sellProductByUser(productId));
-    setSellLoading(false);
-    await dispatch(getAllProductOfUser());
+    setSellingProductId(productId);
+   
+    try {
+      await dispatch(sellProductByUser(productId));
+      await dispatch(getAllProductOfUser());
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setSellingProductId(null);
+    }
   };
 
   if (isLoading) {
@@ -72,7 +76,7 @@ const ProductList = () => {
           products={userProducts}
           handleDeleteProduct={handleDeleteProduct}
           handleSellProduct={handleSellProduct}
-          sellLoading={sellLoading}
+          sellingProductId={sellingProductId}
         />
           </>
         }

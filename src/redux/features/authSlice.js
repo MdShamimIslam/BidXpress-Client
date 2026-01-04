@@ -8,7 +8,8 @@ const initialState = {
   user: storedUser || null,
   favoriteProducts: [],
   users: [],
-  income: null,
+  sellingIncome: null,
+  commissionIncome: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -372,7 +373,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isLoggedIn = true;
-        state.income = action.payload;
+        state.sellingIncome = action.payload;
       })
       .addCase(getUserIncome.rejected, (state, action) => {
         state.isLoading = false;
@@ -388,7 +389,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isLoggedIn = true;
-        state.income = action.payload;
+        state.commissionIncome = action.payload;
       })
       .addCase(getIncome.rejected, (state, action) => {
         state.isLoading = false;

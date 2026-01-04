@@ -115,7 +115,7 @@ const Header = () => {
 
             <div
               ref={menuRef}
-              className={`mt-6 lg:hidden rounded-2xl bg-gradient-to-r from-[#6fd361] to-[#1b3618] lg:items-center lg:w-auto w-1/2 md:w-1/3 p-5 absolute right-0 top-full 
+              className={`menu-container lg:hidden rounded-2xl bg-gradient-to-r from-[#6fd361] to-[#1b3618] lg:items-center lg:w-auto w-1/2 md:w-1/3 p-5 absolute right-0 top-full 
                  ${isOpen ? "open pointer-events-auto" : "closed pointer-events-none"}`}
             >
               {menus.map((list) => (
