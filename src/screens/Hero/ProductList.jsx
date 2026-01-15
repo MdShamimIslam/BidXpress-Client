@@ -43,7 +43,7 @@ const ProductList = () => {
             </Link>
           </div>
         </Container>
-    </section> 
+      </section> 
   );
 };
 

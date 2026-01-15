@@ -5,6 +5,7 @@ import Table from "../../components/Table/Table";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import { Helmet } from "react-helmet-async";
 import { clearCheckoutUrl, createCheckoutSession } from "../../redux/features/paymentSlice";
+import Loader from "../../components/common/Loader";
 
 const WinningBidList = () => {
   const dispatch = useDispatch();
@@ -30,13 +31,9 @@ const WinningBidList = () => {
     dispatch(getAllWonedProductOfUser());
   }, [dispatch]);
 
-
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loader/>;
   }
-
-  console.log(checkoutUrl);
-
 
   return (
     <>

@@ -22,7 +22,7 @@ const ProductCard = ({ item = {} }) => {
                     transform hover:scale-105 hover:shadow-2xl transition-all duration-500">
       
       {/* Product Image */}
-      <Link to={`/details/${item._id}`}>
+      <Link to={`/product-details/${item._id}`}>
         <img
           src={item?.image?.filePath}
           alt={item?.title}
@@ -69,7 +69,7 @@ const ProductCard = ({ item = {} }) => {
 
         {/* Buttons */}
         <div className="flex justify-between mt-3 gap-3">
-          <Link to={`/details/${item._id}`} className="flex-1 mt-2">
+          <Link to={`/product-details/${item._id}`} className="flex-1 mt-2">
             <button className="w-full bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white py-2 rounded-xl 
                                font-semibold hover:opacity-90 transition">
               View Details

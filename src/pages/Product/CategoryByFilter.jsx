@@ -15,7 +15,6 @@ const CategoryByFilter = ({ selectedCategory, setSelectedCategory }) => {
   const finalCategories = [allRelatedCategory, ...categories];
 
 
-
   return (
     <div className="relative mt-10 mb-6">
       <div className="overflow-x-auto no-scrollbar px-10">

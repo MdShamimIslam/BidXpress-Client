@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet-async';
 import SearchBox from "./SearchBox";
 import CategoryByFilter from "./CategoryByFilter";
 import Pagination from "./Pagination";
+import Loader from "../../components/common/Loader";
 
 const AllProducts = () => {
   const dispatch = useDispatch();
@@ -54,13 +55,15 @@ const AllProducts = () => {
             setSearchTitle={setSearchTitle}
           />
 
-          <CategoryByFilter
+         {!isLoading && <CategoryByFilter
             selectedCategory={selectedCategory}
             setSelectedCategory={setSelectedCategory}
-          />
+          /> } 
 
           {isLoading ? (
-            <p className="text-center text-primary text-xl font-semibold mt-24">Loading...</p>
+            <div>
+              <Loader/>
+            </div>
           ) : products?.length === 0 ? (
             <p className="text-center text-gray-600 font-semibold my-16">
               No product found.

@@ -47,16 +47,33 @@ const Header = () => {
             <Logo/>
              
             <div className="hidden lg:flex items-center justify-between gap-8">
-                {menus?.map((list) => (
-                  <li key={list.id} className="capitalize list-none">
-                    <CustomNavLinkList
-                      href={list.path}
-                      isActive={location.pathname === list.path}
-                    >
-                      {list.link}
-                    </CustomNavLinkList>
-                  </li>
-                ))}
+            {menus.map((list) => {
+              let isActive = false;
+
+              if (list.path === "/dashboard") {
+                isActive = location.pathname.startsWith("/dashboard");
+              } 
+              else if (list.path === "/products") {
+                isActive =
+                  location.pathname === "/products" ||
+                  location.pathname.startsWith("/product-details");
+              } 
+              else {
+                isActive = location.pathname === list.path;
+              }
+
+              return (
+                <li key={list.id} className="capitalize list-none">
+                  <CustomNavLinkList
+                    href={list.path}
+                    isActive={isActive}
+                  >
+                    {list.link}
+                  </CustomNavLinkList>
+                </li>
+              );
+            })}
+
             </div>
 
             <div className="flex items-center">
@@ -64,13 +81,13 @@ const Header = () => {
                 <ShowOnLogout>
                   <CustomNavLink
                     href="/login"
-                    className="bg-gradient-to-r from-[#51d4b3] to-[#144426] px-6 py-2 rounded-full text-white hover:text-white shadow-md"
+                    className="bg-gradient-to-r from-[#51d4b3] to-[#144426] px-6 py-2 rounded-full text-white hover:text-white"
                   >
                      Sign in
                   </CustomNavLink>
                   <CustomNavLink
                     href="/register"
-                    className={` bg-gradient-to-r from-[#6fd361] to-[#1b3618] px-6 py-2 rounded-full text-white hover:text-white shadow-md`}
+                    className={` bg-gradient-to-r from-[#6fd361] to-[#1b3618] px-6 py-2 rounded-full text-white hover:text-white`}
                   >
                     Register
                   </CustomNavLink>

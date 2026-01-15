@@ -5,6 +5,7 @@ import { deleteProductByAdmin, getAllProduct } from "../../redux/features/produc
 import DashboardTitle from "../../components/common/DashboardTitle";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../components/common/Loader";
 
 const AdminProductList = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const AdminProductList = () => {
   };
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loader />;
   }
 
   if (products?.length === 0) {

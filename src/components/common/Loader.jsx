@@ -1,13 +1,10 @@
 
-import ReactDOM from "react-dom";
 const Loader = () => {
-    return ReactDOM.createPortal(
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-950/80 z-[200]">
-          <div className=" fixed top-1/2 left-[45%] w-full h-full">
-            <div className="custom-loader z-50"></div>
-          </div>
-        </div>,
-        document.getElementById("loader")
+    return (
+      <div className="min-h-[40vh] mt-16 flex justify-center items-center">
+        <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-green mr-2"></div>
+        <p className="text-gray-600 font-semibold">Loading...</p>
+     </div>
       );
 }
 

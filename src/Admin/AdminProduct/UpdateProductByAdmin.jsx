@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProductByAdmin } from "../../redux/features/productSlice";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../components/common/Loader";
 
 const UpdateProductByAdmin = () => {
   const { id } = useParams();
@@ -20,11 +21,14 @@ const UpdateProductByAdmin = () => {
     const data = { commission };
     await dispatch(updateProductByAdmin({ id, data }));
 
-
     if (isSuccess) {
       navigate("/product/admin");
     }
   };
+
+  if (isLoading) {
+    return <Loader/>;
+  }
 
   return (
     <>
@@ -51,7 +55,10 @@ const UpdateProductByAdmin = () => {
               className="rounded-lg transition-transform hover:scale-105 mt-6 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-8 py-2 font-semibold"
               disabled={isLoading}
             >
-             {isLoading ? "Processing..." : "Update Now"}
+              <div className="flex justify-center items-center">
+                { isLoading && <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2"></div> }
+                <p>Update Now</p>
+              </div>
             </button>
           </form>
         </div>

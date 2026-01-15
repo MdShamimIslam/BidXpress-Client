@@ -2,7 +2,6 @@ import { Container } from "../../components/common/Design"
 import { stats } from "../../utils/data"
 
 export default function Stats() {
-  
     return (
         <section className="py-16 md:py-20 bg-gradient-to-r from-emerald-50 via-white to-amber-50 border-y border-emerald-100">
             <Container>

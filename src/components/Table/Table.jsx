@@ -87,7 +87,7 @@ const Table = ({ products=[], isWon, isAdmin, handleDeleteProduct, handleSellPro
                       <td className="px-6 py-4 text-center flex items-center gap-3 mt-4 lg:mt-2">
                         {isAdmin ? (
                           <NavLink
-                            to={`/product/admin/update/${_id}`}
+                            to={`/dashboard/admin-product-update/${_id}`}
                             type="button"
                             className="font-medium text-green"
                           >
@@ -95,7 +95,7 @@ const Table = ({ products=[], isWon, isAdmin, handleDeleteProduct, handleSellPro
                           </NavLink>
                         ) : (
                           <NavLink
-                            to={`/product/update/${_id}`}
+                            to={`/dashboard/update-product/${_id}`}
                             type="button"
                             className="font-medium text-green"
                           >

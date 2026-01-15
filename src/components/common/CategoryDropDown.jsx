@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { getAllCategory } from "../../redux/features/categorySlice";
+import Loader from "./Loader";
 
 const CategoryDropDown = ( props ) => {
   const dispatch = useDispatch();
@@ -20,12 +21,13 @@ const CategoryDropDown = ( props ) => {
     props.onChange(selectOption);
   };
 
-  return <>{isLoading ? <p>Loading...</p> : <Select 
-    id="category"
-    options={allCategory}
-    onChange={handleChange}
-    value={props?.value}
-    required
+  return <>
+    {isLoading ? <Loader/> : <Select 
+      id="category"
+      options={allCategory}
+      onChange={handleChange}
+      value={props?.value}
+      required
      />}
   </>;
 };

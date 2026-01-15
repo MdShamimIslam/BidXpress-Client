@@ -62,12 +62,9 @@ export const logout = createAsyncThunk(
   "auth/logout",
   async (_, thunkAPI) => {
     try {
-     const res = await authService.logout();
+      await authService.logout();
       localStorage.removeItem("user");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-      return res;
+      return true;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -303,9 +300,12 @@ const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
+        state.isSuccess = true;
         state.isLoggedIn = false; 
         state.user = null;
+        localStorage.removeItem("user");
         toast.success("Logged out successfully!");
+        window.location.href = "/login";
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;

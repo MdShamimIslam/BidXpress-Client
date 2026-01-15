@@ -121,16 +121,16 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full  bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white font-bold py-3 rounded-xl transition-all duration-200 transform hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-lg"
+                className="w-full bg-gradient-to-r from-[#6fd361] to-[#1b3618] text-white font-bold py-3 rounded-xl transition-all duration-200 transform hover:scale-[1.01] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-lg"
               >
-                {isLoading ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Signing in...
-                  </>
-                ) : (
-                  "Sign In"
-                )}
+                { isLoading ?
+                  <div className="flex justify-center items-center">
+                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2"></div> 
+                    <p>Signing in...</p>
+                  </div> : (
+                    "Sign In"
+                  )
+                }
               </button>
             </form>
 

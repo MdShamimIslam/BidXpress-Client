@@ -234,7 +234,10 @@ const AddProduct = () => {
             className="rounded-lg transition-transform hover:scale-105 mt-6 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-8 py-2 font-semibold"
             disabled={isLoading}
           >
-            {isLoading ? "Processing..." : "Create Now"}
+            <div className="flex justify-center items-center">
+              { isLoading && <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2"></div> }
+              <p>Create Now</p>
+            </div>
           </button>
         </form>
       </section>

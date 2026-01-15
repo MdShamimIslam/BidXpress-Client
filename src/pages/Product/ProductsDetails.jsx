@@ -10,6 +10,7 @@ import Countdown from "../../components/CountDown/CountDown";
 import { Helmet } from 'react-helmet-async';
 import Tab from "./Tab/Tab";
 import StarRating from "./Tab/StarRating";
+import Loader from "../../components/common/Loader";
 
 const ProductsDetails = () => {
   const { id } = useParams();
@@ -46,7 +47,6 @@ const ProductsDetails = () => {
       dispatch(getRelatedProducts(id));
     }
   }, [dispatch, id]);
-  
 
   const incrementBid = () => {
     setRate((prevRate) => Number(prevRate) + 1);
@@ -74,11 +74,7 @@ const ProductsDetails = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-[40vh] flex items-center justify-center">
-        <p className="text-gray-600">Loading...</p>
-      </div>
-    );
+    return <Loader /> ;
   }
 
   return (

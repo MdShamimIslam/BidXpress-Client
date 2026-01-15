@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllProduct, getProduct, selectProduct, updateProduct } from "../../redux/features/productSlice";
 import DashboardTitle from "../../components/common/DashboardTitle";
+import Loader from "../../components/common/Loader";
 
 const ProductEdit = () => {
   const { id } = useParams();
@@ -62,6 +63,10 @@ const ProductEdit = () => {
     }
   
   };
+
+  if (isLoading) {
+    return <Loader/>;
+  }
 
   return (
     <>
@@ -201,7 +206,7 @@ const ProductEdit = () => {
             className="rounded-lg transition-transform hover:scale-105 mt-6 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-8 py-2 font-semibold"
             disabled={isLoading}
           >
-            {isLoading ? "Processing..." : "Update Now"}
+           Update Now
           </button>
         </form>
       </section>

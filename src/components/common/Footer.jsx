@@ -39,7 +39,7 @@ const Footer = () => {
             <p className="text-sm text-gray-400">No spam. Unsubscribe anytime.</p>
           </div>
 
-          <div>
+          <div className="lg:ml-12">
             <h3 className="text-white font-semibold">Explore</h3>
             <ul className="mt-4 space-y-3 text-sm text-gray-300">
               {

@@ -2,7 +2,6 @@ import { Container } from "../../components/common/Design";
 import { categories } from "../../utils/data";
 
 export default function Categories() {
-    
   
     return (
       <section className="py-16 md:py-20 bg-white">

@@ -2,7 +2,6 @@ import { Container } from "../../components/common/Design";
 import { sellers } from "../../utils/data";
 
 export default function TopSellers() {
- 
 
   return (
     <section className="py-16 md:py-20 bg-white border-y border-emerald-100">

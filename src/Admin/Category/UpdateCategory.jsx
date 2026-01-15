@@ -6,12 +6,13 @@ import { getCategory, updateCategory } from "../../redux/features/categorySlice"
 import {toast} from "react-toastify";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../components/common/Loader";
 
 const UpdateCategory = () => {
   const { id } = useParams();
   
   const dispatch = useDispatch();
-  const { category } = useSelector((state) => state.category);
+  const { category, isLoading } = useSelector((state) => state.category);
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
 
@@ -37,6 +38,10 @@ const UpdateCategory = () => {
       console.log(error);
       toast.error("Category updated Failed!");
     }
+  }
+
+  if (isLoading) {
+    return <Loader/>;
   }
 
   return (

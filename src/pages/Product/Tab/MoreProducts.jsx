@@ -33,7 +33,7 @@ const MoreProducts = ({ relatedProducts = [] }) => {
         {relatedProducts.map((product) => (
           <Link
             key={product._id}
-            to={`/details/${product._id}`}
+            to={`/product-details/${product._id}`}
             className="group relative bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300"
           >
             {/* Image */}

@@ -28,9 +28,7 @@ import Services from "./pages/Services/Services";
 import CheckoutSuccess from "./components/CheckoutSuccess/CheckoutSuccess";
 
 function App() {
-
   return (
-    <>
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
@@ -83,7 +81,7 @@ function App() {
             }
           />
           <Route
-            path="/add"
+            path="/dashboard/create-product"
             element={
               <PrivateRoute allowedRoles={["seller","admin"]}>
                 <Layout>
@@ -95,7 +93,7 @@ function App() {
             }
           />
           <Route
-            path="/favourite"
+            path="/dashboard/my-favorites"
             element={
               <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
                 <Layout>
@@ -123,7 +121,7 @@ function App() {
           />
 
           <Route
-            path="/product/update/:id"
+            path="/dashboard/update-product/:id"
             element={
               <PrivateRoute allowedRoles={["seller","admin"]}>
                 <Layout>
@@ -135,7 +133,7 @@ function App() {
             }
           />
           <Route
-            path="/details/:id"
+            path="/product-details/:id"
             element={
               <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
                 <Layout>
@@ -157,7 +155,7 @@ function App() {
             }
           />
           <Route
-            path="/product"
+            path="/dashboard/my-products"
             element={
               <PrivateRoute allowedRoles={["seller","admin"]}>
                 <Layout>
@@ -169,7 +167,7 @@ function App() {
             }
           />
           <Route
-            path="/product/admin"
+            path="/dashboard/all-products"
             element={
               <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
@@ -181,7 +179,7 @@ function App() {
             }
           />
           <Route
-            path="/product/admin/update/:id"
+            path="/dashboard/admin-product-update/:id"
             element={
               <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
@@ -193,7 +191,7 @@ function App() {
             }
           />
           <Route
-            path="/userlist"
+            path="/dashboard/all-users"
             element={
               <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
@@ -205,7 +203,7 @@ function App() {
             }
           />
           <Route
-            path="/winning-products"
+            path="/dashboard/winning-products"
             element={
               <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
                 <Layout>
@@ -217,7 +215,7 @@ function App() {
             }
           />
           <Route
-            path="/profile"
+            path="/dashboard/profile"
             element={
               <PrivateRoute allowedRoles={["buyer","seller","admin"]}>
                 <Layout>
@@ -229,7 +227,7 @@ function App() {
             }
           />
           <Route
-            path="/category"
+            path="/dashboard/all-categories"
             element={
               <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
@@ -241,7 +239,7 @@ function App() {
             }
           />
           <Route
-            path="/category/create"
+            path="/dashboard/create-category"
             element={
               <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
@@ -253,7 +251,7 @@ function App() {
             }
           />
           <Route
-            path="/category/update/:id"
+            path="/dashboard/update-category/:id"
             element={
               <PrivateRoute allowedRoles={["admin"]}>
                 <Layout>
@@ -274,7 +272,6 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </>
   );
 }
 

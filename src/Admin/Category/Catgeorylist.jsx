@@ -10,10 +10,11 @@ import { formatDate } from "../../utils/formateDate";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import Loader from "../../components/common/Loader";
 
 const Catgeorylist = () => {
   const dispatch = useDispatch();
-  const { categories } = useSelector((state) => state.category);
+  const { categories, isLoading } = useSelector((state) => state.category);
 
   useEffect(() => {
     dispatch(getAllCategory());
@@ -36,6 +37,10 @@ const Catgeorylist = () => {
     }
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
       <Helmet>
@@ -44,7 +49,7 @@ const Catgeorylist = () => {
       <section className="shadow-s1 p-8 rounded-lg">
         <div className="flex justify-between items-center">
           <DashboardTitle title="Category Lists" />
-          <NavLink to="/category/create">
+          <NavLink to="/dashboard/create-category">
           <button className="flex items-center gap-1 rounded-lg transition-transform hover:scale-105 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-4 py-2 font-semibold">
               <AiOutlinePlus size={20} />
               <span>Create Category</span>
@@ -105,7 +110,7 @@ const Catgeorylist = () => {
                       <td className="px-6 py-4">{formatDate(createdAt)}</td>
                       <td className="px-6 py-4 text-center flex items-center justify-end gap-3 mt-4 lg:mt-2">
                         <NavLink
-                          to={`/category/update/${_id}`}
+                          to={`/dashboard/update-category/${_id}`}
                           className="font-medium text-green"
                         >
                           <CiEdit size={25} />

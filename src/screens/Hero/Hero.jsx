@@ -25,13 +25,13 @@ const Hero = () => {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/products" className="bg-[#216118] hover:bg-emerald-900 text-white px-8 py-3 rounded-lg  font-semibold transition shadow-lg hover:shadow-xl text-center">
-              Explore Auctions
+            Start Bidding
             </Link>
-            <Link 
-              to="/login"
+            <Link
+              to="/about"
               className="border-2 border-emerald-600 text-emerald-600 px-8 py-3 rounded-lg hover:bg-emerald-50 font-semibold transition text-center"
             >
-             Join as Buyer
+              Learn More
             </Link>
           </div>
 

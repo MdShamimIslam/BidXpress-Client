@@ -7,11 +7,12 @@ import { formatDate } from "../utils/formateDate";
 import DashboardTitle from "../components/common/DashboardTitle";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import Loader from "../components/common/Loader";
 
 const UserList = () => {
   const dispatch = useDispatch();
 
-  const { users } = useSelector((state) => state?.auth);
+  const { users, isLoading } = useSelector((state) => state?.auth);
 
   useEffect(() => {
     dispatch(getAllUser());
@@ -34,6 +35,11 @@ const UserList = () => {
       await dispatch(getAllUser());
     }
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
       <>
         <Helmet>

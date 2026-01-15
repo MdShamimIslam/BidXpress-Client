@@ -85,7 +85,10 @@ const AddFeedback = ({ closeModal }) => {
           className="w-full bg-[#216118] hover:bg-emerald-900 text-white py-2 rounded hover:bg-green-800 transition"
           disabled={isLoading}
         >
-          {isLoading ? "Submitting..." : "Submit Feedback"}
+          <div className="flex justify-center items-center">
+           { isLoading && <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2"></div> }
+            <p>Submit Feedback</p>
+          </div>
         </button>
       </form>
     </section>

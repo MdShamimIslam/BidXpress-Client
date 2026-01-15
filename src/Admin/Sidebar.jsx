@@ -7,18 +7,16 @@ import { IoIosLogOut } from "react-icons/io";
 import { CgProductHunt } from "react-icons/cg";
 import { FiUser } from "react-icons/fi";
 import { FaPlusCircle } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Caption, CustomNavLink, Title } from "../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile, logout, RESET } from "../redux/features/authSlice";
-
 import { useEffect } from "react";
 import { useUserProfile } from "../hooks/useUserProfile";
 import { Helmet } from 'react-helmet-async';
 
 const Sidebar = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {user} = useSelector(state => state?.auth);
   const {role, isLoggedIn} = useUserProfile();
@@ -33,7 +31,6 @@ const Sidebar = () => {
   const handleLogout = async () => {
     await dispatch(logout());
     dispatch(RESET());
-    navigate("/");
   };
 
   const className =  "flex items-center gap-3 p-3 md:p-4 rounded-lg hover:bg-green_100";
@@ -41,7 +38,7 @@ const Sidebar = () => {
   return (
     <>
     {location?.pathname === "/dashboard" && <Helmet>
-        <title>BidXpress | Dashboard</title>
+        <title>BidXpress | Dashboard - Overview</title>
       </Helmet> 
     }
     
@@ -66,14 +63,14 @@ const Sidebar = () => {
             <span>
               <CiGrid41 size={20} />
             </span>
-            <span>Dashboard</span>
+            <span>Overview</span>
           </CustomNavLink>
 
           {(role === "seller" || role === "admin") && (
             <>
               <CustomNavLink
-                href="/product"
-                isActive={location.pathname === "/product"}
+                href="/dashboard/my-products"
+                isActive={location.pathname === "/dashboard/my-products"}
                 className={className}
               >
                 <span>
@@ -82,8 +79,8 @@ const Sidebar = () => {
                 <span>My Products</span>
               </CustomNavLink>
               <CustomNavLink
-                href="/add"
-                isActive={location.pathname === "/add"}
+                href="/dashboard/create-product"
+                isActive={location.pathname === "/dashboard/create-product"}
                 className={className}
               >
                 <span>
@@ -98,8 +95,8 @@ const Sidebar = () => {
           {role === "admin" && (
             <>
               <CustomNavLink
-                href="/userlist"
-                isActive={location.pathname === "/userlist"}
+                href="/dashboard/all-users"
+                isActive={location.pathname === "/dashboard/all-users"}
                 className={className}
               >
                 <span>
@@ -109,8 +106,8 @@ const Sidebar = () => {
               </CustomNavLink>
 
               <CustomNavLink
-                href="/product/admin"
-                isActive={location.pathname === "/product/admin"}
+                href="/dashboard/all-products"
+                isActive={location.pathname === "/dashboard/all-products"}
                 className={className}
               >
                 <span>
@@ -120,8 +117,8 @@ const Sidebar = () => {
               </CustomNavLink>
 
               <CustomNavLink
-                href="/category"
-                isActive={location.pathname === "/category"}
+                href="/dashboard/all-categories"
+                isActive={location.pathname === "/dashboard/all-categories"}
                 className={className}
               >
                 <span>
@@ -133,18 +130,18 @@ const Sidebar = () => {
           )}
 
           <CustomNavLink
-            href="/winning-products"
-            isActive={location.pathname === "/winning-products"}
+            href="/dashboard/winning-products"
+            isActive={location.pathname === "/dashboard/winning-products"}
             className={className}
           >
             <span>
               <RiAuctionLine size={20} />
             </span>
-            <span>Winning Bids</span>
+            <span>Winning Products</span>
           </CustomNavLink>
           <CustomNavLink
-            href="/favourite"
-            isActive={location.pathname === "/favourite"}
+            href="/dashboard/my-favorites"
+            isActive={location.pathname === "/dashboard/my-favorites"}
             className={className}
           >
             <span>
@@ -153,8 +150,8 @@ const Sidebar = () => {
             <span>My Favorites</span>
           </CustomNavLink>
           <CustomNavLink
-            href="/profile"
-            isActive={location.pathname === "/profile"}
+            href="/dashboard/profile"
+            isActive={location.pathname === "/dashboard/profile"}
             className={className}
           >
             <span>

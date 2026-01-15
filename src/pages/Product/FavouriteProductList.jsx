@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import Swal from 'sweetalert2';
 import { Helmet } from "react-helmet-async";
+import Loader from "../../components/common/Loader";
 
 
 const FavouriteProductList = () => {
@@ -16,8 +17,6 @@ const FavouriteProductList = () => {
   useEffect(() => {
     dispatch(getFavouriteProducts());
   }, [dispatch]);
-
-  if (isLoading) return <p>Loading...</p>;
 
   const handleRemoveFavouriteProduct = async (_id) => {
     const result = await Swal.fire({
@@ -36,6 +35,7 @@ const FavouriteProductList = () => {
     }
   };
   
+  if (isLoading) return <Loader />;
 
   return (
     <>

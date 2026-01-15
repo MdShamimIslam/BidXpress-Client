@@ -11,10 +11,11 @@ import { getAllUser, getIncome, getUserIncome, getUserProfile } from "../../redu
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProduct, getAllProductOfUser, getAllWonedProductOfUser } from "../../redux/features/productSlice";
 import DashboardTitle from "../../components/common/DashboardTitle";
+import Loader from "../../components/common/Loader";
 
 const Dashboard = () => {
-  const { sellingIncome, commissionIncome, user, users } = useSelector((state) => state.auth);
-  const { products, userProducts, wonedProducts } = useSelector( (state) => state.product );
+  const { sellingIncome, commissionIncome, user, users, isLoading : authLoading } = useSelector((state) => state.auth);
+  const { products, userProducts, wonedProducts, isLoading : productLoading } = useSelector( (state) => state.product );
   const dispatch = useDispatch();
   const { role } = user || {};
 
@@ -32,6 +33,10 @@ const Dashboard = () => {
       dispatch(getAllProduct());
     }
   }, [dispatch, role]);
+
+  if (authLoading || productLoading) {
+    return <Loader/>
+  }
 
   return (
     <>
