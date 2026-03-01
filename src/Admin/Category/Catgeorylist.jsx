@@ -33,7 +33,8 @@ const Catgeorylist = () => {
     });
   
     if (result.isConfirmed) {
-      dispatch(deleteCategory(_id));
+      await dispatch(deleteCategory(_id));
+      dispatch(getAllCategory());
     }
   };
 

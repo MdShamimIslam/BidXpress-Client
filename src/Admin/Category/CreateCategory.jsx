@@ -18,7 +18,7 @@ const CreateCategory = () => {
     try {
       await dispatch(createCategory({ title })).unwrap();
       toast.success("Successfully created category");
-      navigate("/category");
+      navigate("/dashboard/all-categories");
 
     } catch (error) {
       console.error(error);

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const storedUser = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  user: storedUser || null,
+  user: storedUser && Number(storedUser.expiresAt) > Date.now() ? storedUser : null,
   favoriteProducts: [],
   users: [],
   sellingIncome: null,
@@ -13,7 +13,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  isLoggedIn: !!storedUser,
+  isLoggedIn: storedUser && Number(storedUser.expiresAt) > Date.now(),
   message: ""
 };
 
@@ -82,8 +82,8 @@ export const getLogInStatus = createAsyncThunk(
   "auth/status",
   async (_, thunkAPI) => {
     try {
-     const res = await authService.getLogInStatus();
-     return res;
+      const res = await authService.getLogInStatus();
+      return res;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -101,8 +101,8 @@ export const getUserProfile = createAsyncThunk(
   "auth/userprofile",
   async (_, thunkAPI) => {
     try {
-     const res = await authService.getUserProfile();
-     return res;
+      const res = await authService.getUserProfile();
+      return res;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -120,8 +120,8 @@ export const updateUserProfile = createAsyncThunk(
   "auth/updateUserProfile",
   async (data, thunkAPI) => {
     try {
-     const res = await authService.updateUserProfile(data);
-     return res;
+      const res = await authService.updateUserProfile(data);
+      return res;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -139,8 +139,8 @@ export const getUserIncome = createAsyncThunk(
   "auth/user-income",
   async (_, thunkAPI) => {
     try {
-     const res = await authService.getUserIncome();
-     return res;
+      const res = await authService.getUserIncome();
+      return res;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -158,8 +158,8 @@ export const getIncome = createAsyncThunk(
   "auth/income",
   async (_, thunkAPI) => {
     try {
-     const res = await authService.getIncome();
-     return res;
+      const res = await authService.getIncome();
+      return res;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -177,8 +177,8 @@ export const getAllUser = createAsyncThunk(
   "auth/all-user",
   async (_, thunkAPI) => {
     try {
-     const res = await authService.getAllUser();
-     return res;
+      const res = await authService.getAllUser();
+      return res;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -196,8 +196,8 @@ export const deleteUserByAdmin = createAsyncThunk(
   "auth/delete-user-by-admin",
   async (id, thunkAPI) => {
     try {
-     const res = await authService.deleteUserByAdmin(id);
-     return res;
+      const res = await authService.deleteUserByAdmin(id);
+      return res;
     } catch (error) {
       const errorMessage =
         (error.response &&
@@ -261,7 +261,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    // register the user
+      // register the user
       .addCase(register.pending, (state) => {
         state.isLoading = true;
       })
@@ -301,7 +301,7 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.isLoggedIn = false; 
+        state.isLoggedIn = false;
         state.user = null;
         localStorage.removeItem("user");
         toast.success("Logged out successfully!");
@@ -334,16 +334,23 @@ const authSlice = createSlice({
       .addCase(getUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+
+        state.user = {
+          ...action.payload,
+          expiresAt: storedUser?.expiresAt,
+          token: storedUser?.token,
+        };
+
         state.isLoggedIn = true;
-        state.user = action.payload;
-        localStorage.setItem("user", JSON.stringify(action.payload));
       })
       .addCase(getUserProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        // TODO
         state.isLoggedIn = false;
+        state.user = null;
         localStorage.removeItem("user");
       })
       // update user profile
@@ -353,17 +360,26 @@ const authSlice = createSlice({
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+
+        state.user = {
+          ...action.payload,
+          token: storedUser?.token,
+          expiresAt: storedUser?.expiresAt,
+        };
+
         state.isLoggedIn = true;
-        state.user = action.payload;
-        localStorage.setItem("user", JSON.stringify(action.payload));
         toast.success("Profile updated successfully!");
       })
       .addCase(updateUserProfile.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        state.isLoggedIn = true;
-        toast.error("Profile updated Failed!");
+        state.isLoggedIn = false; 
+        state.user = null;
+        localStorage.removeItem("user");
+        toast.error("Profile update failed!");
       })
       // get user income
       .addCase(getUserIncome.pending, (state) => {
@@ -489,7 +505,7 @@ const authSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       });
-      
+
   },
 });
 

@@ -1,0 +1,5 @@
+1. Check payment integration. If success then update WedlockBD site (added webhook)
+2. server er localhost a image upload hoy cloudinary te kintu production url a hosse na
+
+
+

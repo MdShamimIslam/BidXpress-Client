@@ -26,8 +26,17 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Services from "./pages/Services/Services";
 import CheckoutSuccess from "./components/CheckoutSuccess/CheckoutSuccess";
+import { useEffect } from "react";
 
 function App() {
+  
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user.expiresAt < Date.now()) {
+      localStorage.removeItem("user");
+    }
+}, []);
+
   return (
       <BrowserRouter>
         <ScrollToTop />

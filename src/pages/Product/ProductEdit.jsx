@@ -59,7 +59,7 @@ const ProductEdit = () => {
      dispatch(getAllProduct());
 
     if (isSuccess) {
-      navigate("/product");
+      navigate("/products");
     }
   
   };

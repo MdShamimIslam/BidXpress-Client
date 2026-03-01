@@ -1,12 +1,10 @@
-import { useState } from "react";
 import Description from "./Description";
 import { History } from "./History";
 import MoreProducts from "./MoreProducts";
 import ReviewForm from "./ReviewForm";
 import ReviewList from "./ReviewList";
 
-const Tab = ({product, history, reviews, relatedProducts }) => {
-  const [activeTab, setActiveTab] = useState("description");
+const Tab = ({product, history, reviews, relatedProducts, activeTab, setActiveTab }) => {
 
   return (
     <div className="mt-10 relative">
@@ -37,7 +35,7 @@ const Tab = ({product, history, reviews, relatedProducts }) => {
 
             {activeTab === "reviews" && (
                 <div className="space-y-6">
-                    <ReviewForm />
+                    <ReviewForm setActiveTab={setActiveTab} />
                     <ReviewList {...{reviews }}/>
                 </div>
             )}

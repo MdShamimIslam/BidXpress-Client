@@ -9,7 +9,7 @@ export const useUserProfile = () => {
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
-    if (storedUser && !user && !isLoading) {
+    if (storedUser && Number(storedUser.expiresAt) > Date.now() && !user && !isLoading) {
       dispatch(getUserProfile());
     }
   }, [dispatch, user, isLoading]);

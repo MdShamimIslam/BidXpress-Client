@@ -58,7 +58,6 @@ const deleteProductByAdmin = async (id) => {
 // add product review
 export const addProuductReview = async ({id, data}) => {
   const res = await axios.post(`${PRODUCT_URL}/review/${id}`, data, { withCredentials: true });
-  console.log(res?.data);
   return res?.data;
 }
 

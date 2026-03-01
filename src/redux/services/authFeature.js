@@ -1,6 +1,16 @@
 import axios from "axios";
 import { AUTH_URL } from "../../utils/url";
 
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem("user");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
 
 const register = async (userData) => {
   const res = await axios.post(`${AUTH_URL}/register`, userData, { withCredentials: true });

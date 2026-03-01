@@ -1,19 +1,35 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { addProuductReview } from "../../../redux/features/productSlice";
+import { addProuductReview, getProductReview } from "../../../redux/features/productSlice";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const ReviewForm = () => {
+const ReviewForm = ({setActiveTab}) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
-  const dispatach = useDispatch();
+  const dispatch = useDispatch();
   const {id} = useParams();
 
-  const handleSubmit = () => {
-    const data = { rating, comment };
-    
-    dispatach(addProuductReview({id, data}));
+  const handleSubmit = async () => {
+
+    if (!rating || !comment) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+      const data = { rating, comment };
+
+      try {
+        await dispatch(addProuductReview({ id, data })).unwrap();
+        dispatch(getProductReview(id));
+        
+        setActiveTab("reviews");
+        setRating(0);
+        setComment("");
+      } catch (err) {
+        console.log(err);
+      }
   };
 
   return (

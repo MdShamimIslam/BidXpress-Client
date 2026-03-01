@@ -45,7 +45,6 @@ const Header = () => {
         <Container>
           <nav className="py-4 flex justify-between items-center relative pointer-events-auto">
             <Logo/>
-             
             <div className="hidden lg:flex items-center justify-between gap-8">
             {menus.map((list) => {
               let isActive = false;

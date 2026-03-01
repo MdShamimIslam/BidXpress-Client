@@ -32,7 +32,7 @@ const UpdateCategory = () => {
     try {
       await dispatch( updateCategory({id, title}));
       toast.success("Category updated successfully!");
-      navigate("/category");
+      navigate("/dashboard/all-categories");
       
     } catch (error) {
       console.log(error);

@@ -16,6 +16,7 @@ const ProductsDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [rate, setRate] = useState(0);
+  const [activeTab, setActiveTab] = useState("description");
   const { history = [] } = useSelector((state) => state.bidding);
   const { product, productReviews, relatedProducts, isLoading } = useSelector((state) => state.product);
   const { image, title, isverify, price, isSoldout, rating, numReviews, saleStatus, winningBid } = product || {};
@@ -216,7 +217,7 @@ const ProductsDetails = () => {
               }
             </div>
           </div>
-          <Tab {...{ product, history, reviews:productReviews, relatedProducts }} />
+          <Tab {...{ product, history, reviews:productReviews, relatedProducts, activeTab, setActiveTab, }} />
         </Container>
       </section>
     </>

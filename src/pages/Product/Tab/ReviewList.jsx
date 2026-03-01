@@ -24,20 +24,20 @@ const ReviewList = ({ reviews = [] }) => {
 
   return (
     <div className="space-y-4">
-      {reviews.map((review) => (
+      {reviews?.map((review) => (
         <div
           key={review._id}
           className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm"
         >
           <div className="flex items-center gap-3 mb-2">
             <img
-              src={review.photo}
-              alt={review.name}
+              src={review.user.photo}
+              alt={review.user.name}
               className="w-10 h-10 rounded-full object-cover"
             />
 
             <div className="flex-1">
-              <p className="font-medium text-gray-800">{review.name}</p>
+              <p className="font-medium text-gray-800">{review.user.name}</p>
               <StarRating rating={review.rating} />
             </div>
 

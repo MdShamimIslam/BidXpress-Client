@@ -62,7 +62,7 @@ const AddProduct = () => {
       await dispatch(createProduct(formData));
 
       if (isSuccess) {
-        navigate("/product");
+        navigate("/products");
         dispatch(resetProductState());
       }
     } catch (error) {

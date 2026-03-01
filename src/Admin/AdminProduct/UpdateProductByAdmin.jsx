@@ -2,18 +2,23 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Caption, commonClassNameOfInput } from "../../components/common/Design";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProductByAdmin } from "../../redux/features/productSlice";
+import { getProduct, updateProductByAdmin } from "../../redux/features/productSlice";
 import DashboardTitle from "../../components/common/DashboardTitle";
 import { Helmet } from "react-helmet-async";
 import Loader from "../../components/common/Loader";
+import { useEffect } from "react";
 
 const UpdateProductByAdmin = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { isSuccess, isLoading } = useSelector((state) => state?.product);
+  const { isSuccess, isLoading, product } = useSelector((state) => state?.product);
   const [commission, setCommission] = useState(0);
+  
+  useEffect(() => {
+    dispatch(getProduct(id));
+  }, [id, dispatch]);
 
   const save = async (e) => {
     e.preventDefault();
@@ -22,7 +27,7 @@ const UpdateProductByAdmin = () => {
     await dispatch(updateProductByAdmin({ id, data }));
 
     if (isSuccess) {
-      navigate("/product/admin");
+      navigate("/dashboard/all-products");
     }
   };
 
@@ -41,9 +46,9 @@ const UpdateProductByAdmin = () => {
         <div className="create-product">
           <form onSubmit={save}>
             <div className="w-full">
-              <Caption className="mb-2 text-base">Commission *</Caption>
+              <Caption className="mb-2 text-base">Commission ({product?.commission || 0}%) *</Caption>
               <input
-                value={commission}
+                value={product?.commission || commission}
                 onChange={(e) => setCommission(e.target.value)}
                 type="number"
                 name="commission"

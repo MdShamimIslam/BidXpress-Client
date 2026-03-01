@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { commonClassNameOfInput, Caption } from "../../components/common/Design";
 import { useSelector, useDispatch } from "react-redux";
 import {updateUserProfile} from "../../redux/features/authSlice";
@@ -9,12 +9,15 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const { user = {}, isLoading } = useSelector((state) => state?.auth);
   const { register, handleSubmit, setValue } = useForm();
+  const [updateProfileLoading, setUpdateProfileLoading] = useState(false);
 
   useEffect(() => {
     setValue("name", user?.name || "");
-  }, [dispatch, user, setValue]);
+  }, [user, setValue]);
 
   const onSubmit = (data) => {
+    setUpdateProfileLoading(true);
+
     const formData = new FormData();
     formData.append("name", data?.name);
 
@@ -23,6 +26,8 @@ const UserProfile = () => {
     }
 
     dispatch(updateUserProfile(formData));
+
+    setUpdateProfileLoading(false);
   };
 
   return (
@@ -78,9 +83,14 @@ const UserProfile = () => {
           <button
             type="submit"
             className="rounded-lg transition-transform hover:scale-105 mt-6 bg-gradient-to-r from-[#244420] to-[#3b8532] text-white px-8 py-2 font-semibold"
-            disabled={isLoading}
+            disabled={isLoading || updateProfileLoading}
           >
-            Update Profile
+            {updateProfileLoading ?
+                  <div className="flex justify-center items-center">
+                    <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-2"></div> 
+                    <p>Update Profile</p>
+                  </div> : "Update Profile"
+                }
           </button>
         </form>
       </section>
