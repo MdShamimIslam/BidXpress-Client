@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"; 
-import axios from "axios"; 
-import { PAYMENT_URL } from "../../utils/url";
+import api from "../../utils/api";
 
 const initialState = {
   checkoutUrl: null,
@@ -12,7 +11,7 @@ export const createCheckoutSession = createAsyncThunk(
   "payment/createCheckoutSession",
   async (productId, { rejectWithValue }) => {
     try {
-      const res = await axios.post(`${PAYMENT_URL}/create-checkout-session`, { productId }, {withCredentials: true} );
+      const res = await api.post(`/payment/create-checkout-session`, { productId });
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response.data.message);

@@ -1,14 +1,14 @@
-import axios from "axios";
-import { FEEDBACK_URL } from "../../utils/url";
+import api from "../../utils/api";
 
+// add feedback
 const addFeedback = async (data) => {
-  const res = await axios.post(`${FEEDBACK_URL}`, data, { withCredentials: true});
+  const res = await api.post('/feedback', data);
   return res?.data;
 };
 
 // get feedbacks
 export const getFeedbacks = async () => {
-  const res = await axios.get(`${FEEDBACK_URL}`, { withCredentials: true });
+  const res = await api.get('/feedback');
   return res?.data;
 };
 

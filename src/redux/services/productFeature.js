@@ -1,74 +1,73 @@
-import axios from "axios";
-import { PRODUCT_URL } from "../../utils/url";
+import api from "../../utils/api";
 
 // create product
 const createProduct = async (data) => {
-  const res = await axios.post(`${PRODUCT_URL}`, data, { withCredentials: true });
+  const res = await api.post('/product', data);
   return res?.data;
 };
 
 // get all product
 const getAllProduct = async (params = {}) => {
-  const res = await axios.get(`${PRODUCT_URL}`, { params });
+  const res = await api.get(`/product`, { params });
   return res?.data;
 };
 
 // get all product of user
 const getAllProductOfUser = async () => {
-  const res = await axios.get(`${PRODUCT_URL}/user`, { withCredentials: true });
+  const res = await api.get(`/product/user`);
   return res?.data;
 };
 
 // get all woned product of user
 const getAllWonedProductOfUser = async () => {
-  const res = await axios.get(`${PRODUCT_URL}/won-products`, { withCredentials: true });
+  const res = await api.get(`/product/won-products`);
   return res?.data;
 };
 
 // delete product by user
 const deleteProduct = async (id) => {
-  const res = await axios.delete(`${PRODUCT_URL}/${id}`, { withCredentials: true });
+  const res = await api.delete(`/product/${id}`);
   return res?.data;
 };
 
 // get product
 const getProduct = async (id) => {
-  const res = await axios.get(`${PRODUCT_URL}/${id}`, { withCredentials: true });
+  const res = await api.get(`/product/${id}`);
   return res?.data;
 };
 
 // update product
 const updateProduct = async ({ id, data }) => {
-  const res = await axios.put(`${PRODUCT_URL}/${id}`, data, { withCredentials: true });
+  const res = await api.put(`/product/${id}`, data);
   return res?.data;
 };
 
 // update product by admin
 const updateProductByAdmin = async ({ id, data }) => {
-  const res = await axios.patch( `${PRODUCT_URL}/admin/product-verified/${id}`, data, { withCredentials: true } );
+  const res = await api.patch( `/product/admin/product-verified/${id}`, data );
   return res?.data;
 };
 
 // delete product by admin
 const deleteProductByAdmin = async (id) => {
-  const res = await axios.delete(`${PRODUCT_URL}/admin/products/${id}`, { withCredentials: true });
+  const res = await api.delete(`/product/admin/products/${id}`);
   return res?.data;
 };
 
 // add product review
 export const addProuductReview = async ({id, data}) => {
-  const res = await axios.post(`${PRODUCT_URL}/review/${id}`, data, { withCredentials: true });
+  const res = await api.post(`/product/review/${id}`, data);
   return res?.data;
 }
 
 // get product review
 export const getProductReview = async (id) => {
-  const res = await axios.get(`${PRODUCT_URL}/review/${id}`, { withCredentials: true });
+  const res = await api.get(`/product/review/${id}`);
   return res?.data;
 }
 // get related products
 export const getRelatedProducts = async (id) => {
-  const res = await axios.get(`${PRODUCT_URL}/related/${id}`, { withCredentials: true });
+  const res = await api.get(`/product/related/${id}`);
   return res?.data;
 }
 

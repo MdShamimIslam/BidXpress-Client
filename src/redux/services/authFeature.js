@@ -1,35 +1,23 @@
-import axios from "axios";
-import { AUTH_URL } from "../../utils/url";
-
-axios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response && error.response.status === 401) {
-      localStorage.removeItem("user");
-      window.location.href = "/login";
-    }
-    return Promise.reject(error);
-  }
-);
+import api from "../../utils/api";
 
 const register = async (userData) => {
-  const res = await axios.post(`${AUTH_URL}/register`, userData, { withCredentials: true });
+  const res = await api.post(`/users/register`, userData);
   return res?.data;
 };
 
 const login = async (userData) => {
-  const res = await axios.post(`${AUTH_URL}/login`, userData, { withCredentials: true });
+  const res = await api.post(`/users/login`, userData);
   return res?.data;
 };
 
 const logout = async () => {
-  const res = await axios.get(`${AUTH_URL}/logout`, { withCredentials: true });
+  const res = await api.get(`/users/logout`);
   return res?.data?.message;
 };
 
 const getLogInStatus = async () => {
   try {
-    const res = await axios.get(`${AUTH_URL}/loggedin`, { withCredentials: true });
+    const res = await api.get(`/users/loggedin`);
     return res?.data;
     
   } catch (error) {
@@ -39,55 +27,55 @@ const getLogInStatus = async () => {
 };
 
 const getUserProfile = async () => {
-    const res = await axios.get(`${AUTH_URL}/getuser`, { withCredentials: true });
+    const res = await api.get(`/users/getuser`);
     return res?.data;
 };
 
 const updateUserProfile = async (data) => {
-    const res = await axios.put(`${AUTH_URL}/update-user-profile`, data, { withCredentials: true });
+    const res = await api.put(`/users/update-user-profile`, data);
     return res?.data;
 };
 
 const getUserIncome = async () => {
-  const res = await axios.get(`${AUTH_URL}/sell-amount`, { withCredentials: true });
+  const res = await api.get(`/users/sell-amount`);
   return res?.data;
 
 };
 
 // only asscess for admin user
 const getIncome = async () => {
-  const res = await axios.get(`${AUTH_URL}/estimate-income`, { withCredentials: true });
+  const res = await api.get(`/users/estimate-income`);
   return res?.data;
 
 };
 
 const getAllUser = async () => {
-  const res = await axios.get(`${AUTH_URL}/alluser`, { withCredentials: true });
+  const res = await api.get(`/users/alluser`);
   return res?.data;
 
 };
 
 // delete user by admin
 const deleteUserByAdmin = async (id) => {
-  const res = await axios.delete(`${AUTH_URL}/admin/delete-user/${id}`, { withCredentials: true });
+  const res = await api.delete(`/users/admin/delete-user/${id}`);
   return res?.data;
 };
 
 // Add product to favourite
 const addFavouriteProduct = async (productId) => {
-  const res = await axios.post(`${AUTH_URL}/favourite-product/${productId}`, {}, { withCredentials: true });
+  const res = await api.post(`/users/favourite-product/${productId}`, {});
   return res.data;
 };
 
 // Get all favourite products
 const getFavouriteProducts = async () => {
-  const res = await axios.get(`${AUTH_URL}/favourite-product`, { withCredentials: true });
+  const res = await api.get(`/users/favourite-product`);
   return res.data; 
 };
 
 // Remove product from favourite
 export const deleteFavouriteProduct = async (productId) => {
-  const res = await axios.delete(`${AUTH_URL}/favourite-product/${productId}`, {withCredentials: true });
+  const res = await api.delete(`/users/favourite-product/${productId}`);
   return res.data;
 };
 

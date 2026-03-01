@@ -1,18 +1,17 @@
-import axios from "axios";
-import { BIDDING_URL } from "../../utils/url";
+import api from "../../utils/api";
 
 const placebid = async (data) => {
-  const res = await axios.post(`${BIDDING_URL}`, data, { withCredentials: true});
+  const res = await api.post('/bidding', data);
   return res?.data;
 };
 
 const getBiddingHistory = async (productId) => {
-  const res = await axios.get(`${BIDDING_URL}/${productId}`, { withCredentials: true});
+  const res = await api.get(`/bidding/${productId}`);
   return res?.data;
 };
 
 const sellProductByUser = async (productId) => {
-  const res = await axios.post(`${BIDDING_URL}/sell`, {productId}, { withCredentials: true});
+  const res = await api.post(`/bidding/sell`, {productId});
   return res?.data;
 };
 
