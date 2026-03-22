@@ -15,7 +15,7 @@ const UserProfile = () => {
     setValue("name", user?.name || "");
   }, [user, setValue]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     setUpdateProfileLoading(true);
 
     const formData = new FormData();
@@ -25,7 +25,7 @@ const UserProfile = () => {
       formData.append("photo", data?.photo[0]);
     }
 
-    dispatch(updateUserProfile(formData));
+    await dispatch(updateUserProfile(formData));
 
     setUpdateProfileLoading(false);
   };
@@ -46,7 +46,6 @@ const UserProfile = () => {
                 placeholder="Enter your full name"
                 {...register("name")}
                 required
-                name="name"
               />
             </div>
             <div className="w-full md:w-1/2 ">
@@ -76,7 +75,6 @@ const UserProfile = () => {
                 type="file"
                 className={`${commonClassNameOfInput} rounded-md`}
                 {...register("photo", { required: false })}
-                name="photo"
               />
             </div>
           </div>

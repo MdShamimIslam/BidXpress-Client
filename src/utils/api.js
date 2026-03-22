@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL,
-  withCredentials: true,
-});
+const baseURL = import.meta.env.VITE_BACKEND_URL || "https://bidly-server-nu.vercel.app/api";
+const api = axios.create({ baseURL, withCredentials: true });
 
 api.interceptors.response.use(
   (response) => response,
